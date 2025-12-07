@@ -1,33 +1,80 @@
 "use client";
 
+import { useEffect, useRef } from 'react';
 import Link from "next/link";
 import { menu } from "@/constants/menu";
+import { Mail, Phone } from 'lucide-react';
 
-export default function MobileMenu({ isOpen, setIsOpen, scrolled }) {
+export default function MobileMenu({ isOpen, setIsOpen }) {
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.body.classList.add('overflow-hidden');
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [isOpen, setIsOpen]);
+
   return (
     <div
-      className={`md:hidden transition-all duration-300 ease-in-out ${
-        isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+      ref={menuRef}
+      className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+        isOpen 
+          ? 'max-h-screen opacity-100 bg-white/95 backdrop-blur-md' 
+          : 'max-h-0 opacity-0'
       }`}
     >
-      <div className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 ${scrolled ? 'bg-white' : 'bg-black/80 backdrop-blur-sm'} border-t`}>
-        {menu.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className={`${scrolled ? 'text-dark-charcoal hover:bg-gray-100 hover:text-muted-rose' : 'text-white hover:bg-white/10 hover:text-white'} px-3 py-2 rounded-md text-base font-medium flex items-center space-x-2 transition-colors`}
-            onClick={() => setIsOpen(false)}
-          >
-            <span>{link.label}</span>
-          </Link>
-        ))}
-        <Link
-          href="#order"
-          className={`${scrolled ? 'bg-muted-rose hover:bg-pink-700' : 'bg-white text-muted-rose hover:bg-gray-100'} px-4 py-2 rounded-md text-base font-medium transition-colors flex items-center justify-center space-x-2 mt-2`}
-          onClick={() => setIsOpen(false)}
-        >
-          <span>Pesan Sekarang</span>
-        </Link>
+      <div className="px-4 py-2 border-t border-warm-gray">
+        <nav className="flex flex-col space-y-1">
+          {menu.map((link) => (
+            <div key={link.href} className="w-full">
+              <Link
+                href={link.href}
+                className="w-full text-left px-4 py-3 text-base font-medium transition-colors flex items-center justify-between text-muted-rose"
+                onClick={() => setIsOpen(false)}
+              >
+                <span>{link.label}</span>
+              </Link>
+            </div>
+          ))}
+          
+          {/* CTA Button */}
+          <div className="mt-4 px-4">
+            <Link
+              href="#order"
+              className="w-full flex items-center justify-center px-4 py-3 rounded-lg font-medium text-warm-gray bg-muted-rose"
+              onClick={() => setIsOpen(false)}
+            >
+              Pesan Sekarang
+            </Link>
+          </div>
+        </nav>
+        
+        {/* Contact Info */}
+        <div className="mt-8 px-4 pt-6 pb-2 border-t border-rose-pink">
+          <div className="font-medium text-muted-rose mb-3">Hubungi Kami</div>
+          <div className="space-y-2">
+            <Link href="tel:+628123456789" className="flex items-center text-muted-rose font-medium">
+              <Phone size={20} className='mr-2' /> +62 812-3456-7890
+            </Link>
+            <Link href="mailto:info@galerizka.com" className="flex items-center text-muted-rose font-medium">
+              <Mail size={20} className='mr-2' /> info@galerizka.com
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

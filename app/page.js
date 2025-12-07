@@ -1,20 +1,20 @@
 "use client";
 
-import Hero from "@/components/section/Hero";
+import Hero from "@/components/section/hero/Hero";
 import Navbar from "@/components/layout/header/Navbar";
-import Services from "@/components/section/Services";
-import About from "@/components/section/About";
-import Contact from "@/components/section/Contact";
+import Services from "@/components/section/services/Services";
+import About from "@/components/section/about/About";
+import Contact from "@/components/section/contact/Contact";
 import Footer from "@/components/layout/footer/Footer";
-import Portfolio from "@/components/section/Portfolio";
+import Portfolio from "@/components/section/portfolio/Portfolio";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       <Navbar />
       <Hero />
-      <Services />
       <About />
+      <Services />
       <Portfolio />
       <Contact />
       <Footer />
