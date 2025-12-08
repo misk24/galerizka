@@ -11,12 +11,12 @@ export default function Services() {
           <h2 className="text-3xl md:text-4xl font-bold text-dark-charcoal mb-4">Solusi Jahit Berkualitas Tinggi</h2>
           <p className="text-dark-charcoal/70 text-lg">Kami menyediakan berbagai layanan jahit dengan kualitas terbaik untuk kebutuhan fashion Anda</p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
           {services.map((service, index) => (
             <div 
               key={index} 
-              className="group bg-white p-8 rounded-3xl shadow-md hover:shadow-xl transition-all duration-300"
+              className="group bg-white p-8 rounded-[20px] shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col"
             >
               <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-muted-rose/10 text-2xl mb-6 group-hover:bg-muted-rose/50">
                 {service.icon}

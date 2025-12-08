@@ -5,15 +5,19 @@ export default function About() {
         <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Image Section */}
           <div className="w-full lg:w-5/12 relative">
-            <div className="relative aspect-square overflow-hidden rounded-3xl group">
+            <svg width="0" height="0">
+              <clipPath id="shape" clipPathUnits="objectBoundingBox">
+                <path d="M0.04,0H0.56A0.04,0.04,0,0,1,0.6,0.04V0.06A0.04,0.04,0,0,0,0.64,0.1H0.96A0.04,0.04,0,0,1,1,0.14V0.96A0.04,0.04,0,0,1,0.96,1H0.44A0.04,0.04,0,0,1,0.4,0.96V0.94A0.04,0.04,0,0,0,0.36,0.9H0.04A0.04,0.04,0,0,1,0,0.86V0.04A0.04,0.04,0,0,1,0.04,0Z"/>
+              </clipPath>
+            </svg>
+            <div className="relative aspect-square inverted overflow-hidden rounded-[20px] group">
               <div className="absolute inset-0 bg-[#ec227a]/10 z-10" />
               <img 
                 src="/images/logo/label.jpg" 
                 alt="Tentang Galeriz.ka" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <div className="absolute -z-10 -bottom-6 -right-6 w-3/4 h-3/4 bg-gray-100 rounded-2xl"></div>
           </div>
 
           {/* Content Section */}
