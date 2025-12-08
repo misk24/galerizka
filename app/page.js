@@ -7,6 +7,7 @@ import About from "@/components/section/about/About";
 import Contact from "@/components/section/contact/Contact";
 import Footer from "@/components/layout/footer/Footer";
 import Portfolio from "@/components/section/portfolio/Portfolio";
+import Cta from "@/components/section/cta/Cta";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <About />
       <Services />
       <Portfolio />
+      <Cta />
       <Contact />
       <Footer />
     </div>

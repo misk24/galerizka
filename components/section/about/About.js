@@ -5,12 +5,7 @@ export default function About() {
         <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Image Section */}
           <div className="w-full lg:w-5/12 relative">
-            <svg width="0" height="0">
-              <clipPath id="shape" clipPathUnits="objectBoundingBox">
-                <path d="M0.04,0H0.56A0.04,0.04,0,0,1,0.6,0.04V0.06A0.04,0.04,0,0,0,0.64,0.1H0.96A0.04,0.04,0,0,1,1,0.14V0.96A0.04,0.04,0,0,1,0.96,1H0.44A0.04,0.04,0,0,1,0.4,0.96V0.94A0.04,0.04,0,0,0,0.36,0.9H0.04A0.04,0.04,0,0,1,0,0.86V0.04A0.04,0.04,0,0,1,0.04,0Z"/>
-              </clipPath>
-            </svg>
-            <div className="relative aspect-square inverted overflow-hidden rounded-[20px] group">
+            <div className="relative aspect-square overflow-hidden rounded-[20px] group">
               <div className="absolute inset-0 bg-[#ec227a]/10 z-10" />
               <img 
                 src="/images/logo/label.jpg" 

@@ -20,7 +20,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-24 lg:py-40 bg-warm-gray">
+    <section id="contact" className="py-24 lg:py-40 bg-white">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="inline-block text-sm font-medium text-muted-rose mb-3">Hubungi Kami</span>
@@ -32,7 +32,7 @@ export default function Contact() {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Contact Form */}
-          <div className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+          <div className="bg-white border border-soft-pink rounded-[20px] p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
             <h3 className="text-xl font-semibold text-dark-charcoal mb-6">Kirim Pesan</h3>
             <form className="space-y-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

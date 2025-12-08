@@ -45,7 +45,7 @@ export default function Portfolio() {
           {filteredItems.map((item) => (
             <div 
               key={item.id} 
-              className="group relative overflow-hidden rounded-3xl bg-white shadow-sm hover:shadow-md transition-all duration-300"
+              className="group relative overflow-hidden rounded-[20px] shadow-sm hover:shadow-md transition-all duration-300"
             >
               <div className="aspect-4/5 relative overflow-hidden">
                 <Image
@@ -58,7 +58,7 @@ export default function Portfolio() {
                 />
                 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-dark-charcoal/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <div className="hidden absolute inset-0 bg-linear-to-t from-dark-charcoal/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 lg:flex flex-col justify-end p-6">
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <span className="inline-block text-sm text-white mb-1">{item.category}</span>
                     <h3 className="text-xl font-semibold text-white mb-3">{item.title}</h3>
@@ -72,7 +72,7 @@ export default function Portfolio() {
               <div className="p-4 lg:hidden">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="font-medium text-gray-900">{item.title}</h3>
+                    <h3 className="font-medium text-lg text-gray-900">{item.title}</h3>
                     <p className="text-sm text-gray-500">{item.category}</p>
                   </div>
                   <button className="text-pink-600 hover:text-pink-700">
