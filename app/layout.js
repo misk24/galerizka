@@ -1,15 +1,5 @@
-import {  Inter, Montserrat } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-});
+import { canela, satoshi } from "./fonts";
 
 export const metadata = {
   title: "Galeriz.ka - Jasa Jahit Busana Lombok",
@@ -20,7 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} ${inter.variable} antialiased`}
+        className={`${canela.variable} ${satoshi.variable} antialiased`}
       >
         {children}
       </body>

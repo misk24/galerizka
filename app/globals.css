@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -9,8 +8,6 @@
   --muted-rose: #EC407A;
   --dark-charcoal: #212121;
   --warm-gray: #F5F5F5;
-  --font-inter: 'Inter', sans-serif;
-  --font-montserrat: 'Montserrat', serif;
 }
 
 @theme inline{
@@ -21,8 +18,8 @@
   --color-muted-rose: var(--muted-rose);
   --color-dark-charcoal: var(--dark-charcoal);
   --color-warm-gray: var(--warm-gray);
-  --font-inter: var(--font-inter);
-  --font-montserrat: var(--font-montserrat);
+  --font-canela: var(--font-canela);
+  --font-satoshi: var(--font-satoshi);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,10 +36,10 @@ html {
 body {
   background: var(--background);
   color: var(--dark-charcoal);
-  font-family: var(--font-inter);
+  font-family: var(--font-satoshi);
 }
 
 h1, h2, h3 {
-  font-family: var(--font-montserrat);
+  font-family: var(--font-canela);
 }
 

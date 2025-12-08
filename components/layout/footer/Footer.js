@@ -3,6 +3,7 @@ import { services } from "@/constants/services"
 import { Mail, MapPin, Phone } from "lucide-react"
 import Image from "next/image"
 
+
 const socialLinks = [
   {
     name: 'Facebook',
@@ -36,13 +37,6 @@ const socialLinks = [
 export default function Footer() {
   const currentYear = new Date().getFullYear()
   
-  // Common styles
-  const sectionTitleStyle = "text-sm font-semibold text-warm-gray uppercase tracking-wider mb-4"
-  const linkStyle = "text-warm-gray hover:text-rose-pink text-sm transition-colors duration-200"
-  const contactItemStyle = "flex items-start"
-  const iconStyle = "mr-3"
-  const socialIconStyle = "text-warm-gray hover:text-rose-pink transition-colors duration-200"
-
   return (
     <footer className="bg-muted-rose">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -59,7 +53,7 @@ export default function Footer() {
                 priority
               />
             </div>
-            <p className="text-warm-gray text-sm leading-relaxed">
+            <p className="text-white text-sm leading-relaxed">
               Jasa jahit profesional dengan kualitas terbaik dan hasil yang memuaskan untuk penampilan yang sempurna.
             </p>
             <div className="flex space-x-4">
@@ -67,12 +61,14 @@ export default function Footer() {
                 <a
                   key={name}
                   href={href}
-                  className={socialIconStyle}
+                  className="text-white hover:text-rose-pink transition-colors duration-200"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={name}
                 >
-                  <span className="sr-only">{name}</span>
+                  <span className="sr-only">
+                    {name}
+                  </span>
                   {icon}
                 </a>
               ))}
@@ -81,11 +77,13 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className={sectionTitleStyle}>Tautan Cepat</h3>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">
+              Tautan Cepat
+            </h3>
             <ul className="space-y-3">
               {menu.map(({ label, href }) => (
                 <li key={label}>
-                  <a href={href} className={linkStyle}>
+                  <a href={href} className="text-white hover:text-rose-pink text-sm transition-colors duration-200">
                     {label}
                   </a>
                 </li>
@@ -95,11 +93,13 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className={sectionTitleStyle}>Layanan</h3>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">
+              Layanan
+            </h3>
             <ul className="space-y-3">
               {services.map(({ title, href }) => (
                 <li key={title}>
-                  <a href={href} className={linkStyle}>
+                  <a href={href} className="text-white hover:text-rose-pink text-sm transition-colors duration-200">
                     {title}
                   </a>
                 </li>
@@ -109,21 +109,25 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className={sectionTitleStyle}>Kontak</h3>
-            <address className="not-italic text-warm-gray space-y-3 text-sm">
-              <div className={contactItemStyle}>
-                <MapPin size={20} className={iconStyle} />
-                <span>Jl. Contoh No. 123, Kota Anda, Indonesia</span>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">
+              Kontak
+            </h3>
+            <address className="not-italic text-white space-y-3 text-sm">
+              <div className="flex items-start">
+                <MapPin size={20} className="mr-3" />
+                <span>
+                  Lombok Timur, NTB, Indonesia
+                </span>
               </div>
-              <div className={contactItemStyle}>
-                <Phone size={20} className={iconStyle} />
-                <a href="tel:+621234567890" className={linkStyle}>
-                  +62 123 4567 890
+              <div className="flex items-start">
+                <Phone size={20} className="mr-3" />
+                <a href="tel:+6281234567890" className="text-white hover:text-rose-pink text-sm transition-colors duration-200">
+                  +62 812 3456 7890
                 </a>
               </div>
-              <div className={contactItemStyle}>
-                <Mail size={20} className={iconStyle} />
-                <a href="mailto:info@galerizka.com" className={linkStyle}>
+              <div className="flex items-start">
+                <Mail size={20} className="mr-3" />
+                <a href="mailto:info@galerizka.com" className="text-white hover:text-rose-pink text-sm transition-colors duration-200">
                   info@galerizka.com
                 </a>
               </div>
@@ -133,7 +137,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-warm-gray">
-          <p className="text-center text-sm text-warm-gray">
+          <p className="text-center text-sm text-white">
             &copy; {currentYear} Galeriz.ka. All rights reserved.
           </p>
         </div>

@@ -36,5 +36,3 @@ export const portfolioItems = [
     image: "/images/portfolio/blazer.png"
   }
 ];
-
-export const categories = ['Semua', ...new Set(portfolioItems.map(item => item.category))];

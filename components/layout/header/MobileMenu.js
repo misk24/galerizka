@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
-import Link from "next/link";
 import { menu } from "@/constants/menu";
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useRef } from "react";
+
+
 
 export default function MobileMenu({ isOpen, setIsOpen }) {
   const menuRef = useRef(null);
@@ -55,7 +57,7 @@ export default function MobileMenu({ isOpen, setIsOpen }) {
           <div className="mt-4 px-4">
             <Link
               href="#order"
-              className="w-full flex items-center justify-center px-4 py-3 rounded-lg font-medium text-warm-gray bg-muted-rose"
+              className="w-full flex items-center justify-center px-4 py-3 font-medium text-white bg-muted-rose"
               onClick={() => setIsOpen(false)}
             >
               Pesan Sekarang
@@ -65,7 +67,9 @@ export default function MobileMenu({ isOpen, setIsOpen }) {
         
         {/* Contact Info */}
         <div className="mt-8 px-4 pt-6 pb-2 border-t border-rose-pink">
-          <div className="font-medium text-muted-rose mb-3">Hubungi Kami</div>
+          <h3 className="text-muted-rose mb-3">
+            Hubungi Kami
+          </h3>
           <div className="space-y-2">
             <Link href="tel:+628123456789" className="flex items-center text-muted-rose font-medium">
               <Phone size={20} className='mr-2' /> +62 812-3456-7890
