@@ -1,28 +1,12 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { contactItems } from "./constant";
+import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 
 export default function Contact() {
-  const contactItems = [
-    {
-      icon: <MapPin size={20} />,
-      title: "Lokasi",
-      content: "Jl. Contoh No. 123, Kota Anda"
-    },
-    {
-      icon: <Phone size={20} />,
-      title: "Telepon",
-      content: "+62 123 4567 890"
-    },
-    {
-      icon: <Mail size={20} />,
-      title: "Email",
-      content: "info@galerizka.com"
-    }
-  ];
-
   return (
     <section id="contact" className="py-24 lg:py-32 bg-white">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <AnimateOnScroll delay={200} className="text-center mb-16">
           <span className="inline-block text-muted-rose text-sm font-bold tracking-wider uppercase mb-3">
             Hubungi Kami
           </span>
@@ -32,9 +16,9 @@ export default function Contact() {
           <p className="text-dark-charcoal/70 text-lg font-medium">
             Punya pertanyaan atau ingin memesan jasa jahit?<br/>Kami siap membantu Anda.
           </p>
-        </div>
+        </AnimateOnScroll>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <AnimateOnScroll delay={200} className="max-w-xl mx-auto">
           {/* Contact Form */}
           <div className="bg-white border border-warm-gray p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
             <h3 className="text-xl font-bold text-dark-charcoal mb-6">
@@ -76,46 +60,16 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <button 
+                <Button 
                   type="submit" 
-                  className="w-full bg-muted-rose text-white py-3 px-6 font-medium hover:bg-pink-700 transition-colors duration-200 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+                  className="w-full duration-200 transform hover:-translate-y-0.5"
                 >
                   Kirim Pesan
-                </button>
+                </Button>
               </div>
             </form>
           </div>
-          
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-dark-charcoal">
-                Informasi Kontak
-              </h3>
-              <p className="text-dark-charcoal/70 font-medium">
-                Jangan ragu untuk menghubungi kami kapan saja. Tim kami akan dengan senang hati membantu Anda.
-              </p>
-            </div>
-            
-            <div className="space-y-6">
-              {contactItems.map((item, index) => (
-                <div key={index} className="flex items-start space-x-4 group">
-                  <div className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-muted-rose group-hover:bg-warm-gray transition-colors duration-200">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-dark-charcoal">
-                      {item.title}
-                    </h4>
-                    <p className="text-dark-charcoal/70">
-                      {item.content}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        </AnimateOnScroll>
       </div>
     </section>
   )

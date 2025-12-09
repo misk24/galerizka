@@ -1,34 +1,14 @@
 "use client";
 
-import { menu } from "@/constants/menu";
+import { menu } from "@/constants/constant";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { Mail, Phone } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-
-
+import { useRef } from "react";
 
 export default function MobileMenu({ isOpen, setIsOpen }) {
   const menuRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    if (isOpen) {
-      document.body.classList.add('overflow-hidden');
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.body.classList.remove('overflow-hidden');
-    }
-    
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.classList.remove('overflow-hidden');
-    };
-  }, [isOpen, setIsOpen]);
+  useOnClickOutside(menuRef, () => setIsOpen(false), isOpen);
 
   return (
     <div

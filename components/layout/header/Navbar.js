@@ -1,45 +1,38 @@
 "use client";
 
-import { menu } from "@/constants/menu";
+import { menu } from "@/constants/constant";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MobileMenu from "./MobileMenu";
-
-
+import { useScroll } from "./useScroll";
+import { Button } from "@/components/ui/Button";
+import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 
 export default function Navbar() {
+  const scrolled = useScroll();
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    handleScroll();
-    
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const toggleMenu = () => setIsOpen(!isOpen);
-  const isScrolledOrOpen = scrolled || isOpen;
-  const logoPath = isScrolledOrOpen ? '/images/logo/logo.png' : '/images/logo/logo-white.png';
 
   return (
     <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-      isScrolledOrOpen 
+      scrolled || isOpen 
         ? 'bg-white lg:bg-white/80 lg:backdrop-blur-md shadow-sm' 
         : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <AnimateOnScroll 
+          animation="fadeIn"
+          delay={200}
+          className="flex justify-between items-center h-20"
+        >
           {/* Logo */}
           <div className="shrink-0">
             <Link href="/" className="flex items-center">
               <Image 
-                src={logoPath}
+                src={scrolled || isOpen ? '/images/logo/logo.png' : '/images/logo/logo-white.png'}
                 alt="Galeriz.ka"
                 width={120}
                 height={60}
@@ -72,16 +65,13 @@ export default function Navbar() {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center ml-6">
-            <Link
+            <Button
               href="#order"
-              className={`px-5 py-3 text-sm font-medium border-2 transition-all duration-300 ${
-                scrolled 
-                  ? 'border-muted-rose hover:border-pink-700 bg-muted-rose text-white hover:bg-pink-700 shadow-lg hover:shadow-pink-200' 
-                  : 'border-warm-gray text-white hover:bg-white/30 backdrop-blur-sm hover:shadow-lg'
-              }`}
+              size="sm"
+              variant={`${scrolled ? "primary" : "outline"}`}
             >
               Pesan Sekarang
-            </Link>
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -89,7 +79,7 @@ export default function Navbar() {
             <button
               onClick={toggleMenu}
               className={`inline-flex items-center justify-center p-2 rounded-md focus:outline-none transition-all ${
-                isScrolledOrOpen ? 'text-muted-rose' : 'text-white'
+                scrolled || isOpen ? 'text-muted-rose' : 'text-white'
               }`}
               aria-expanded={isOpen}
               aria-label={isOpen ? 'Tutup menu' : 'Buka menu'}
@@ -101,7 +91,7 @@ export default function Navbar() {
               )}
             </button>
           </div>
-        </div>
+        </AnimateOnScroll>
       </div>
 
       {/* Mobile menu */}

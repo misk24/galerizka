@@ -1,12 +1,13 @@
 "use client";
 
-import { services } from "@/constants/services";
+import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { services } from "./constant";
 
 export default function Services() {
   return (
     <section id="services" className="py-24 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center max-w-4xl mx-auto mb-16">
+        <AnimateOnScroll delay={200} className="text-center max-w-4xl mx-auto mb-16">
           <span className="inline-block text-muted-rose text-sm font-bold tracking-wider uppercase mb-3">
             Layanan Kami
           </span>
@@ -16,9 +17,9 @@ export default function Services() {
           <p className="text-dark-charcoal/70 text-lg font-medium">
             Kami menyediakan berbagai layanan jahit dengan kualitas terbaik untuk kebutuhan fashion Anda
           </p>
-        </div>
+        </AnimateOnScroll>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <AnimateOnScroll delay={200} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
           {services.map((service, index) => (
             <div 
               key={index} 
@@ -35,7 +36,7 @@ export default function Services() {
               </p>
             </div>
           ))}
-        </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );
