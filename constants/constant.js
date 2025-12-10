@@ -11,12 +11,12 @@ export const menus = [
 
 export const contacts = [
   { 
-    icon: <FaWhatsapp />,
+    icon: <FaWhatsapp size={16} />,
     href: "https://wa.link/4u5haz", 
-    label: "0877 6337 3270",
+    label: "0877-6337-3270",
   },
   { 
-    icon: <Mail />,
+    icon: <Mail size={16} />,
     href: "mailto:rizkans.koryoga03@gmail.com", 
     label: "rizkans.koryoga03@gmail.com",
   },
@@ -24,12 +24,12 @@ export const contacts = [
 
 export const socialLinks = [
   {
-    icon: <FaTiktok />,
+    icon: <FaTiktok size={20} />,
     label: "Tiktok",
     href: "https://www.tiktok.com/@galeriz.fashion",
   },
   {
-    icon: <FaInstagram />,
+    icon: <FaInstagram size={20} />,
     label: "Instagram",
     href: "https://www.instagram.com/galeriz.fashion/",
   },

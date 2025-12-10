@@ -11,13 +11,11 @@ export default function Footer() {
     <footer className="bg-black-cherry py-12">
       <AnimateOnScroll delay={200} className="max-w-4xl mx-auto px-4 text-center">
         {/* Contact Info */}
-        <div className="text-xl font-heading text-blush-soft mb-6">Informasi Kontak</div>
+        <div className="text-2xl font-heading text-blush-soft mb-6">Informasi Kontak</div>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-8 text-blush-soft text-sm">
           {contacts.map((contact, index) => (
-            <>
-              {index > 0 && <div className="hidden sm:block">•</div>}
+            <div key={contact.label} className="flex items-center">
               <Link
-                key={contact.label}
                 href={contact.href}
                 className="flex items-center hover:text-dusty-rose transition-colors duration-200"
                 target="_blank"
@@ -26,9 +24,9 @@ export default function Footer() {
                 {contact.icon}
                 <span className="ml-2">{contact.label}</span>
               </Link>
-            </>
+            </div>
           ))}
-          <div className="hidden sm:block">•</div>
+          
           <div className="flex items-center">
             <MapPin className="h-4 w-4 mr-2" />
             <span>Lombok Timur, NTB</span>

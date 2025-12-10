@@ -9,15 +9,15 @@ export function useOnClickOutside(ref, onOutsideClick, isActive) {
     };
 
     if (isActive) {
-      document.body.classList.add('overflow-hidden');
-      document.addEventListener('mousedown', handleClickOutside);
+      document.body.classList.add("overflow-hidden");
+      document.addEventListener("mousedown", handleClickOutside);
     } else {
-      document.body.classList.remove('overflow-hidden');
+      document.body.classList.remove("overflow-hidden");
     }
     
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.classList.remove('overflow-hidden');
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.classList.remove("overflow-hidden");
     };
   }, [ref, onOutsideClick, isActive]);
 }

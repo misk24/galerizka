@@ -13,10 +13,10 @@ export default function Hero() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/images/hero/hero.png')" }}
       />
-      <div className="absolute inset-0 bg-linear-to-r from-white to-blush-soft/30"></div>
+      <div className="absolute inset-0 bg-linear-to-r from-blush-soft to-dusty-rose/30"></div>
       <div className="w-full max-w-4xl lg:max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-          <div className="w-full text-center lg:text-left">
+          <div className="w-full lg:w-1/2 text-center lg:text-left">
             <AnimateOnScroll delay={200}>
               <h1 className="text-3xl md:text-4xl lg:text-5xl mb-6">
                 Buat Baju Impian Anda Menjadi Kenyataan

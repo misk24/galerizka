@@ -27,7 +27,7 @@ export default function Portfolio() {
     <section id="portfolio" className="py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          <AnimateOnScroll className="flex flex-col gap-4 lg:sticky lg:top-36 h-fit overflow-y-hidden">
+          <AnimateOnScroll className="flex flex-col gap-4 lg:sticky lg:top-36 h-fit">
             <div className="text-center lg:text-start">
               <span className="inline-block text-dusty-rose text-sm font-bold tracking-wider uppercase mb-3">
                 Portfolio
