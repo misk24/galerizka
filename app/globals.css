@@ -3,23 +3,30 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --soft-pink: #FCE4EC;
-  --rose-pink: #F8BBD0;
-  --muted-rose: #EC407A;
-  --dark-charcoal: #212121;
-  --warm-gray: #F5F5F5;
+  --dusty-rose: #c57c8a;
+  --blush-soft: #f7e8ec;
+  --mulberry-deep: #732c3f;
+  --black-cherry: #1a0b12;
+  --cormorant: "Cormorant Garamond", serif;
+  --inter: "Inter", sans-serif;
 }
 
 @theme inline{
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-soft-pink: var(--soft-pink);
-  --color-rose-pink: var(--rose-pink);
-  --color-muted-rose: var(--muted-rose);
-  --color-dark-charcoal: var(--dark-charcoal);
-  --color-warm-gray: var(--warm-gray);
-  --font-canela: var(--font-canela);
-  --font-satoshi: var(--font-satoshi);
+  --color-dusty-rose: var(--dusty-rose);
+  --color-blush-soft: var(--blush-soft);
+  --color-mulberry-deep: var(--mulberry-deep);
+  --color-black-cherry: var(--black-cherry);
+  --font-heading: var(--cormorant);
+  --font-body: var(--inter);
+  --h1: clamp(2.5rem, 1.8rem + 2vw, 4rem);     /* 40px → 64px */
+  --h2: clamp(2rem, 1.5rem + 1.5vw, 3rem);     /* 32px → 48px */
+  --h3: clamp(1.5rem, 1.2rem + 1vw, 2rem);     /* 24px → 32px */
+  --body: clamp(1rem, 0.9rem + 0.3vw, 1.125rem); /* 16px → 18px */
+  --small: clamp(0.875rem, 0.8rem + 0.2vw, 1rem); /* 14px → 16px */
+  --lh-heading: 1.2;
+  --lh-body: 1.6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,14 +40,18 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  background: var(--background);
-  color: var(--dark-charcoal);
-  font-family: var(--font-satoshi);
+body, p {
+  color: var(--black-cherry);
+  font-family: var(--font-body);
+  font-size: var(--body);
+  line-height: var(--lh-body);
 }
 
-h1, h2, h3 {
-  font-family: var(--font-canela);
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: var(--lh-heading);
+  color: var(--mulberry-deep);
 }
 
 @keyframes modalIn {
@@ -87,4 +98,14 @@ h1, h2, h3 {
 
 .animate-fadeInUp {
   animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
 }

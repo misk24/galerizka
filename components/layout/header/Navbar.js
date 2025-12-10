@@ -1,28 +1,21 @@
 "use client";
 
-import { menu } from "@/constants/constant";
+import { menus } from "@/constants/constant";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import MobileMenu from "./MobileMenu";
-import { useScroll } from "./useScroll";
 import { Button } from "@/components/ui/Button";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 
 export default function Navbar() {
-  const scrolled = useScroll();
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-      scrolled || isOpen 
-        ? 'bg-white lg:bg-white/80 lg:backdrop-blur-md shadow-sm' 
-        : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 bg-black-cherry shadow-md h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <AnimateOnScroll 
           animation="fadeIn"
           delay={200}
@@ -32,7 +25,7 @@ export default function Navbar() {
           <div className="shrink-0">
             <Link href="/" className="flex items-center">
               <Image 
-                src={scrolled || isOpen ? '/images/logo/logo.png' : '/images/logo/logo-white.png'}
+                src="/images/logo/logo.png"
                 alt="Galeriz.ka"
                 width={120}
                 height={60}
@@ -44,20 +37,14 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            {menu.map(({ href, label }) => (
+            {menus.map(({ href, label }) => (
               <div key={href} className="relative group">
                 <Link
                   href={href}
-                  className={`group relative px-3 py-2 text-sm font-medium transition-colors ${
-                    scrolled ? 'text-muted-rose' : 'text-white hover:text-white'
-                  }`}
-                >
+                  className="group relative px-3 py-2 font-heading font-medium text-blush-soft">
                   {label}
                   <span 
-                    className={`absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${
-                      scrolled ? 'bg-muted-rose' : 'bg-white'
-                    }`}
-                  />
+                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-dusty-rose transition-all duration-300 group-hover:w-full"/>
                 </Link>
               </div>
             ))}
@@ -68,7 +55,7 @@ export default function Navbar() {
             <Button
               href="#order"
               size="sm"
-              variant={`${scrolled ? "primary" : "outline"}`}
+              variant="primary"
             >
               Pesan Sekarang
             </Button>
@@ -78,16 +65,14 @@ export default function Navbar() {
           <div className="lg:hidden flex items-center">
             <button
               onClick={toggleMenu}
-              className={`inline-flex items-center justify-center p-2 rounded-md focus:outline-none transition-all ${
-                scrolled || isOpen ? 'text-muted-rose' : 'text-white'
-              }`}
+              className="inline-flex items-center justify-center p-2 text-blush-soft focus:outline-none"
               aria-expanded={isOpen}
               aria-label={isOpen ? 'Tutup menu' : 'Buka menu'}
             >
               {isOpen ? (
-                <X className="block h-6 w-6" aria-hidden="true" />
+                <X size={24} className="w-6 h-6" />
               ) : (
-                <Menu className="block h-6 w-6" aria-hidden="true" />
+                <Menu size={24} className="w-6 h-6" />
               )}
             </button>
           </div>
@@ -95,7 +80,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} scrolled={scrolled} />
+      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
     </header>
   );
 }

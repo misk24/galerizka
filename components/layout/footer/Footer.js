@@ -1,25 +1,33 @@
-import { Mail, MapPin, Phone } from "lucide-react"
-import { socialLinks } from "./constant"
+import { Mail, MapPin } from "lucide-react"
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll"
+import { FaWhatsapp } from "react-icons/fa"
+import { socialLinks, contacts } from "@/constants/constant"
+import Link from "next/link"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
   
   return (
-    <footer className="bg-muted-rose py-12">
+    <footer className="bg-black-cherry py-12">
       <AnimateOnScroll delay={200} className="max-w-4xl mx-auto px-4 text-center">
         {/* Contact Info */}
-        <h3 className="text-xl text-white mb-6">Informasi Kontak</h3>
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-8 text-white text-sm">
-          <div className="flex items-center">
-            <Phone className="h-4 w-4 mr-2" />
-            <span>+62 877 3976 0490</span>
-          </div>
-          <div className="hidden sm:block">•</div>
-          <div className="flex items-center">
-            <Mail className="h-4 w-4 mr-2" />
-            <span>contact@galerizka.com</span>
-          </div>
+        <div className="text-xl font-heading text-blush-soft mb-6">Informasi Kontak</div>
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-8 text-blush-soft text-sm">
+          {contacts.map((contact, index) => (
+            <>
+              {index > 0 && <div className="hidden sm:block">•</div>}
+              <Link
+                key={contact.label}
+                href={contact.href}
+                className="flex items-center hover:text-dusty-rose transition-colors duration-200"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {contact.icon}
+                <span className="ml-2">{contact.label}</span>
+              </Link>
+            </>
+          ))}
           <div className="hidden sm:block">•</div>
           <div className="flex items-center">
             <MapPin className="h-4 w-4 mr-2" />
@@ -29,24 +37,24 @@ export default function Footer() {
 
         {/* Social Icons */}
         <div className="flex justify-center space-x-6 mb-8">
-          {socialLinks.map(({ name, href, icon }) => (
-            <a
-              key={name}
+          {socialLinks.map(({ label, href, icon }) => (
+            <Link
+              key={label}
               href={href}
-              className="text-white hover:text-rose-pink transition-colors duration-200"
+              className="text-blush-soft hover:text-dusty-rose transition-colors duration-200"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={name}
+              aria-label={label}
             >
-              <span className="sr-only">{name}</span>
+              <span className="sr-only">{label}</span>
               {icon}
-            </a>
+            </Link>
           ))}
         </div>
 
         {/* Copyright */}
-        <div className="pt-8 mt-8 border-t border-white/50">
-          <div className="text-white text-sm">
+        <div className="pt-8 mt-8 border-t border-blush-soft">
+          <div className="text-blush-soft text-sm">
             &copy; {currentYear} Galerizka. All rights reserved.
           </div>
         </div>

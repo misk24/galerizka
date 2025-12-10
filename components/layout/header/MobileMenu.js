@@ -1,27 +1,30 @@
 "use client";
 
-import { menu } from "@/constants/constant";
+import { Button } from "@/components/ui/Button";
+import { menus } from "@/constants/constant";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { Mail, Phone } from "lucide-react";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 export default function MobileMenu({ isOpen, setIsOpen }) {
   const menuRef = useRef(null);
   useOnClickOutside(menuRef, () => setIsOpen(false), isOpen);
+  useScrollLock(isOpen);
 
   return (
     <div
       ref={menuRef}
       className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden ${
         isOpen 
-          ? 'max-h-screen opacity-100 bg-white/95 backdrop-blur-md' 
+          ? 'max-h-screen opacity-100 bg-white' 
           : 'max-h-0 opacity-0'
       }`}
     >
-      <div className="px-4 py-2 border-t border-warm-gray">
+      <div className="px-4 py-2">
         <nav className="flex flex-col space-y-1">
-          {menu.map((link) => (
+          {menus.map((link) => (
             <div key={link.href} className="w-full">
               <Link
                 href={link.href}
@@ -34,14 +37,10 @@ export default function MobileMenu({ isOpen, setIsOpen }) {
           ))}
           
           {/* CTA Button */}
-          <div className="mt-4 px-4">
-            <Link
-              href="#order"
-              className="w-full flex items-center justify-center px-4 py-3 font-medium text-white bg-muted-rose"
-              onClick={() => setIsOpen(false)}
-            >
+          <div className="px-4">
+            <Button href="#order" className="w-full" onClick={() => setIsOpen(false)}>
               Pesan Sekarang
-            </Link>
+            </Button>
           </div>
         </nav>
         

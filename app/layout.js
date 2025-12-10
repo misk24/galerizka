@@ -1,5 +1,18 @@
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
-import { canela, satoshi } from "./fonts";
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-cormorant',
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  weight: ['400', '500', '600', '700'],
+});
 
 export const metadata = {
   title: "Galeriz.ka - Jasa Jahit Busana Lombok",
@@ -10,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${canela.variable} ${satoshi.variable} antialiased`}
+        className={`${cormorant.variable} ${inter.variable} antialiased`}
       >
         {children}
       </body>

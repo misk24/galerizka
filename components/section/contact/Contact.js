@@ -4,24 +4,24 @@ import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 lg:py-32 bg-white">
+    <section id="contact" className="py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <AnimateOnScroll delay={200} className="text-center mb-16">
-          <span className="inline-block text-muted-rose text-sm font-bold tracking-wider uppercase mb-3">
+          <span className="inline-block text-dusty-rose text-sm font-bold tracking-wider uppercase mb-3">
             Hubungi Kami
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-dark-charcoal mb-4">
+          <h2 className="text-3xl md:text-4xl mb-4">
             Mari Berbincang
           </h2>
-          <p className="text-dark-charcoal/70 text-lg font-medium">
-            Punya pertanyaan atau ingin memesan jasa jahit?<br/>Kami siap membantu Anda.
+          <p className="leading-tight">
+            Punya pertanyaan atau ingin memesan jasa jahit? Kami siap membantu Anda.
           </p>
         </AnimateOnScroll>
         
         <AnimateOnScroll delay={200} className="max-w-xl mx-auto">
           {/* Contact Form */}
-          <div className="bg-white border border-warm-gray p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
-            <h3 className="text-xl font-bold text-dark-charcoal mb-6">
+          <div className="bg-white border border-blush-soft p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
+            <h3 className="text-xl mb-6">
               Kirim Pesan
             </h3>
             <form className="space-y-5">
@@ -30,7 +30,7 @@ export default function Contact() {
                   <input 
                     type="text" 
                     id="name" 
-                    className="w-full px-4 py-3 text-sm border border-gray-200 focus:ring-1 focus:ring-pink-500 focus:border-pink-500 transition-all duration-200"
+                    className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200"
                     placeholder="Nama Lengkap"
                   />
                 </div>
@@ -38,7 +38,7 @@ export default function Contact() {
                   <input 
                     type="email" 
                     id="email" 
-                    className="w-full px-4 py-3 text-sm border border-gray-200 focus:ring-1 focus:ring-pink-500 focus:border-pink-500 transition-all duration-200"
+                    className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200"
                     placeholder="Email Anda"
                   />
                 </div>
@@ -47,7 +47,7 @@ export default function Contact() {
                 <input 
                   type="text" 
                   id="subject" 
-                  className="w-full px-4 py-3 text-sm border border-gray-200 focus:ring-1 focus:ring-pink-500 focus:border-pink-500 transition-all duration-200"
+                  className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200"
                   placeholder="Subjek"
                 />
               </div>
@@ -55,7 +55,7 @@ export default function Contact() {
                 <textarea 
                   id="message" 
                   rows="5" 
-                  className="w-full px-4 py-3 text-sm border border-gray-200 focus:ring-1 focus:ring-pink-500 focus:border-pink-500 transition-all duration-200 resize-none"
+                  className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200 resize-none"
                   placeholder="Pesan Anda..."
                 />
               </div>
