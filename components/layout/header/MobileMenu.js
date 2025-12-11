@@ -52,10 +52,10 @@ export default function MobileMenu({ isOpen, setIsOpen }) {
           </div>
           <div className="space-y-2">
             <Link href="https://wa.link/4u5haz" className="flex items-center text-mulberry-deep font-medium">
-              <FaWhatsapp size={20} className='mr-2' /> 0877-6337-3270
+              <FaWhatsapp size={20} className="mr-2" /> 0877-6337-3270
             </Link>
             <Link href="mailto:rizkans.koryoga03@gmail.com" className="flex items-center text-mulberry-deep font-medium">
-              <Mail size={20} className='mr-2' /> rizkans.koryoga03@gmail.com
+              <Mail size={20} className="mr-2" /> rizkans.koryoga03@gmail.com
             </Link>
           </div>
         </div>

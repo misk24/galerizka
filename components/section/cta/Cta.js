@@ -1,5 +1,5 @@
-import { Animate } from '@/components/ui/Animate';
-import { Button } from '@/components/ui/Button';
+import { Animate } from "@/components/ui/Animate";
+import { Button } from "@/components/ui/Button";
 
 export default function Cta() {
   return (

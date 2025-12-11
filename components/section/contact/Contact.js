@@ -2,42 +2,10 @@
 
 import { Animate } from "@/components/ui/Animate";
 import { Button } from "@/components/ui/Button";
-import { useState } from "react";
+import { useSubmit } from "./useSubmit";
 
 export default function Contact() {
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState(null);
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-    setLoading(true);
-    setStatus(null);
-
-    const form = new FormData(event.target);
-    const payload = {
-      name: form.get("name"),
-      email: form.get("email"),
-      subject: form.get("subject"),
-      message: form.get("message"),
-    };
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) throw new Error("Gagal mengirim pesan.");
-
-      setStatus("success");
-      event.target.reset();
-    } catch (err) {
-      setStatus("error");
-    } finally {
-      setLoading(false);
-    }
-  }
+  const { loading, handleSubmit } = useSubmit();
 
   return (
     <section id="contact" className="py-24 lg:py-32">
@@ -110,18 +78,6 @@ export default function Contact() {
                 >
                   {loading ? "Mengirim..." : "Kirim Pesan"}
                 </Button>
-
-                {status === "success" && (
-                  <p className="text-green-600 text-sm mt-2">
-                    Pesan berhasil dikirim!
-                  </p>
-                )}
-
-                {status === "error" && (
-                  <p className="text-red-600 text-sm mt-2">
-                    Terjadi kesalahan. Coba lagi nanti.
-                  </p>
-                )}
               </div>
             </form>
           </div>

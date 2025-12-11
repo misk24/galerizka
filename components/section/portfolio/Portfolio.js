@@ -15,8 +15,8 @@ export default function Portfolio() {
     if (scrollContainerRef.current) {
       const scrollAmount = 300; // Adjust this value to control scroll distance
       scrollContainerRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth"
       });
     }
   };
@@ -59,7 +59,7 @@ export default function Portfolio() {
                     onClick={() => openModal(item)}
                     role="button"
                     tabIndex={0}
-                    onKeyDown={(e) => e.key === 'Enter' && openModal(item)}
+                    onKeyDown={(e) => e.key === "Enter" && openModal(item)}
                   />
                   
                   {/* Overlay */}
@@ -137,14 +137,14 @@ export default function Portfolio() {
                     </div>
                   </div>
                   <button 
-                    onClick={() => scroll('left')}
+                    onClick={() => scroll("left")}
                     className="absolute left-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
                     aria-label="Scroll left"
                   >
                     <ChevronLeft size={24} />
                   </button>
                   <button 
-                    onClick={() => scroll('right')}
+                    onClick={() => scroll("right")}
                     className="absolute right-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
                     aria-label="Scroll right"
                   >

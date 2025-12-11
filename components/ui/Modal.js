@@ -32,8 +32,8 @@ export default function Modal({ isOpen, onClose, children }) {
         ref={modalRef}
         className="relative z-10 bg-white rounded-2xl shadow-2xl max-w-4xl w-full md:h-[70vh] lg:h-[90vh] overflow-auto flex flex-col scale-95 opacity-0 animate-modalIn transition-all duration-300"
         style={{
-          WebkitOverflowScrolling: 'touch', // Smooth scrolling on iOS
-          maxHeight: 'calc(100% - 4rem)' // Ensure some spacing around the modal
+          WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS
+          maxHeight: "calc(100% - 4rem)" // Ensure some spacing around the modal
         }}
       >
         {/* Close Button */}

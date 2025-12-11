@@ -1,17 +1,18 @@
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  variable: '--font-cormorant',
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  weight: ['400', '500', '600', '700'],
+  subsets: ["latin"],
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata = {
@@ -25,7 +26,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${cormorant.variable} ${inter.variable} antialiased`}
       >
-        {children}
+        <Toaster position="top-center" reverseOrder={false} />
+          {children}
       </body>
     </html>
   );

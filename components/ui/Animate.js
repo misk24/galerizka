@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
+import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 export function Animate({
   children,
-  animation = 'fadeInUp',
+  animation = "fadeInUp",
   delay = 0,
-  className = '',
+  className = "",
   threshold = 0.25,
   triggerOnce = true,
   ...props
@@ -36,8 +36,8 @@ export function Animate({
       ref={ref}
       className={animationClasses}
       style={{ 
-        animationDelay: isVisible ? `${delay}ms` : '0ms',
-        animationFillMode: 'both'
+        animationDelay: isVisible ? `${delay}ms` : "0ms",
+        animationFillMode: "both"
       }}
       {...props}
     >
