@@ -1,5 +1,3 @@
-"use server";
-
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { contactSchema } from "./schema";
@@ -22,7 +20,7 @@ export async function POST(req) {
     // console.log("DATA MASUK", name, email, subject, message);
 
     await resend.emails.send({
-      from: "noreply@galerizka.com",
+      from: "onboarding@resend.dev",
       to: "mail.sk2862@gmail.com",
       subject: "Pesan baru dari form kontak Galerizka",
       html: `
