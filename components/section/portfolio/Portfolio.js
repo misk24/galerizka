@@ -1,13 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import { portfolioItems } from "./constant";
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { useRef } from "react";
+import { Animate } from "@/components/ui/Animate";
+import Badge from "@/components/ui/Badge";
 import Modal from "@/components/ui/Modal";
 import { useModal } from "@/hooks/useModal";
-import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
-import Badge from "@/components/ui/Badge";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { useRef } from "react";
+import { portfolioItems } from "./constant";
 
 export default function Portfolio() {
   const scrollContainerRef = useRef(null);
@@ -27,7 +27,7 @@ export default function Portfolio() {
     <section id="portfolio" className="py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          <AnimateOnScroll className="flex flex-col gap-4 lg:sticky lg:top-36 h-fit">
+          <Animate className="flex flex-col gap-4 lg:sticky lg:top-36 h-fit">
             <div className="text-center lg:text-start">
               <span className="inline-block text-dusty-rose text-sm font-bold tracking-wider uppercase mb-3">
                 Portfolio
@@ -39,10 +39,10 @@ export default function Portfolio() {
                 Lihat beberapa hasil karya terbaik kami yang dibuat dengan penuh dedikasi dan ketelitian.
               </p>
             </div>
-          </AnimateOnScroll>
+          </Animate>
 
           {/* Portfolio Grid */}
-          <AnimateOnScroll threshold={0.1} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Animate threshold={0.1} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[...portfolioItems].sort((a, b) => b.id - a.id).map((item) => (
               <div 
                 key={item.id}
@@ -104,7 +104,7 @@ export default function Portfolio() {
                 </div>
               </div>
             ))}
-          </AnimateOnScroll>
+          </Animate>
         </div>
 
         <Modal isOpen={isOpen} onClose={closeModal}>

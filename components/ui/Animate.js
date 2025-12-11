@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-export function AnimateOnScroll({
+export function Animate({
   children,
   animation = 'fadeInUp',
   delay = 0,

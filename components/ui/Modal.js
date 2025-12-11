@@ -1,8 +1,8 @@
 "use client";
 
-import { useBodyScroll } from "@/hooks/useBodyScroll";
 import { useEscapeKey } from "@/hooks/useEscapeKey";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import { useScrollLock } from "@/hooks/useScrollLock";
 import { X } from "lucide-react";
 import { useRef } from "react";
 
@@ -10,7 +10,7 @@ export default function Modal({ isOpen, onClose, children }) {
   const modalRef = useRef(null);
   useOnClickOutside(modalRef, onClose, isOpen);
   useEscapeKey(onClose, isOpen);
-  useBodyScroll(isOpen);
+  useScrollLock(isOpen);
 
   if (!isOpen) return null;
 

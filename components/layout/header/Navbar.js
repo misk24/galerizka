@@ -1,13 +1,13 @@
 "use client";
 
+import { Animate } from "@/components/ui/Animate";
+import { Button } from "@/components/ui/Button";
 import { menus } from "@/constants/constant";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import MobileMenu from "./MobileMenu";
-import { Button } from "@/components/ui/Button";
-import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-black-cherry shadow-md h-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-        <AnimateOnScroll 
+        <Animate 
           animation="fadeIn"
           delay={200}
           className="flex justify-between items-center h-20"
@@ -53,7 +53,7 @@ export default function Navbar() {
           {/* CTA Button */}
           <div className="hidden lg:flex items-center ml-6">
             <Button
-              href="#order"
+              href="https://wa.link/4u5haz"
               size="sm"
               variant="primary"
             >
@@ -76,7 +76,7 @@ export default function Navbar() {
               )}
             </button>
           </div>
-        </AnimateOnScroll>
+        </Animate>
       </div>
 
       {/* Mobile menu */}

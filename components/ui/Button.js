@@ -1,8 +1,8 @@
 "use client";
 
-import { forwardRef } from 'react';
-import Link from 'next/link';
-import { Loader2 } from 'lucide-react';
+import { Loader2 } from "lucide-react";
+import Link from "next/link";
+import { forwardRef } from "react";
 
 const variantStyles = {
   primary: "px-6 py-3 rounded-full bg-dusty-rose hover:bg-mulberry-deep text-white transition-colors duration-300",

@@ -39,7 +39,7 @@ export default function MobileMenu({ isOpen, setIsOpen }) {
           
           {/* CTA Button */}
           <div className="mt-4 px-4">
-            <Button href="#order" className="w-full" onClick={() => setIsOpen(false)}>
+            <Button href="https://wa.link/4u5haz" className="w-full" onClick={() => setIsOpen(false)}>
               Pesan Sekarang
             </Button>
           </div>

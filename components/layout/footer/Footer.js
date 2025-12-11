@@ -1,7 +1,6 @@
-import { Mail, MapPin } from "lucide-react"
-import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll"
-import { FaWhatsapp } from "react-icons/fa"
-import { socialLinks, contacts } from "@/constants/constant"
+import { Animate } from "@/components/ui/Animate"
+import { contacts, socialLinks } from "@/constants/constant"
+import { MapPin } from "lucide-react"
 import Link from "next/link"
 
 export default function Footer() {
@@ -9,7 +8,7 @@ export default function Footer() {
   
   return (
     <footer className="bg-black-cherry py-12">
-      <AnimateOnScroll delay={200} className="max-w-4xl mx-auto px-4 text-center">
+      <Animate delay={200} className="max-w-4xl mx-auto px-4 text-center">
         {/* Contact Info */}
         <div className="text-2xl font-heading text-blush-soft mb-6">Informasi Kontak</div>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-8 text-blush-soft text-sm">
@@ -56,7 +55,7 @@ export default function Footer() {
             &copy; {currentYear} Galerizka. All rights reserved.
           </div>
         </div>
-      </AnimateOnScroll>
+      </Animate>
     </footer>
   )
 }
