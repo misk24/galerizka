@@ -73,6 +73,11 @@ test("returns 415 for unsupported content types", async () => {
     createRequest(validPayload, { "content-type": "text/plain" })
   );
   assert.equal(response.status, 415);
+
+  const jsonpResponse = await POST(
+    createRequest(validPayload, { "content-type": "application/jsonp" })
+  );
+  assert.equal(jsonpResponse.status, 415);
 });
 
 test("returns 413 when the request body exceeds 16 KiB", async () => {
