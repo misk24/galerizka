@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { spawnSync } from "node:child_process";
 
 process.env.RESEND_API_KEY = "re_test_contact_route";
 process.env.KV_REST_API_URL = "https://redis.example.test";
@@ -52,6 +53,20 @@ function successfulFetch(calls = []) {
     });
   };
 }
+
+test("loads the contact route when the Resend API key is missing", () => {
+  const result = spawnSync(
+    process.execPath,
+    [
+      "--input-type=module",
+      "-e",
+      "delete process.env.RESEND_API_KEY; await import('./app/api/contact/route.js');",
+    ],
+    { encoding: "utf8" }
+  );
+
+  assert.equal(result.status, 0, result.stderr);
+});
 
 test("returns 415 for unsupported content types", async () => {
   const response = await POST(
