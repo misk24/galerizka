@@ -33,10 +33,10 @@ export default function Portfolio() {
                 Portfolio
               </span>
               <h2 className="text-3xl md:text-4xl mb-4">
-                Karya Terbaru Kami
+                Beberapa Hasil Jahitan
               </h2>
               <p className="leading-tight">
-                Lihat beberapa hasil karya terbaik kami yang dibuat dengan penuh dedikasi dan ketelitian.
+                Lihat beberapa contoh pakaian yang pernah kami kerjakan.
               </p>
             </div>
           </Animate>
