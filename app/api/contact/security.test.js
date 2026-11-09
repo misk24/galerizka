@@ -30,7 +30,7 @@ test("rate limiter fails closed when Redis credentials are missing", async () =>
   }
 });
 
-test("rate limiter rejects requests without a client IP", async () => {
+test("rate limiter rejects requests without the trusted client IP header", async () => {
   const previousUrl = process.env.KV_REST_API_URL;
   const previousToken = process.env.KV_REST_API_TOKEN;
   process.env.KV_REST_API_URL = "https://redis.example.test";
@@ -38,7 +38,9 @@ test("rate limiter rejects requests without a client IP", async () => {
 
   try {
     await assert.rejects(
-      checkRateLimit(new Request("https://example.test")),
+      checkRateLimit(new Request("https://example.test", {
+        headers: { "x-forwarded-for": "198.51.100.99" },
+      })),
       /Client IP is unavailable/
     );
   } finally {
@@ -96,7 +98,7 @@ test("rate limiter allows requests within the threshold", async () => {
 
   try {
     const result = await checkRateLimit(new Request("https://example.test", {
-      headers: { "x-forwarded-for": "203.0.113.11, 10.0.0.1" },
+      headers: { "x-real-ip": "203.0.113.11", "x-forwarded-for": "198.51.100.99, 10.0.0.1" },
     }));
     assert.deepEqual(result, { allowed: true, retryAfter: 300 });
   } finally {
