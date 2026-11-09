@@ -49,18 +49,21 @@ export default function Portfolio() {
                 className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <div className="aspect-4/5 relative overflow-hidden">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 cursor-pointer"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    priority={item.featured}
+                  <button
+                    type="button"
                     onClick={() => openModal(item)}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => e.key === "Enter" && openModal(item)}
-                  />
+                    className="absolute inset-0 z-10 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-mulberry-deep"
+                    aria-label={`Lihat detail ${item.title}`}
+                  >
+                    <Image
+                      src={item.image}
+                      alt=""
+                      fill
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      priority={item.featured}
+                    />
+                  </button>
                   
                   {/* Overlay */}
                   <div className="hidden absolute inset-0 bg-linear-to-t from-mulberry-deep/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 lg:flex flex-col justify-end p-6">
@@ -162,7 +165,7 @@ export default function Portfolio() {
                         </Badge>
                       ))}
                     </div>
-                    <h2 className="text-2xl md:text-3xl lg:text-5xl">
+                    <h2 id="modal-title" className="text-2xl md:text-3xl lg:text-5xl">
                       {modalContent.title}
                     </h2>
                   </div>

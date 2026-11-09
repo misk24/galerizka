@@ -31,9 +31,10 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="space-y-1">
+                  <label htmlFor="name" className="sr-only">Nama lengkap</label>
                   <input 
                     type="text" 
-                    id="name"
+                    id="name" name="name" autoComplete="name" maxLength={100}
                     name="name"
                     className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200"
                     placeholder="Nama Lengkap"
@@ -41,9 +42,10 @@ export default function Contact() {
                   />
                 </div>
                 <div className="space-y-1">
+                  <label htmlFor="email" className="sr-only">Email</label>
                   <input 
                     type="email" 
-                    id="email"
+                    id="email" name="email" autoComplete="email" maxLength={254}
                     name="email" 
                     className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200"
                     placeholder="Email Anda"
@@ -52,17 +54,19 @@ export default function Contact() {
                 </div>
               </div>
               <div className="space-y-1">
+                <label htmlFor="subject" className="sr-only">Subjek</label>
                 <input 
                   type="text" 
-                  id="subject"
+                  id="subject" name="subject" maxLength={150}
                   name="subject" 
                   className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200"
                   placeholder="Subjek"
                 />
               </div>
               <div className="space-y-1">
+                <label htmlFor="message" className="sr-only">Pesan</label>
                 <textarea 
-                  id="message"
+                  id="message" name="message" maxLength={5000}
                   name="message" 
                   rows="5" 
                   className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200 resize-none"
