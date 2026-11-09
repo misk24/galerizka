@@ -27,9 +27,17 @@ Jalankan `npm install`, lalu `npm run dev`. Buka http://localhost:3000.
 
 Endpoint `POST /api/contact` memakai Zod untuk validasi dan Resend untuk pengiriman email.
 
-Environment variable wajib: `RESEND_API_KEY`.
+Environment variable wajib:
 
-Jangan commit file `.env` atau credential ke repository. Form memiliki batas ukuran request, batas panjang field, HTML escaping, honeypot dasar, dan rate limiting berbasis Redis. Rate limit saat ini membatasi 5 request per IP dalam jendela 10 menit. Endpoint memakai `KV_REST_API_URL` dan `KV_REST_API_TOKEN` dari integrasi Redis Vercel. Jika Redis tidak tersedia, endpoint mengembalikan 503 agar perlindungan tidak diam-diam dinonaktifkan.
+| Variable | Fungsi |
+| --- | --- |
+| `RESEND_API_KEY` | API key Resend untuk mengirim email kontak. |
+| `KV_REST_API_URL` | URL REST Redis dari integrasi Vercel KV/Redis. |
+| `KV_REST_API_TOKEN` | Token akses REST Redis. |
+
+Salin `.env.example` menjadi `.env.local`, lalu isi nilai asli dari dashboard Resend dan integrasi Redis. Jangan pernah memasukkan nilai credential asli ke Git. File `.env*` diabaikan Git, kecuali template `.env.example`.
+
+Form memiliki batas ukuran request 16 KiB, batas panjang field, HTML escaping, honeypot dasar, dan rate limiting berbasis Redis. Rate limit membatasi 5 request per IP dalam jendela 10 menit. Jika Redis tidak tersedia, endpoint mengembalikan 503 agar perlindungan tidak diam-diam dinonaktifkan. Untuk menerima email dari pengunjung umum di Production, gunakan alamat `from` pada domain yang sudah diverifikasi di Resend; sender onboarding bawaan Resend hanya untuk pengujian terbatas.
 
 ## Sebelum deployment
 
