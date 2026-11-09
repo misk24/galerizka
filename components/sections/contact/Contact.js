@@ -24,6 +24,10 @@ export default function Contact() {
           <div className="bg-white border border-blush-soft p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
             <h3 className="text-xl mb-6">Kirim Pesan</h3>
             <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+                <label htmlFor="website">Jangan isi kolom ini</label>
+                <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="space-y-1">
                   <label htmlFor="name" className="sr-only">Nama lengkap</label>

@@ -17,13 +17,16 @@ export async function POST(req) {
     return NextResponse.json({ error: "Layanan kontak sedang tidak tersedia." }, { status: 503 });
   }
 
-  const contentLength = Number(req.headers.get("content-length") || 0);
-  if (contentLength > 16_384) {
-    return NextResponse.json({ error: "Ukuran pesan terlalu besar." }, { status: 413 });
+  if (!req.headers.get("content-type")?.includes("application/json")) {
+    return NextResponse.json({ error: "Content-Type tidak didukung." }, { status: 415 });
   }
 
   try {
-    const body = await req.json();
+    const rawBody = await req.text();
+    if (new TextEncoder().encode(rawBody).byteLength > 16_384) {
+      return NextResponse.json({ error: "Ukuran pesan terlalu besar." }, { status: 413 });
+    }
+    const body = JSON.parse(rawBody);
     const parsed = contactSchema.safeParse(body);
     if (!parsed.success) {
       return NextResponse.json(
@@ -32,7 +35,10 @@ export async function POST(req) {
       );
     }
 
-    const { name, email, subject, message } = parsed.data;
+    const { name, email, subject, message, website } = parsed.data;
+    if (website) {
+      return NextResponse.json({ ok: true });
+    }
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safeSubject = escapeHtml(subject || "(tidak ada)");
