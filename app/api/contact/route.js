@@ -39,14 +39,16 @@ async function readBodyWithinLimit(req, maxBytes) {
 }
 
 export async function POST(req) {
-  const { RESEND_API_KEY, CONTACT_FROM_EMAIL, CONTACT_TO_EMAIL } = process.env;
-  if (!RESEND_API_KEY || !CONTACT_FROM_EMAIL || !CONTACT_TO_EMAIL) {
+  const resendApiKey = process.env.RESEND_API_KEY?.trim();
+  const contactFromEmail = process.env.CONTACT_FROM_EMAIL?.trim();
+  const contactToEmail = process.env.CONTACT_TO_EMAIL?.trim();
+  if (!resendApiKey || !contactFromEmail || !contactToEmail) {
     console.error("Contact email environment is not fully configured.");
     return Response.json({ error: "Layanan kontak sedang tidak tersedia." }, { status: 503 });
   }
 
   // Initialize lazily so missing credentials do not crash route module loading/builds.
-  const resend = new Resend(RESEND_API_KEY);
+  const resend = new Resend(resendApiKey);
 
   const contentType = req.headers.get("content-type")?.split(";")[0].trim().toLowerCase();
   if (contentType !== "application/json") {
@@ -105,8 +107,8 @@ export async function POST(req) {
     const replyEmail = encodeURIComponent(email);
 
     const { error } = await resend.emails.send({
-      from: CONTACT_FROM_EMAIL,
-      to: CONTACT_TO_EMAIL,
+      from: contactFromEmail,
+      to: contactToEmail,
       subject: "Pesan baru dari form kontak Galerizka",
       html: `<!doctype html>
 <html><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><title>Pesan Baru dari Galerizka</title></head>
