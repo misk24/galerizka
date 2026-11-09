@@ -6,7 +6,7 @@ import { X } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 const FOCUSABLE_SELECTOR =
-  'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex^="-"])';
 
 export default function Modal({ isOpen, onClose, children }) {
   const modalRef = useRef(null);
