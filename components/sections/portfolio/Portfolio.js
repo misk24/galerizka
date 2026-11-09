@@ -71,13 +71,9 @@ export default function Portfolio() {
                       <div className="text-2xl font-heading font-bold text-white mb-3">
                         {item.title}
                       </div>
-                      <button 
-                        onClick={() => openModal(item)}
-                        className="inline-flex items-center text-white hover:text-dusty-rose transition-colors text-sm font-medium"
-                        aria-label={`Lihat detail ${item.title}`}
-                      >
+                      <span className="inline-flex items-center text-white text-sm font-medium">
                         Lihat Detail <ArrowUpRight className="ml-1 w-4 h-4" />
-                      </button>
+                      </span>
                     </div>
                   </div>
                 </div>
