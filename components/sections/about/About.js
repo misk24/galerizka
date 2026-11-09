@@ -32,40 +32,16 @@ export default function About() {
             </Animate>
             <Animate delay={200} className="space-y-6">
               <p className="leading-relaxed">
-                Galeriz.ka adalah penyedia jasa jahit profesional yang berkomitmen untuk memberikan hasil jahitan berkualitas tinggi dengan sentuhan personal. 
-                Kami percaya bahwa pakaian yang dibuat khusus akan memberikan kenyamanan dan kepercayaan diri yang lebih.
+                Galeriz.ka menerima pesanan jahitan pakaian sesuai ukuran dan model yang Anda inginkan.
+                Setiap pesanan dapat dibicarakan terlebih dahulu agar detail desain dan kebutuhan bahan lebih jelas.
               </p>
               <p className="leading-relaxed">
-                Dengan tim penjahit yang berpengalaman dan bahan berkualitas, kami siap mewujudkan desain baju impian Anda menjadi kenyataan.
+                Kami juga menyediakan layanan penyesuaian pakaian. Hubungi kami untuk membahas model,
+                bahan, serta estimasi pengerjaan sebelum melakukan pemesanan.
               </p>
             </Animate>
 
-            <Animate delay={200} className="mt-10 grid grid-cols-3 gap-6">
-              <div className="text-center p-4 bg-blush-soft rounded-2xl">
-                <div className="text-2xl md:text-3xl font-bold text-black-cherry mb-2">
-                  500+
-                </div>
-                <div className="text-sm text-black-cherry">
-                  Pelanggan
-                </div>
-              </div>
-              <div className="text-center p-4 bg-blush-soft rounded-2xl">
-                <div className="text-2xl md:text-3xl font-bold text-black-cherry mb-2">
-                  1000+
-                </div>
-                <div className="text-sm text-black-cherry">
-                  Pesanan
-                </div>
-              </div>
-              <div className="text-center p-4 bg-blush-soft rounded-2xl">
-                <div className="text-2xl md:text-3xl font-bold text-black-cherry mb-2">
-                  98%
-                </div>
-                <div className="text-sm text-black-cherry">
-                  Kepuasan
-                </div>
-              </div>
-            </Animate>
+  </Animate>
           </div>
         </div>
       </div>
