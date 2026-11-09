@@ -29,7 +29,7 @@ Endpoint `POST /api/contact` memakai Zod untuk validasi dan Resend untuk pengiri
 
 Environment variable wajib: `RESEND_API_KEY`.
 
-Jangan commit file `.env` atau credential ke repository. Form memiliki batas ukuran request, batas panjang field, HTML escaping, dan honeypot dasar. Rate limiting berbasis penyimpanan bersama belum dikonfigurasi. Aktifkan sebelum penggunaan publik agar endpoint tidak mudah disalahgunakan pada deployment serverless.
+Jangan commit file `.env` atau credential ke repository. Form memiliki batas ukuran request, batas panjang field, HTML escaping, honeypot dasar, dan rate limiting berbasis Redis. Rate limit saat ini membatasi 5 request per IP dalam jendela 10 menit. Endpoint memakai `KV_REST_API_URL` dan `KV_REST_API_TOKEN` dari integrasi Redis Vercel. Jika Redis tidak tersedia, endpoint mengembalikan 503 agar perlindungan tidak diam-diam dinonaktifkan.
 
 ## Sebelum deployment
 
