@@ -34,7 +34,12 @@ export default function Modal({ isOpen, onClose, children }) {
       }
       const first = items[0];
       const last = items[items.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
+      const focusIsInsideModal = modal.contains(document.activeElement);
+
+      if (!focusIsInsideModal) {
+        event.preventDefault();
+        (event.shiftKey ? last : first).focus();
+      } else if (event.shiftKey && document.activeElement === first) {
         event.preventDefault();
         last.focus();
       } else if (!event.shiftKey && document.activeElement === last) {
