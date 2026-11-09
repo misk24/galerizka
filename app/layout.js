@@ -16,18 +16,36 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Galeriz.ka - Jasa Jahit Busana Lombok",
-  description: "Jahit busana custom, rapi, cepat, dan berkualitas untuk segala kebutuhan.",
+  metadataBase: new URL("https://galerizka.com"),
+  title: {
+    default: "Galeriz.ka | Jasa Jahit Busana di Lombok",
+    template: "%s | Galeriz.ka",
+  },
+  description:
+    "Jasa jahit busana custom di Lombok. Wujudkan busana sesuai kebutuhan dengan hasil rapi, nyaman, dan berkualitas.",
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    siteName: "Galeriz.ka",
+    title: "Galeriz.ka | Jasa Jahit Busana di Lombok",
+    description:
+      "Jasa jahit busana custom di Lombok dengan hasil rapi dan berkualitas.",
+    url: "https://galerizka.com",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Galeriz.ka | Jasa Jahit Busana di Lombok",
+    description:
+      "Jasa jahit busana custom di Lombok dengan hasil rapi dan berkualitas.",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${cormorant.variable} ${inter.variable} antialiased`}
-      >
+    <html lang="id">
+      <body className={`${cormorant.variable} ${inter.variable} antialiased`}>
         <Toaster position="top-center" reverseOrder={false} />
-          {children}
+        {children}
       </body>
     </html>
   );
