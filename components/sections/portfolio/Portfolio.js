@@ -66,7 +66,7 @@ export default function Portfolio() {
                   </button>
                   
                   {/* Overlay */}
-                  <div className="hidden absolute inset-0 bg-linear-to-t from-mulberry-deep/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 lg:flex flex-col justify-end p-6">
+                  <div className="hidden absolute inset-0 pointer-events-none bg-linear-to-t from-mulberry-deep/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 lg:flex flex-col justify-end p-6">
                     <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                       <div className="text-2xl font-heading font-bold text-white mb-3">
                         {item.title}
