@@ -1,11 +1,11 @@
 export const services = [
   {
-    title: "Custom Tailoring",
+    title: "Jahit Busana Custom",
     description: "Pembuatan pakaian berdasarkan ukuran dan model yang dibicarakan saat pemesanan.",
     icon: "✂️"
   },
   {
-    title: "Alteration",
+    title: "Permak dan Penyesuaian",
     description: "Penyesuaian ukuran atau bagian pakaian agar lebih sesuai dengan kebutuhan Anda.",
     icon: "👔"
   },
@@ -15,7 +15,7 @@ export const services = [
     icon: "🎨"
   },
   {
-    title: "Jahit Sesuai Tenggat",
+    title: "Pesanan dengan Tenggat Khusus",
     description: "Sampaikan tanggal kebutuhan Anda saat konsultasi. Estimasi pengerjaan akan dikonfirmasi sebelum pesanan disepakati.",
     icon: "⚡"
   }
