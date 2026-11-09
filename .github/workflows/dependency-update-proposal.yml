@@ -1,6 +1,11 @@
 name: Dependency update proposal
 
 on:
+  push:
+    branches:
+      - refactor/secure-contact-and-architecture
+    paths:
+      - .github/workflows/dependency-update-proposal.yml
   workflow_dispatch:
   schedule:
     - cron: "17 2 * * *"
