@@ -63,14 +63,14 @@ test("enforces maximum field lengths", () => {
   }
 });
 
-test("allows an empty honeypot but rejects a filled honeypot", () => {
+test("accepts honeypot values so the route can silently reject spam", () => {
   assert.equal(
     contactSchema.safeParse({ ...validContact, website: "" }).success,
     true
   );
   assert.equal(
     contactSchema.safeParse({ ...validContact, website: "https://spam.test" }).success,
-    false
+    true
   );
 });
 
