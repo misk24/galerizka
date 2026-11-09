@@ -18,7 +18,7 @@ export function Animate({
 
   const animationClasses = inView
     ? `animate-${animation} ${className}`
-    : `opacity-0 ${className}`;
+    : className;
 
   return (
     <div
