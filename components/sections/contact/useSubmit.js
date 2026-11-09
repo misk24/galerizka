@@ -8,9 +8,11 @@ export function useSubmit() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    setLoading(true);
+    if (loading) return;
 
-    const form = new FormData(event.target);
+    setLoading(true);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     const payload = {
       name: form.get("name"),
       email: form.get("email"),
@@ -20,22 +22,46 @@ export function useSubmit() {
     };
 
     try {
-      const res = await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
-      if (!res.ok) throw new Error("Gagal mengirim pesan.");
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        if (response.status === 503) {
+          throw new Error(
+            "Formulir email sementara belum tersedia. Silakan hubungi kami melalui WhatsApp."
+          );
+        }
+        if (response.status === 429) {
+          throw new Error(
+            "Terlalu banyak percobaan. Tunggu beberapa menit sebelum mencoba lagi."
+          );
+        }
+        throw new Error(
+          result.error || "Pesan gagal dikirim. Silakan coba lagi nanti."
+        );
+      }
+
+      if (result.ok !== true) {
+        throw new Error("Status pengiriman tidak dapat dipastikan. Silakan coba lagi.");
+      }
 
       toast.success("Pesan berhasil dikirim!");
-      event.target.reset();
-    } catch (err) {
-      toast.error("Terjadi kesalahan. Coba lagi nanti.");
+      formElement.reset();
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Terjadi kesalahan jaringan. Silakan coba lagi."
+      );
     } finally {
       setLoading(false);
     }
   }
-  
+
   return { loading, handleSubmit };
 }
