@@ -27,6 +27,8 @@ const Button = forwardRef(
       loading = false,
       disabled = false,
       children,
+      onClick,
+      tabIndex,
       ...props
     },
     ref
@@ -35,16 +37,30 @@ const Button = forwardRef(
       "inline-flex items-center justify-center font-medium transition-colors disabled:opacity-50 disabled:pointer-events-none";
 
     const buttonClasses = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+    const unavailable = disabled || loading;
 
     if (as === "a" || href) {
+      function handleLinkClick(event) {
+        if (unavailable) {
+          event.preventDefault();
+          return;
+        }
+
+        onClick?.(event);
+      }
+
       return (
         <Link
           href={href || "#"}
           className={buttonClasses}
           ref={ref}
+          aria-disabled={unavailable || undefined}
+          aria-busy={loading || undefined}
+          tabIndex={unavailable ? -1 : tabIndex}
+          onClick={handleLinkClick}
           {...props}
         >
-          {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {loading && <Loader2 aria-hidden="true" className="mr-2 h-4 w-4 animate-spin" />}
           {children}
         </Link>
       );
@@ -53,11 +69,13 @@ const Button = forwardRef(
     return (
       <button
         className={buttonClasses}
-        disabled={disabled || loading}
+        disabled={unavailable}
+        aria-busy={loading || undefined}
         ref={ref}
+        onClick={onClick}
         {...props}
       >
-        {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        {loading && <Loader2 aria-hidden="true" className="mr-2 h-4 w-4 animate-spin" />}
         {children}
       </button>
     );
