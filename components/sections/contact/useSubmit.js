@@ -1,15 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import toast from "react-hot-toast";
 
 export function useSubmit() {
   const [loading, setLoading] = useState(false);
+  const [feedback, setFeedback] = useState({ type: "", message: "" });
 
   async function handleSubmit(event) {
     event.preventDefault();
     if (loading) return;
 
+    setFeedback({ type: "", message: "" });
     setLoading(true);
     const formElement = event.currentTarget;
     const form = new FormData(formElement);
@@ -33,7 +34,7 @@ export function useSubmit() {
       if (!response.ok) {
         if (response.status === 503) {
           throw new Error(
-            "Formulir email sementara belum tersedia. Silakan hubungi kami melalui WhatsApp."
+            "Formulir email belum tersedia saat ini. Pesan Anda belum dikirim. Silakan coba kembali nanti."
           );
         }
         if (response.status === 429) {
@@ -50,18 +51,20 @@ export function useSubmit() {
         throw new Error("Status pengiriman tidak dapat dipastikan. Silakan coba lagi.");
       }
 
-      toast.success("Pesan berhasil dikirim!");
+      setFeedback({ type: "success", message: "Pesan berhasil dikirim!" });
       formElement.reset();
     } catch (error) {
-      toast.error(
-        error instanceof Error
-          ? error.message
-          : "Terjadi kesalahan jaringan. Silakan coba lagi."
-      );
+      setFeedback({
+        type: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Terjadi kesalahan jaringan. Silakan coba lagi.",
+      });
     } finally {
       setLoading(false);
     }
   }
 
-  return { loading, handleSubmit };
+  return { loading, feedback, handleSubmit };
 }
