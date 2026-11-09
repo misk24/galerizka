@@ -184,6 +184,20 @@ test("returns 503 when contact email addresses are not configured", async () => 
   }
 });
 
+test("returns 503 when contact email settings contain only whitespace", async () => {
+  const originalFrom = process.env.CONTACT_FROM_EMAIL;
+  const originalTo = process.env.CONTACT_TO_EMAIL;
+  process.env.CONTACT_FROM_EMAIL = "   ";
+  process.env.CONTACT_TO_EMAIL = "\\t";
+  try {
+    const response = await POST(createRequest(validPayload));
+    assert.equal(response.status, 503);
+  } finally {
+    process.env.CONTACT_FROM_EMAIL = originalFrom;
+    process.env.CONTACT_TO_EMAIL = originalTo;
+  }
+});
+
 test("returns 503 when the email provider key is missing", async () => {
   const originalKey = process.env.RESEND_API_KEY;
   delete process.env.RESEND_API_KEY;
