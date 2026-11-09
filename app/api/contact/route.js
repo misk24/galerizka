@@ -17,7 +17,11 @@ async function readBodyWithinLimit(req, maxBytes) {
 
     totalBytes += value.byteLength;
     if (totalBytes > maxBytes) {
-      await reader.cancel();
+      try {
+        await reader.cancel("Request body exceeds the allowed size.");
+      } catch {
+        // The request may already be aborted; preserve the intended 413 response.
+      }
       return null;
     }
 
@@ -46,6 +50,11 @@ export async function POST(req) {
   const contentType = req.headers.get("content-type")?.split(";")[0].trim().toLowerCase();
   if (contentType !== "application/json") {
     return Response.json({ error: "Content-Type tidak didukung." }, { status: 415 });
+  }
+
+  const contentLength = req.headers.get("content-length");
+  if (contentLength && /^\\d+$/.test(contentLength) && Number(contentLength) > 16_384) {
+    return Response.json({ error: "Ukuran pesan terlalu besar." }, { status: 413 });
   }
 
   try {
