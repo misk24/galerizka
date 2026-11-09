@@ -66,7 +66,9 @@ export default function Navbar() {
             <button
               onClick={toggleMenu}
               className="inline-flex items-center justify-center p-2 text-blush-soft focus:outline-none"
+              type="button"
               aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
               aria-label={isOpen ? "Tutup menu" : "Buka menu"}
             >
               {isOpen ? (
