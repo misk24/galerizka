@@ -3,6 +3,8 @@ import test from "node:test";
 import { spawnSync } from "node:child_process";
 
 process.env.RESEND_API_KEY = "re_test_contact_route";
+process.env.CONTACT_FROM_EMAIL = "contact@galerizka.example";
+process.env.CONTACT_TO_EMAIL = "owner@galerizka.example";
 process.env.KV_REST_API_URL = "https://redis.example.test";
 process.env.KV_REST_API_TOKEN = "redis_test_token";
 
@@ -166,6 +168,20 @@ test("returns 502 when Resend rejects the email", async () => {
     const response = await POST(createRequest(validPayload));
     assert.equal(response.status, 502);
   });
+});
+
+test("returns 503 when contact email addresses are not configured", async () => {
+  const originalFrom = process.env.CONTACT_FROM_EMAIL;
+  const originalTo = process.env.CONTACT_TO_EMAIL;
+  delete process.env.CONTACT_FROM_EMAIL;
+  delete process.env.CONTACT_TO_EMAIL;
+  try {
+    const response = await POST(createRequest(validPayload));
+    assert.equal(response.status, 503);
+  } finally {
+    process.env.CONTACT_FROM_EMAIL = originalFrom;
+    process.env.CONTACT_TO_EMAIL = originalTo;
+  }
 });
 
 test("returns 503 when the email provider key is missing", async () => {
