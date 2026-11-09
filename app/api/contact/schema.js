@@ -5,5 +5,5 @@ export const contactSchema = z.object({
   email: z.string().trim().email("Email tidak valid").max(254, "Email maksimal 254 karakter"),
   subject: z.string().trim().max(150, "Subjek maksimal 150 karakter").optional().default(""),
   message: z.string().trim().min(1, "Pesan wajib diisi").max(5000, "Pesan maksimal 5000 karakter"),
-  website: z.string().max(0).optional(),
+  website: z.string().max(500, "Kolom honeypot terlalu panjang").optional(),
 }).strict();
