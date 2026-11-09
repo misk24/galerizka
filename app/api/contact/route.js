@@ -1,7 +1,6 @@
-import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { contactSchema } from "./schema";
-import { checkRateLimit, escapeHtml } from "./security";
+import { contactSchema } from "./schema.js";
+import { checkRateLimit, escapeHtml } from "./security.js";
 
 export const runtime = "nodejs";
 
@@ -9,11 +8,11 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req) {
   if (!process.env.RESEND_API_KEY) {
     console.error("RESEND_API_KEY is not configured.");
-    return NextResponse.json({ error: "Layanan kontak sedang tidak tersedia." }, { status: 503 });
+    return Response.json({ error: "Layanan kontak sedang tidak tersedia." }, { status: 503 });
   }
 
   if (!req.headers.get("content-type")?.includes("application/json")) {
-    return NextResponse.json({ error: "Content-Type tidak didukung." }, { status: 415 });
+    return Response.json({ error: "Content-Type tidak didukung." }, { status: 415 });
   }
 
   try {
@@ -22,14 +21,14 @@ export async function POST(req) {
       rateLimit = await checkRateLimit(req);
     } catch (error) {
       console.error("Contact rate limiter failed:", error?.message || "UnknownError");
-      return NextResponse.json(
+      return Response.json(
         { error: "Layanan kontak sedang tidak tersedia. Silakan coba lagi nanti." },
         { status: 503 }
       );
     }
 
     if (!rateLimit.allowed) {
-      return NextResponse.json(
+      return Response.json(
         { error: "Terlalu banyak percobaan. Coba lagi beberapa menit." },
         {
           status: 429,
@@ -40,12 +39,12 @@ export async function POST(req) {
 
     const rawBody = await req.text();
     if (new TextEncoder().encode(rawBody).byteLength > 16_384) {
-      return NextResponse.json({ error: "Ukuran pesan terlalu besar." }, { status: 413 });
+      return Response.json({ error: "Ukuran pesan terlalu besar." }, { status: 413 });
     }
     const body = JSON.parse(rawBody);
     const parsed = contactSchema.safeParse(body);
     if (!parsed.success) {
-      return NextResponse.json(
+      return Response.json(
         { error: "Data tidak valid.", issues: parsed.error.flatten().fieldErrors },
         { status: 400 }
       );
@@ -53,7 +52,7 @@ export async function POST(req) {
 
     const { name, email, subject, message, website } = parsed.data;
     if (website) {
-      return NextResponse.json({ ok: true });
+      return Response.json({ ok: true });
     }
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
@@ -80,14 +79,14 @@ export async function POST(req) {
 
     if (error) {
       console.error("Resend failed to send contact email:", error.name);
-      return NextResponse.json({ error: "Pesan gagal dikirim. Silakan coba lagi nanti." }, { status: 502 });
+      return Response.json({ error: "Pesan gagal dikirim. Silakan coba lagi nanti." }, { status: 502 });
     }
-    return NextResponse.json({ ok: true });
+    return Response.json({ ok: true });
   } catch (error) {
     if (error instanceof SyntaxError) {
-      return NextResponse.json({ error: "Format permintaan tidak valid." }, { status: 400 });
+      return Response.json({ error: "Format permintaan tidak valid." }, { status: 400 });
     }
     console.error("Contact endpoint failed:", error?.name || "UnknownError");
-    return NextResponse.json({ error: "Internal server error." }, { status: 500 });
+    return Response.json({ error: "Internal server error." }, { status: 500 });
   }
 }
