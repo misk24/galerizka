@@ -12,7 +12,7 @@ export default function Cta() {
         </Animate>
         <Animate delay={200} className="text-center">
           <p className="max-w-3xl mx-auto mb-8">
-            Konsultasikan desain dan kebutuhan jahit Anda bersama kami. Tim penjahit profesional kami siap mewujudkan busana yang sempurna sesuai keinginan Anda.
+            Konsultasikan desain dan kebutuhan jahit Anda bersama kami. Diskusikan kebutuhan, model, dan pilihan bahan sebelum menyepakati pesanan.
           </p>
         </Animate>
         <Animate delay={200} className="text-center">

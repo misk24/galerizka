@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: light;
   --background: #ffffff;
   --foreground: #171717;
   --dusty-rose: #c57c8a;
@@ -11,7 +12,7 @@
   --inter: "Inter", sans-serif;
 }
 
-@theme inline{
+@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-dusty-rose: var(--dusty-rose);
@@ -20,92 +21,55 @@
   --color-black-cherry: var(--black-cherry);
   --font-heading: var(--cormorant);
   --font-body: var(--inter);
-  --h1: clamp(2.5rem, 1.8rem + 2vw, 4rem);     /* 40px → 64px */
-  --h2: clamp(2rem, 1.5rem + 1.5vw, 3rem);     /* 32px → 48px */
-  --h3: clamp(1.5rem, 1.2rem + 1vw, 2rem);     /* 24px → 32px */
-  --body: clamp(1rem, 0.9rem + 0.3vw, 1.125rem); /* 16px → 18px */
-  --small: clamp(0.875rem, 0.8rem + 0.2vw, 1rem); /* 14px → 16px */
+  --h1: clamp(2.5rem, 1.8rem + 2vw, 4rem);
+  --h2: clamp(2rem, 1.5rem + 1.5vw, 3rem);
+  --h3: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  --body: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+  --small: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
   --lh-heading: 1.2;
   --lh-body: 1.6;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html { scroll-behavior: smooth; }
 
-html {
-  scroll-behavior: smooth;
+:focus-visible {
+  outline: 3px solid var(--dusty-rose);
+  outline-offset: 3px;
 }
-
 body, p {
   color: var(--black-cherry);
   font-family: var(--font-body);
   font-size: var(--body);
   line-height: var(--lh-body);
 }
-
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: var(--lh-heading);
   color: var(--mulberry-deep);
 }
-
 @keyframes modalIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
-
-.animate-modalIn {
-  animation: modalIn 0.2s ease-out forwards;
-}
-
-/* Fade In Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Fade In Up Animation */
+.animate-modalIn { animation: modalIn 0.2s ease-out forwards; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-/* Utility Classes */
-.animate-fadeIn {
-  animation: fadeIn 0.8s ease-out forwards;
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
+.animate-fadeIn { animation: fadeIn 0.8s ease-out forwards; }
+.animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
 @layer utilities {
-  .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

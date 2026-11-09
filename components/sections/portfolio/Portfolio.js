@@ -33,10 +33,10 @@ export default function Portfolio() {
                 Portfolio
               </span>
               <h2 className="text-3xl md:text-4xl mb-4">
-                Karya Terbaru Kami
+                Beberapa Hasil Jahitan
               </h2>
               <p className="leading-tight">
-                Lihat beberapa hasil karya terbaik kami yang dibuat dengan penuh dedikasi dan ketelitian.
+                Lihat beberapa contoh pakaian yang pernah kami kerjakan.
               </p>
             </div>
           </Animate>
@@ -49,32 +49,31 @@ export default function Portfolio() {
                 className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <div className="aspect-4/5 relative overflow-hidden">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 cursor-pointer"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    priority={item.featured}
+                  <button
+                    type="button"
                     onClick={() => openModal(item)}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => e.key === "Enter" && openModal(item)}
-                  />
+                    className="absolute inset-0 z-10 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-mulberry-deep"
+                    aria-label={`Lihat detail ${item.title}`}
+                  >
+                    <Image
+                      src={item.image}
+                      alt=""
+                      fill
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      priority={item.featured}
+                    />
+                  </button>
                   
                   {/* Overlay */}
-                  <div className="hidden absolute inset-0 bg-linear-to-t from-mulberry-deep/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 lg:flex flex-col justify-end p-6">
+                  <div className="hidden absolute inset-0 pointer-events-none bg-linear-to-t from-mulberry-deep/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 lg:flex flex-col justify-end p-6">
                     <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                       <div className="text-2xl font-heading font-bold text-white mb-3">
                         {item.title}
                       </div>
-                      <button 
-                        onClick={() => openModal(item)}
-                        className="inline-flex items-center text-white hover:text-dusty-rose transition-colors text-sm font-medium"
-                        aria-label={`Lihat detail ${item.title}`}
-                      >
+                      <span className="inline-flex items-center text-white text-sm font-medium">
                         Lihat Detail <ArrowUpRight className="ml-1 w-4 h-4" />
-                      </button>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -93,7 +92,8 @@ export default function Portfolio() {
                         {item.title}
                       </h3>
                     </div>
-                    <button 
+                    <button
+                      type="button"
                       onClick={() => openModal(item)}
                       className="text-dusty-rose hover:text-mulberry-deep"
                       aria-label={`Lihat detail ${item.title}`}
@@ -113,8 +113,11 @@ export default function Portfolio() {
               <>
                 {/* Kolom Gambar - Horizontal Scroll */}
                 <div className="w-full md:w-1/2 relative">
-                  <div 
+                  <div
                     ref={scrollContainerRef}
+                    role="region"
+                    aria-label={`Galeri gambar ${modalContent.title}`}
+                    tabIndex={0}
                     className="w-full h-full overflow-x-auto snap-x snap-mandatory scrollbar-hide"
                   >
                     <div className="flex h-full min-h-[500px] md:min-h-full">
@@ -136,20 +139,26 @@ export default function Portfolio() {
                       </div>
                     </div>
                   </div>
-                  <button 
-                    onClick={() => scroll("left")}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
-                    aria-label="Scroll left"
-                  >
-                    <ChevronLeft size={24} />
-                  </button>
-                  <button 
-                    onClick={() => scroll("right")}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
-                    aria-label="Scroll right"
-                  >
-                    <ChevronRight size={24} />
-                  </button>
+{modalContent.modal.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => scroll("left")}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
+                        aria-label="Scroll left"
+                      >
+                        <ChevronLeft size={24} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => scroll("right")}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
+                        aria-label="Scroll right"
+                      >
+                        <ChevronRight size={24} />
+                      </button>
+                    </>
+                  )}
                 </div>
 
                 {/* Kolom Deskripsi */}
@@ -162,18 +171,22 @@ export default function Portfolio() {
                         </Badge>
                       ))}
                     </div>
-                    <h2 className="text-2xl md:text-3xl lg:text-5xl">
+                    <h2 id="modal-title" className="text-2xl md:text-3xl lg:text-5xl">
                       {modalContent.title}
                     </h2>
                   </div>
-                  <div className="border-t border-dusty-rose pt-6 space-y-4">
-                    <h3 className="text-2xl font-medium text-dusty-rose">Deskripsi</h3>
-                    <p className="leading-tight">{modalContent.description}</p>
-                  </div>
-                  <div className="mt-6 pt-6 border-t border-dusty-rose space-y-4">
-                    <h3 className="text-2xl font-medium text-dusty-rose">Klien</h3>
-                    <p className="leading-tight">{modalContent.client}</p>
-                  </div>
+                  {modalContent.description?.trim() && (
+                    <div className="border-t border-dusty-rose pt-6 space-y-4">
+                      <h3 className="text-2xl font-medium text-dusty-rose">Deskripsi</h3>
+                      <p className="leading-tight">{modalContent.description.trim()}</p>
+                    </div>
+                  )}
+                  {modalContent.client?.trim() && (
+                    <div className="mt-6 pt-6 border-t border-dusty-rose space-y-4">
+                      <h3 className="text-2xl font-medium text-dusty-rose">Klien</h3>
+                      <p className="leading-tight">{modalContent.client.trim()}</p>
+                    </div>
+                  )}
                 </div>
               </>
             )}

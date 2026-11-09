@@ -6,7 +6,7 @@ export const portfolioItems = [
     image: "/images/portfolio/gamis.jpeg",
     modal: [ "/images/portfolio/gamis.jpeg" ],
     client: "pesanan ibuguru di Janapria, Lombok Tengah",
-    description: "  "
+    description: ""
   },
   {
     id: 2,

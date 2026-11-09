@@ -1,13 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { menus } from "@/constants/constant";
+import { contacts, menus } from "@/constants/constant";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useScrollLock } from "@/hooks/useScrollLock";
-import { Mail } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
-import { FaWhatsapp } from "react-icons/fa";
 
 export default function MobileMenu({ isOpen, setIsOpen }) {
   const menuRef = useRef(null);
@@ -17,6 +15,9 @@ export default function MobileMenu({ isOpen, setIsOpen }) {
   return (
     <div
       ref={menuRef}
+      id="mobile-navigation"
+      aria-hidden={!isOpen}
+      inert={!isOpen}
       className={`lg:hidden border-b border-dusty-rose transition-all duration-300 ease-in-out overflow-hidden ${
         isOpen
           ? "max-h-screen opacity-100 bg-white" 
@@ -51,12 +52,17 @@ export default function MobileMenu({ isOpen, setIsOpen }) {
             Hubungi Kami
           </div>
           <div className="space-y-2">
-            <Link href="https://wa.link/4u5haz" className="flex items-center text-mulberry-deep font-medium">
-              <FaWhatsapp size={20} className="mr-2" /> 0877-6337-3270
-            </Link>
-            <Link href="mailto:rizkans.koryoga03@gmail.com" className="flex items-center text-mulberry-deep font-medium">
-              <Mail size={20} className="mr-2" /> rizkans.koryoga03@gmail.com
-            </Link>
+            {contacts.map((contact) => (
+              <Link
+                key={contact.href}
+                href={contact.href}
+                className="flex items-center text-mulberry-deep font-medium"
+                onClick={() => setIsOpen(false)}
+              >
+                <span className="mr-2">{contact.icon}</span>
+                {contact.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
