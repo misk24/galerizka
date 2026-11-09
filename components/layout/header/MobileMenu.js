@@ -15,6 +15,9 @@ export default function MobileMenu({ isOpen, setIsOpen }) {
   return (
     <div
       ref={menuRef}
+      id="mobile-navigation"
+      aria-hidden={!isOpen}
+      inert={!isOpen}
       className={`lg:hidden border-b border-dusty-rose transition-all duration-300 ease-in-out overflow-hidden ${
         isOpen
           ? "max-h-screen opacity-100 bg-white" 
