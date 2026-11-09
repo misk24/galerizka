@@ -27,7 +27,7 @@ export default function About() {
                 Tentang Kami
               </span>
               <h2 className="text-3xl md:text-4xl mb-4">
-                Menghadirkan Karya Jahitan Berkualitas Tinggi
+                Jahitan Sesuai Kebutuhan Anda
               </h2>
             </Animate>
             <Animate delay={200} className="space-y-6">
@@ -40,8 +40,6 @@ export default function About() {
                 bahan, serta estimasi pengerjaan sebelum melakukan pemesanan.
               </p>
             </Animate>
-
-  </Animate>
           </div>
         </div>
       </div>
