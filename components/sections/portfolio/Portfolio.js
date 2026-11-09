@@ -135,20 +135,26 @@ export default function Portfolio() {
                       </div>
                     </div>
                   </div>
-                  <button 
-                    onClick={() => scroll("left")}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
-                    aria-label="Scroll left"
-                  >
-                    <ChevronLeft size={24} />
-                  </button>
-                  <button 
-                    onClick={() => scroll("right")}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
-                    aria-label="Scroll right"
-                  >
-                    <ChevronRight size={24} />
-                  </button>
+{modalContent.modal.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => scroll("left")}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
+                        aria-label="Scroll left"
+                      >
+                        <ChevronLeft size={24} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => scroll("right")}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
+                        aria-label="Scroll right"
+                      >
+                        <ChevronRight size={24} />
+                      </button>
+                    </>
+                  )}
                 </div>
 
                 {/* Kolom Deskripsi */}
