@@ -1,4 +1,5 @@
 import { Animate } from "@/components/ui/Animate";
+import Image from "next/image";
 
 export default function About() {
   return (
@@ -9,10 +10,12 @@ export default function About() {
           <Animate delay={400} className="w-full lg:w-5/12 h-full relative">
             <div className="relative aspect-square rounded-2xl overflow-hidden group">
               <div className="absolute inset-0 bg-dusty-rose/30 z-10" />
-              <img 
-                src="/images/logo/label.jpg" 
-                alt="Tentang Galeriz.ka" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              <Image
+                src="/images/logo/label.jpg"
+                alt="Tentang Galeriz.ka"
+                fill
+                sizes="(max-width: 768px) 100vw, 42vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
           </Animate>

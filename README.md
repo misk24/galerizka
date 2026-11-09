@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Galeriz.ka
 
-## Getting Started
+Website jasa jahit busana custom di Lombok, dibangun dengan Next.js App Router.
 
-First, run the development server:
+## Menjalankan project
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Jalankan `npm install`, lalu `npm run dev`. Buka http://localhost:3000.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Perintah
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- `npm run dev`: development server.
+- `npm run lint`: ESLint.
+- `npm run build`: production build.
+- `npm run start`: menjalankan production build.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Struktur project
 
-## Learn More
+- `app/`: App Router, root layout, metadata, dan API routes.
+- `components/layout/`: navbar, menu mobile, dan footer.
+- `components/sections/`: bagian halaman seperti Hero, About, Services, Portfolio, CTA, dan Contact.
+- `components/ui/`: komponen UI reusable.
+- `constants/`: navigasi, kontak, dan tautan sosial.
+- `hooks/`: custom React hooks.
+- `public/`: gambar dan aset statis.
 
-To learn more about Next.js, take a look at the following resources:
+## Form kontak
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Endpoint `POST /api/contact` memakai Zod untuk validasi dan Resend untuk pengiriman email.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Environment variable wajib: `RESEND_API_KEY`.
 
-## Deploy on Vercel
+Jangan commit file `.env` atau credential ke repository. Form memiliki batas ukuran request, batas panjang field, HTML escaping, dan honeypot dasar. Rate limiting berbasis penyimpanan bersama belum dikonfigurasi. Aktifkan sebelum penggunaan publik agar endpoint tidak mudah disalahgunakan pada deployment serverless.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Sebelum deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Pastikan environment variable tersedia pada Preview dan Production. Jalankan lint dan production build sebelum merge ke branch utama.
