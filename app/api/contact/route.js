@@ -53,7 +53,7 @@ export async function POST(req) {
   }
 
   const contentLength = req.headers.get("content-length");
-  if (contentLength && /^\\d+$/.test(contentLength) && Number(contentLength) > 16_384) {
+  if (contentLength && /^\d+$/.test(contentLength) && Number(contentLength) > 16_384) {
     return Response.json({ error: "Ukuran pesan terlalu besar." }, { status: 413 });
   }
 
