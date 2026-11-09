@@ -4,6 +4,36 @@ import { checkRateLimit, escapeHtml } from "./security.js";
 
 export const runtime = "nodejs";
 
+async function readBodyWithinLimit(req, maxBytes) {
+  const reader = req.body?.getReader();
+  if (!reader) return "";
+
+  const chunks = [];
+  let totalBytes = 0;
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    totalBytes += value.byteLength;
+    if (totalBytes > maxBytes) {
+      await reader.cancel();
+      return null;
+    }
+
+    chunks.push(value);
+  }
+
+  const body = new Uint8Array(totalBytes);
+  let offset = 0;
+  for (const chunk of chunks) {
+    body.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+
+  return new TextDecoder().decode(body);
+}
+
 export async function POST(req) {
   if (!process.env.RESEND_API_KEY) {
     console.error("RESEND_API_KEY is not configured.");
@@ -40,8 +70,8 @@ export async function POST(req) {
       );
     }
 
-    const rawBody = await req.text();
-    if (new TextEncoder().encode(rawBody).byteLength > 16_384) {
+    const rawBody = await readBodyWithinLimit(req, 16_384);
+    if (rawBody === null) {
       return Response.json({ error: "Ukuran pesan terlalu besar." }, { status: 413 });
     }
     const body = JSON.parse(rawBody);
