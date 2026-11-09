@@ -57,6 +57,7 @@ export default function MobileMenu({ isOpen, setIsOpen }) {
                 key={contact.href}
                 href={contact.href}
                 className="flex items-center text-mulberry-deep font-medium"
+                onClick={() => setIsOpen(false)}
               >
                 <span className="mr-2">{contact.icon}</span>
                 {contact.label}
