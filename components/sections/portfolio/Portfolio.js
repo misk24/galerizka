@@ -169,14 +169,18 @@ export default function Portfolio() {
                       {modalContent.title}
                     </h2>
                   </div>
-                  <div className="border-t border-dusty-rose pt-6 space-y-4">
-                    <h3 className="text-2xl font-medium text-dusty-rose">Deskripsi</h3>
-                    <p className="leading-tight">{modalContent.description}</p>
-                  </div>
-                  <div className="mt-6 pt-6 border-t border-dusty-rose space-y-4">
-                    <h3 className="text-2xl font-medium text-dusty-rose">Klien</h3>
-                    <p className="leading-tight">{modalContent.client}</p>
-                  </div>
+                  {modalContent.description?.trim() && (
+                    <div className="border-t border-dusty-rose pt-6 space-y-4">
+                      <h3 className="text-2xl font-medium text-dusty-rose">Deskripsi</h3>
+                      <p className="leading-tight">{modalContent.description.trim()}</p>
+                    </div>
+                  )}
+                  {modalContent.client?.trim() && (
+                    <div className="mt-6 pt-6 border-t border-dusty-rose space-y-4">
+                      <h3 className="text-2xl font-medium text-dusty-rose">Klien</h3>
+                      <p className="leading-tight">{modalContent.client.trim()}</p>
+                    </div>
+                  )}
                 </div>
               </>
             )}
