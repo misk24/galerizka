@@ -80,6 +80,21 @@ test("returns 415 for unsupported content types", async () => {
   assert.equal(jsonpResponse.status, 415);
 });
 
+test("rejects a declared oversized body before calling the rate limiter", async () => {
+  let fetchCalled = false;
+  await runWithFetch(async () => {
+    fetchCalled = true;
+    return new Response(JSON.stringify({ result: [1, 600] }), {
+      status: 200,
+      headers: { "content-type": "application/json" },
+    });
+  }, async () => {
+    const response = await POST(createRequest(validPayload, { "content-length": "16385" }));
+    assert.equal(response.status, 413);
+    assert.equal(fetchCalled, false);
+  });
+});
+
 test("returns 413 when the request body exceeds 16 KiB", async () => {
   await runWithFetch(successfulFetch(), async () => {
     const response = await POST(createRequest("x".repeat(16_385)));
