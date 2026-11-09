@@ -39,7 +39,7 @@ export default function Hero() {
             </Animate>
             <Animate delay={400}>
               <p className="text-lg">
-                Jasa jahit profesional dengan kualitas terbaik dan hasil yang memuaskan. Desain eksklusif, ukuran pas, dan nyaman digunakan.
+                Pesan jahitan sesuai ukuran dan model yang Anda inginkan. Diskusikan desain, pilihan bahan, dan kebutuhan pengerjaan bersama kami.
               </p>
             </Animate>
             <Animate delay={600}>
