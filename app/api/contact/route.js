@@ -4,12 +4,14 @@ import { checkRateLimit, escapeHtml } from "./security.js";
 
 export const runtime = "nodejs";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req) {
   if (!process.env.RESEND_API_KEY) {
     console.error("RESEND_API_KEY is not configured.");
     return Response.json({ error: "Layanan kontak sedang tidak tersedia." }, { status: 503 });
   }
+
+  // Initialize lazily so a missing key does not crash route module loading/builds.
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   if (!req.headers.get("content-type")?.includes("application/json")) {
     return Response.json({ error: "Content-Type tidak didukung." }, { status: 415 });
