@@ -50,7 +50,18 @@ jobs:
                 severity: item.severity,
                 direct: item.isDirect,
                 range: item.range,
-                fixAvailable: item.fixAvailable
+                fixAvailable: item.fixAvailable,
+                via: (item.via ?? []).map(advisory =>
+                  typeof advisory === "string"
+                    ? advisory
+                    : {
+                        name: advisory.name,
+                        title: advisory.title,
+                        url: advisory.url,
+                        range: advisory.range,
+                        severity: advisory.severity
+                      }
+                )
               }));
             }
           '
