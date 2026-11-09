@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 export function Animate({
@@ -12,18 +11,12 @@ export function Animate({
   triggerOnce = true,
   ...props
 }) {
-  const [isVisible, setIsVisible] = useState(false);
   const [ref, inView] = useInView({
     threshold,
     triggerOnce,
   });
 
-  useEffect(() => {
-    if (inView) setIsVisible(true);
-    else if (!triggerOnce) setIsVisible(false);
-  }, [inView, triggerOnce]);
-
-  const animationClasses = isVisible
+  const animationClasses = inView
     ? `animate-${animation} ${className}`
     : `opacity-0 ${className}`;
 
@@ -32,7 +25,7 @@ export function Animate({
       ref={ref}
       className={animationClasses}
       style={{
-        animationDelay: isVisible ? `${delay}ms` : "0ms",
+        animationDelay: inView ? `${delay}ms` : "0ms",
         animationFillMode: "both",
       }}
       {...props}
