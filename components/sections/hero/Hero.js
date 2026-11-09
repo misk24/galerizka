@@ -44,7 +44,7 @@ export default function Hero() {
             </Animate>
             <Animate delay={600}>
               <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start">
-                <Button href="https://wa.link/4u5haz" target="_blank" variant="primary">
+                <Button href="https://wa.link/4u5haz" target="_blank" rel="noopener noreferrer" variant="primary">
                   Pesan Sekarang
                 </Button>
                 <Button href="#portfolio" variant="outline">
