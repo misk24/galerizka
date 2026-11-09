@@ -12,10 +12,9 @@ export function escapeHtml(value) {
 }
 
 async function getRateLimitKey(req) {
-  // Vercel provides x-real-ip for the originating client address.
-  const ip =
-    req.headers.get("x-real-ip") ||
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  // Trust only Vercel's platform-provided client IP header.
+  // x-forwarded-for may contain values supplied by the requester.
+  const ip = req.headers.get("x-real-ip");
 
   if (!ip) {
     throw new Error("Client IP is unavailable.");
