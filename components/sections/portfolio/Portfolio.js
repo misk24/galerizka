@@ -92,7 +92,8 @@ export default function Portfolio() {
                         {item.title}
                       </h3>
                     </div>
-                    <button 
+                    <button
+                      type="button"
                       onClick={() => openModal(item)}
                       className="text-dusty-rose hover:text-mulberry-deep"
                       aria-label={`Lihat detail ${item.title}`}
@@ -112,8 +113,11 @@ export default function Portfolio() {
               <>
                 {/* Kolom Gambar - Horizontal Scroll */}
                 <div className="w-full md:w-1/2 relative">
-                  <div 
+                  <div
                     ref={scrollContainerRef}
+                    role="region"
+                    aria-label={`Galeri gambar ${modalContent.title}`}
+                    tabIndex={0}
                     className="w-full h-full overflow-x-auto snap-x snap-mandatory scrollbar-hide"
                   >
                     <div className="flex h-full min-h-[500px] md:min-h-full">
