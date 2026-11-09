@@ -2,23 +2,32 @@
 
 import { Animate } from "@/components/ui/Animate";
 import { Button } from "@/components/ui/Button";
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className="relative flex items-center h-[calc(100vh-4rem)] md:h-[600px] lg:h-[calc(100vh-4rem)]"
     >
       <Animate
         animation="fadeIn"
-        delay={200} 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/hero/hero.png')" }}
-      />
-      <Animate 
-        animation="fadeIn" 
-        delay={200} 
-        className="absolute inset-0 bg-linear-to-r from-blush-soft to-dusty-rose/30" 
+        delay={200}
+        className="absolute inset-0"
+      >
+        <Image
+          src="/images/hero/hero.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      </Animate>
+      <Animate
+        animation="fadeIn"
+        delay={200}
+        className="absolute inset-0 bg-linear-to-r from-blush-soft to-dusty-rose/30"
       />
       <div className="w-full max-w-4xl lg:max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
