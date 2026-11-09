@@ -1,22 +1,22 @@
 export const services = [
   {
     title: "Custom Tailoring",
-    description: "Buat baju sesuai dengan ukuran dan model yang Anda inginkan dengan bahan pilihan Anda sendiri.",
+    description: "Pembuatan pakaian berdasarkan ukuran dan model yang dibicarakan saat pemesanan.",
     icon: "✂️"
   },
   {
     title: "Alteration",
-    description: "Memperbaiki dan menyesuaikan pakaian yang sudah ada agar lebih pas dengan bentuk tubuh Anda.",
+    description: "Penyesuaian ukuran atau bagian pakaian agar lebih sesuai dengan kebutuhan Anda.",
     icon: "👔"
   },
   {
     title: "Konsultasi Desain",
-    description: "Konsultasikan ide desain baju Anda dengan penjahit profesional kami.",
+    description: "Diskusikan model, ukuran, dan pilihan bahan sebelum pesanan dibuat.",
     icon: "🎨"
   },
   {
-    title: "Jahit Cepat",
-    description: "Layanan jahit cepat untuk kebutuhan mendesak dengan kualitas yang tetap terjamin.",
+    title: "Jahit Sesuai Tenggat",
+    description: "Sampaikan tanggal kebutuhan Anda saat konsultasi. Estimasi pengerjaan akan dikonfirmasi sebelum pesanan disepakati.",
     icon: "⚡"
   }
 ];
