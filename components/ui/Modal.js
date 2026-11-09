@@ -21,12 +21,17 @@ export default function Modal({ isOpen, onClose, children }) {
 
     const previousFocus = document.activeElement;
     const modal = modalRef.current;
-    const focusable = modal?.querySelectorAll(FOCUSABLE_SELECTOR);
-    (focusable?.[0] || modal)?.focus();
+    const getFocusableItems = () =>
+      [...(modal?.querySelectorAll(FOCUSABLE_SELECTOR) || [])].filter(
+        (item) =>
+          item.getClientRects().length > 0 &&
+          !item.closest('[inert], [aria-hidden="true"]')
+      );
+    (getFocusableItems()[0] || modal)?.focus();
 
     function trapFocus(event) {
       if (event.key !== "Tab" || !modal) return;
-      const items = [...modal.querySelectorAll(FOCUSABLE_SELECTOR)];
+      const items = getFocusableItems();
       if (!items.length) {
         event.preventDefault();
         modal.focus();
@@ -58,11 +63,16 @@ export default function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" aria-modal="true" role="dialog" aria-labelledby="modal-title">
+    <div
+      ref={modalRef}
+      tabIndex={-1}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      aria-modal="true"
+      role="dialog"
+      aria-labelledby="modal-title"
+    >
       <div className="absolute inset-0 bg-mulberry-deep/50 backdrop-blur-sm transition-opacity" aria-hidden="true" />
       <div
-        ref={modalRef}
-        tabIndex={-1}
         className="relative z-10 bg-white rounded-2xl shadow-2xl max-w-4xl w-full md:h-[70vh] lg:h-[90vh] overflow-auto flex flex-col scale-95 opacity-0 animate-modalIn transition-all duration-300 outline-none"
         style={{ WebkitOverflowScrolling: "touch", maxHeight: "calc(100% - 4rem)" }}
       >
