@@ -1,0 +1,81 @@
+name: Dependency update proposal
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 2 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: dependency-update-proposal
+  cancel-in-progress: true
+
+jobs:
+  update:
+    name: Update npm dependencies and validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Update dependencies within declared semver ranges
+        run: npm update
+
+      - name: Report dependency vulnerabilities
+        run: |
+          npm audit --json > "$RUNNER_TEMP/npm-audit.json" || true
+          node -e '
+            const report = require(process.env.RUNNER_TEMP + "/npm-audit.json");
+            console.log("Dependency vulnerability summary:", JSON.stringify(report.metadata?.vulnerabilities ?? {}));
+            for (const [name, item] of Object.entries(report.vulnerabilities ?? {})) {
+              console.log(JSON.stringify({
+                package: name,
+                severity: item.severity,
+                direct: item.isDirect,
+                range: item.range,
+                fixAvailable: item.fixAvailable
+              }));
+            }
+          '
+
+      - name: Run tests
+        run: npm test
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run production build
+        run: npm run build
+        env:
+          RESEND_API_KEY: re_test_ci_placeholder
+
+      - name: Create dependency update pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/npm-dependency-refresh
+          delete-branch: true
+          title: "chore: refresh npm dependencies"
+          commit-message: "chore: refresh npm dependencies"
+          body: |
+            This pull request refreshes dependencies within the version ranges already declared in package.json.
+
+            Validation performed:
+            - npm test
+            - npm run lint
+            - npm run build
+
+            Review the dependency audit output in the workflow run before merging.
+          labels: |
+            dependencies
+            security
