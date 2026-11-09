@@ -188,7 +188,7 @@ test("returns 503 when contact email settings contain only whitespace", async ()
   const originalFrom = process.env.CONTACT_FROM_EMAIL;
   const originalTo = process.env.CONTACT_TO_EMAIL;
   process.env.CONTACT_FROM_EMAIL = "   ";
-  process.env.CONTACT_TO_EMAIL = "\\t";
+  process.env.CONTACT_TO_EMAIL = "\t";
   try {
     const response = await POST(createRequest(validPayload));
     assert.equal(response.status, 503);
