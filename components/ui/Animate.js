@@ -19,25 +19,21 @@ export function Animate({
   });
 
   useEffect(() => {
-    if (inView) {
-      const timer = setTimeout(() => {
-        setIsVisible(true);
-      }, delay);
-      return () => clearTimeout(timer);
-    }
-  }, [inView, delay]);
+    if (inView) setIsVisible(true);
+    else if (!triggerOnce) setIsVisible(false);
+  }, [inView, triggerOnce]);
 
-  const animationClasses = isVisible 
-    ? `animate-${animation} ${className}` 
+  const animationClasses = isVisible
+    ? `animate-${animation} ${className}`
     : `opacity-0 ${className}`;
 
   return (
-    <div 
+    <div
       ref={ref}
       className={animationClasses}
-      style={{ 
+      style={{
         animationDelay: isVisible ? `${delay}ms` : "0ms",
-        animationFillMode: "both"
+        animationFillMode: "both",
       }}
       {...props}
     >
