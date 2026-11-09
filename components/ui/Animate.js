@@ -7,7 +7,7 @@ export function Animate({
   animation = "fadeInUp",
   delay = 0,
   className = "",
-  threshold = 0.25,
+  threshold = 0.1,
   triggerOnce = true,
   ...props
 }) {
