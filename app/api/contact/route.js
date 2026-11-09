@@ -13,7 +13,8 @@ export async function POST(req) {
   // Initialize lazily so a missing key does not crash route module loading/builds.
   const resend = new Resend(process.env.RESEND_API_KEY);
 
-  if (!req.headers.get("content-type")?.includes("application/json")) {
+  const contentType = req.headers.get("content-type")?.split(";")[0].trim().toLowerCase();
+  if (contentType !== "application/json") {
     return Response.json({ error: "Content-Type tidak didukung." }, { status: 415 });
   }
 
