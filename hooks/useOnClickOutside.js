@@ -2,22 +2,20 @@ import { useEffect } from "react";
 
 export function useOnClickOutside(ref, onOutsideClick, isActive) {
   useEffect(() => {
+    if (!isActive) return undefined;
+
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
         onOutsideClick();
       }
     };
 
-    if (isActive) {
-      document.body.classList.add("overflow-hidden");
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-    
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.body.classList.remove("overflow-hidden");
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [ref, onOutsideClick, isActive]);
 }

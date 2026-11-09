@@ -7,19 +7,12 @@ export function useModal() {
   const openModal = useCallback((content) => {
     setModalContent(content);
     setIsOpen(true);
-    document.body.style.overflow = "hidden";
   }, []);
 
   const closeModal = useCallback(() => {
     setIsOpen(false);
     setModalContent(null);
-    document.body.style.overflow = "auto";
   }, []);
 
-  return {
-    isOpen,
-    modalContent,
-    openModal,
-    closeModal
-  };
+  return { isOpen, modalContent, openModal, closeModal };
 }

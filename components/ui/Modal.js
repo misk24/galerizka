@@ -53,7 +53,7 @@ export default function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" aria-modal="true" role="dialog" aria-label="Detail portofolio">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" aria-modal="true" role="dialog" aria-labelledby="modal-title">
       <div className="absolute inset-0 bg-mulberry-deep/50 backdrop-blur-sm transition-opacity" aria-hidden="true" />
       <div
         ref={modalRef}
