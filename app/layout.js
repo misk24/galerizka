@@ -34,7 +34,7 @@ export const metadata = {
       "Pesanan jahit busana sesuai ukuran dan model, serta layanan penyesuaian pakaian di Lombok.",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Galeriz.ka | Jasa Jahit Busana di Lombok",
     description:
       "Pesanan jahit busana sesuai ukuran dan model, serta layanan penyesuaian pakaian di Lombok.",
