@@ -12,17 +12,17 @@ export default function Services() {
             Layanan Kami
           </span>
           <h2 className="text-3xl md:text-4xl mb-4">
-            Solusi Jahit Berkualitas Tinggi
+            Layanan Jahit dan Penyesuaian Pakaian
           </h2>
           <p className="leading-relaxed">
-            Kami menyediakan berbagai layanan jahit dengan kualitas terbaik untuk kebutuhan fashion Anda
+            Pilih layanan yang sesuai dengan kebutuhan pakaian Anda. Detail pesanan dan estimasi pengerjaan dapat dibicarakan sebelum pemesanan.
           </p>
         </Animate>
 
         <Animate delay={200} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          {services.map((service, index) => (
-            <div 
-              key={index} 
+          {services.map((service) => (
+            <div
+              key={service.title}
               className="group p-8 border border-blush-soft rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col"
             >
               <div className="w-14 h-14 flex items-center justify-center bg-blush-soft rounded-2xl text-2xl mb-6 group-hover:text-white group-hover:bg-dusty-rose">
