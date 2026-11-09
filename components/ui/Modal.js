@@ -1,7 +1,6 @@
 "use client";
 
 import { useEscapeKey } from "@/hooks/useEscapeKey";
-import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useScrollLock } from "@/hooks/useScrollLock";
 import { X } from "lucide-react";
 import { useEffect, useRef } from "react";
@@ -12,7 +11,6 @@ const FOCUSABLE_SELECTOR =
 export default function Modal({ isOpen, onClose, children }) {
   const modalRef = useRef(null);
 
-  useOnClickOutside(modalRef, onClose, isOpen);
   useEscapeKey(onClose, isOpen);
   useScrollLock(isOpen);
 
@@ -71,7 +69,11 @@ export default function Modal({ isOpen, onClose, children }) {
       role="dialog"
       aria-labelledby="modal-title"
     >
-      <div className="absolute inset-0 bg-mulberry-deep/50 backdrop-blur-sm transition-opacity" aria-hidden="true" />
+      <div
+        className="absolute inset-0 bg-mulberry-deep/50 backdrop-blur-sm transition-opacity"
+        aria-hidden="true"
+        onClick={onClose}
+      />
       <div
         className="relative z-10 bg-white rounded-2xl shadow-2xl max-w-4xl w-full md:h-[70vh] lg:h-[90vh] overflow-auto flex flex-col scale-95 opacity-0 animate-modalIn transition-all duration-300 outline-none"
         style={{ WebkitOverflowScrolling: "touch", maxHeight: "calc(100% - 4rem)" }}
