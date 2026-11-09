@@ -15,8 +15,10 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
 export const metadata = {
-  metadataBase: new URL("https://galerizka.com"),
+  ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
   title: {
     default: "Galeriz.ka | Jasa Jahit Busana di Lombok",
     template: "%s | Galeriz.ka",
@@ -30,7 +32,6 @@ export const metadata = {
     title: "Galeriz.ka | Jasa Jahit Busana di Lombok",
     description:
       "Jasa jahit busana custom di Lombok dengan hasil rapi dan berkualitas.",
-    url: "https://galerizka.com",
   },
   twitter: {
     card: "summary_large_image",
