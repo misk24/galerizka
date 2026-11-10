@@ -29,8 +29,8 @@ export default function Portfolio() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <Animate className="flex flex-col gap-4 lg:sticky lg:top-36 h-fit">
             <div className="text-center lg:text-start">
-              <span className="inline-block text-dusty-rose text-sm font-bold tracking-wider uppercase mb-3">
-                Portfolio
+              <span className="inline-block text-mulberry-deep text-sm font-bold tracking-wider uppercase mb-3">
+                Portofolio
               </span>
               <h2 className="text-3xl md:text-4xl mb-4">
                 Beberapa Hasil Jahitan
@@ -95,7 +95,7 @@ export default function Portfolio() {
                     <button
                       type="button"
                       onClick={() => openModal(item)}
-                      className="text-dusty-rose hover:text-mulberry-deep"
+                      className="text-mulberry-deep hover:text-mulberry-deep"
                       aria-label={`Lihat detail ${item.title}`}
                     >
                       <ArrowUpRight className="w-5 h-5" />
@@ -177,13 +177,13 @@ export default function Portfolio() {
                   </div>
                   {modalContent.description?.trim() && (
                     <div className="border-t border-dusty-rose pt-6 space-y-4">
-                      <h3 className="text-2xl font-medium text-dusty-rose">Deskripsi</h3>
+                      <h3 className="text-2xl font-medium text-mulberry-deep">Deskripsi</h3>
                       <p className="leading-tight">{modalContent.description.trim()}</p>
                     </div>
                   )}
                   {modalContent.client?.trim() && (
                     <div className="mt-6 pt-6 border-t border-dusty-rose space-y-4">
-                      <h3 className="text-2xl font-medium text-dusty-rose">Klien</h3>
+                      <h3 className="text-2xl font-medium text-mulberry-deep">Klien</h3>
                       <p className="leading-tight">{modalContent.client.trim()}</p>
                     </div>
                   )}
