@@ -119,26 +119,20 @@ export default function Portfolio() {
                     id="portfolio-image-gallery"
                     aria-label={`Galeri gambar ${modalContent.title}`}
                     tabIndex={0}
-                    className="w-full h-full overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+                    className="w-full h-full min-h-[500px] md:min-h-full flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide p-4 md:p-6"
                   >
-                    <div className="flex h-full min-h-[500px] md:min-h-full">
-                      <div className="flex space-x-4 p-4">
-                      {modalContent.modal.map((img, index) => (
-                        <div key={index} className="shrink-0 w-[300px] h-full snap-start">
-                          <div className="relative w-full h-full">
-                            <Image
-                              src={img}
-                              alt={`${modalContent.title} - ${index + 1}`}
-                              fill
-                              className="object-cover rounded-2xl"
-                              sizes="(max-width: 768px) 300px, 400px"
-                              priority={index === 0}
-                            />
-                          </div>
-                        </div>
-                      ))}
+                    {modalContent.modal.map((img, index) => (
+                      <div key={index} className="relative shrink-0 w-[300px] h-full snap-start">
+                        <Image
+                          src={img}
+                          alt={`${modalContent.title} - ${index + 1}`}
+                          fill
+                          className="object-cover rounded-2xl"
+                          sizes="(max-width: 768px) 300px, 400px"
+                          priority={index === 0}
+                        />
                       </div>
-                    </div>
+                    ))}
                   </div>
 {modalContent.modal.length > 1 && (
                     <>
