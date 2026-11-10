@@ -4,17 +4,22 @@ import { Animate } from "@/components/ui/Animate";
 import { Button } from "@/components/ui/Button";
 import { useSubmit } from "./useSubmit";
 
+const fieldClassName =
+  "w-full px-4 py-3 text-sm border border-blush-soft rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mulberry-deep transition-all duration-200";
+
+const labelClassName = "block text-sm font-medium text-black-cherry mb-2";
+
 export default function Contact() {
   const { loading, feedback, handleSubmit } = useSubmit();
 
   return (
-    <section id="contact" className="py-24 lg:py-32">
+    <section id="contact" aria-labelledby="contact-title" className="py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <Animate delay={200} className="text-center mb-16">
           <span className="inline-block text-dusty-rose text-sm font-bold tracking-wider uppercase mb-3">
             Hubungi Kami
           </span>
-          <h2 className="text-3xl md:text-4xl mb-4">Mari Berbincang</h2>
+          <h2 id="contact-title" className="text-3xl md:text-4xl mb-4">Mari Berbincang</h2>
           <p className="leading-tight">
             Punya pertanyaan atau ingin memesan jasa jahit? Kami siap membantu Anda.
           </p>
@@ -29,30 +34,55 @@ export default function Contact() {
                 <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="space-y-1">
-                  <label htmlFor="name" className="sr-only">Nama lengkap</label>
-                  <input type="text" id="name" name="name" autoComplete="name" maxLength={100}
-                    className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200"
-                    placeholder="Nama Lengkap" required />
+                <div>
+                  <label htmlFor="name" className={labelClassName}>Nama lengkap</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    autoComplete="name"
+                    maxLength={100}
+                    className={fieldClassName}
+                    placeholder="Masukkan nama Anda"
+                    required
+                  />
                 </div>
-                <div className="space-y-1">
-                  <label htmlFor="email" className="sr-only">Email</label>
-                  <input type="email" id="email" name="email" autoComplete="email" maxLength={254}
-                    className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200"
-                    placeholder="Email Anda" required />
+                <div>
+                  <label htmlFor="email" className={labelClassName}>Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autoComplete="email"
+                    maxLength={254}
+                    className={fieldClassName}
+                    placeholder="nama@contoh.com"
+                    required
+                  />
                 </div>
               </div>
-              <div className="space-y-1">
-                <label htmlFor="subject" className="sr-only">Subjek</label>
-                <input type="text" id="subject" name="subject" maxLength={150}
-                  className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200"
-                  placeholder="Subjek" />
+              <div>
+                <label htmlFor="subject" className={labelClassName}>Subjek <span className="font-normal text-gray-600">(opsional)</span></label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  maxLength={150}
+                  className={fieldClassName}
+                  placeholder="Topik pesan"
+                />
               </div>
-              <div className="space-y-1">
-                <label htmlFor="message" className="sr-only">Pesan</label>
-                <textarea id="message" name="message" rows={5} maxLength={5000}
-                  className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200 resize-none"
-                  placeholder="Pesan Anda..." required />
+              <div>
+                <label htmlFor="message" className={labelClassName}>Pesan</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  maxLength={5000}
+                  className={`${fieldClassName} resize-y`}
+                  placeholder="Ceritakan kebutuhan atau pertanyaan Anda"
+                  required
+                />
               </div>
               {feedback.message && (
                 <p
