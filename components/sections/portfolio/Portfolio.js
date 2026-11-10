@@ -13,7 +13,7 @@ export default function Portfolio() {
   const scrollContainerRef = useRef(null);
   const scroll = (direction) => {
     if (scrollContainerRef.current) {
-      const scrollAmount = 300; // Adjust this value to control scroll distance
+      const scrollAmount = 316; // Adjust this value to control scroll distance
       scrollContainerRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth"
@@ -116,6 +116,7 @@ export default function Portfolio() {
                   <div
                     ref={scrollContainerRef}
                     role="region"
+                    id="portfolio-image-gallery"
                     aria-label={`Galeri gambar ${modalContent.title}`}
                     tabIndex={0}
                     className="w-full h-full overflow-x-auto snap-x snap-mandatory scrollbar-hide"
@@ -123,7 +124,7 @@ export default function Portfolio() {
                     <div className="flex h-full min-h-[500px] md:min-h-full">
                       <div className="flex space-x-4 p-4">
                       {modalContent.modal.map((img, index) => (
-                        <div key={index} className="shrink-0 w-[300px] h-full">
+                        <div key={index} className="shrink-0 w-[300px] h-full snap-start">
                           <div className="relative w-full h-full">
                             <Image
                               src={img}
@@ -144,18 +145,20 @@ export default function Portfolio() {
                       <button
                         type="button"
                         onClick={() => scroll("left")}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
-                        aria-label="Scroll left"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mulberry-deep"
+                        aria-label="Gambar sebelumnya"
+                        aria-controls="portfolio-image-gallery"
                       >
-                        <ChevronLeft size={24} />
+                        <ChevronLeft size={24} aria-hidden="true" />
                       </button>
                       <button
                         type="button"
                         onClick={() => scroll("right")}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
-                        aria-label="Scroll right"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mulberry-deep"
+                        aria-label="Gambar berikutnya"
+                        aria-controls="portfolio-image-gallery"
                       >
-                        <ChevronRight size={24} />
+                        <ChevronRight size={24} aria-hidden="true" />
                       </button>
                     </>
                   )}
