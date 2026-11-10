@@ -16,7 +16,7 @@ export default function Contact() {
     <section id="contact" aria-labelledby="contact-title" className="py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <Animate delay={200} className="text-center mb-16">
-          <span className="inline-block text-dusty-rose text-sm font-bold tracking-wider uppercase mb-3">
+          <span className="inline-block text-mulberry-deep text-sm font-bold tracking-wider uppercase mb-3">
             Hubungi Kami
           </span>
           <h2 id="contact-title" className="text-3xl md:text-4xl mb-4">Mari Berbincang</h2>
