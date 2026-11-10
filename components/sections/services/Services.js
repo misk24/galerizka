@@ -16,7 +16,7 @@ export default function Services() {
     <section id="services" className="py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <Animate delay={200} className="text-center max-w-4xl mx-auto mb-16">
-          <span className="inline-block text-dusty-rose text-sm font-bold tracking-wider uppercase mb-3">
+          <span className="inline-block text-mulberry-deep text-sm font-bold tracking-wider uppercase mb-3">
             Layanan Kami
           </span>
           <h2 className="text-3xl md:text-4xl mb-4">
