@@ -78,13 +78,13 @@ export default function Modal({ isOpen, onClose, children }) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
-        className="relative z-10 bg-white rounded-2xl shadow-2xl max-w-4xl w-full md:h-[70vh] lg:h-[90vh] overflow-auto flex flex-col scale-95 opacity-0 animate-modalIn transition-all duration-300 outline-none"
+        className="relative z-10 flex min-h-0 w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl md:h-[70vh] lg:h-[90vh] scale-95 opacity-0 animate-modalIn transition-all duration-300 outline-none"
         style={{ WebkitOverflowScrolling: "touch", maxHeight: "calc(100% - 4rem)" }}
       >
         <button type="button" onClick={onClose} className="absolute right-4 top-4 z-20 text-mulberry-deep hover:text-dusty-rose transition-colors" aria-label="Tutup modal">
           <X size={24} />
         </button>
-        <div className="w-full flex-1 overflow-y-auto">{children}</div>
+        <div className="min-h-0 w-full flex-1 overflow-y-auto">{children}</div>
       </div>
     </div>
   );
