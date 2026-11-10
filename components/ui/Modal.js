@@ -23,6 +23,7 @@ export default function Modal({ isOpen, onClose, children }) {
       [...(modal?.querySelectorAll(FOCUSABLE_SELECTOR) || [])].filter(
         (item) =>
           item.getClientRects().length > 0 &&
+          item.tabIndex >= 0 &&
           !item.closest('[inert], [aria-hidden="true"]')
       );
     (getFocusableItems()[0] || modal)?.focus();
