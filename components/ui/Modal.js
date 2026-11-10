@@ -64,9 +64,11 @@ export default function Modal({ isOpen, onClose, children }) {
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
     >
-      <div
+      <button
+        type="button"
+        tabIndex={-1}
         className="absolute inset-0 bg-mulberry-deep/50 backdrop-blur-sm transition-opacity"
-        aria-hidden="true"
+        aria-label="Tutup modal"
         onClick={onClose}
       />
       <div
