@@ -84,7 +84,7 @@ export default function Modal({ isOpen, onClose, children }) {
         <button type="button" onClick={onClose} className="absolute right-4 top-4 z-20 text-mulberry-deep hover:text-dusty-rose transition-colors" aria-label="Tutup modal">
           <X size={24} />
         </button>
-        <div className="min-h-0 w-full flex-1 overflow-y-auto">{children}</div>
+        <div className="min-h-0 w-full flex-1 overflow-y-auto md:overflow-hidden">{children}</div>
       </div>
     </div>
   );
