@@ -32,9 +32,8 @@ export default function Navbar() {
           delay={200}
           className="flex justify-between items-center h-20"
         >
-          {/* Logo */}
           <div className="shrink-0">
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center" aria-label="Galeriz.ka, beranda">
               <Image
                 src="/images/logo/logo.png"
                 alt="Galeriz.ka"
@@ -46,13 +45,12 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav aria-label="Navigasi utama" className="hidden lg:flex items-center space-x-8">
             {menus.map(({ href, label }) => (
               <div key={href} className="relative group">
                 <Link
                   href={href}
-                  className="group relative px-3 py-2 font-heading font-medium text-blush-soft"
+                  className="group relative px-3 py-2 font-heading font-medium text-blush-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blush-soft"
                 >
                   {label}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-dusty-rose transition-all duration-300 group-hover:w-full" />
@@ -61,39 +59,32 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* CTA Button */}
           <div className="hidden lg:flex items-center ml-6">
-            <Button
-              href="https://wa.link/4u5haz"
-              size="sm"
-              variant="primary"
-            >
+            <Button href="https://wa.link/4u5haz" size="sm" variant="primary">
               Pesan Sekarang
             </Button>
           </div>
 
-          {/* Mobile menu button */}
           <div className="lg:hidden flex items-center">
             <button
               ref={menuButtonRef}
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 text-blush-soft focus:outline-none"
+              className="inline-flex items-center justify-center p-2 text-blush-soft rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blush-soft"
               type="button"
               aria-expanded={isOpen}
               aria-controls="mobile-navigation"
               aria-label={isOpen ? "Tutup menu" : "Buka menu"}
             >
               {isOpen ? (
-                <X size={24} className="w-6 h-6" />
+                <X size={24} aria-hidden="true" className="w-6 h-6" />
               ) : (
-                <Menu size={24} className="w-6 h-6" />
+                <Menu size={24} aria-hidden="true" className="w-6 h-6" />
               )}
             </button>
           </div>
         </Animate>
       </div>
 
-      {/* Mobile menu */}
       <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
     </header>
   );

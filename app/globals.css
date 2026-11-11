@@ -8,8 +8,6 @@
   --blush-soft: #f7e8ec;
   --mulberry-deep: #732c3f;
   --black-cherry: #1a0b12;
-  --cormorant: "Cormorant Garamond", serif;
-  --inter: "Inter", sans-serif;
 }
 
 @theme inline {
@@ -19,8 +17,8 @@
   --color-blush-soft: var(--blush-soft);
   --color-mulberry-deep: var(--mulberry-deep);
   --color-black-cherry: var(--black-cherry);
-  --font-heading: var(--cormorant);
-  --font-body: var(--inter);
+  --font-heading: var(--font-cormorant), Georgia, serif;
+  --font-body: var(--font-inter), Arial, sans-serif;
   --h1: clamp(2.5rem, 1.8rem + 2vw, 4rem);
   --h2: clamp(2rem, 1.5rem + 1.5vw, 3rem);
   --h3: clamp(1.5rem, 1.2rem + 1vw, 2rem);
@@ -33,21 +31,24 @@
 html { scroll-behavior: smooth; }
 
 :focus-visible {
-  outline: 3px solid var(--dusty-rose);
+  outline: 3px solid var(--mulberry-deep);
   outline-offset: 3px;
 }
+
 body, p {
   color: var(--black-cherry);
-  font-family: var(--font-body);
+  font-family: var(--font-inter), Arial, sans-serif;
   font-size: var(--body);
   line-height: var(--lh-body);
 }
+
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-cormorant), Georgia, serif;
   font-weight: 700;
   line-height: var(--lh-heading);
   color: var(--mulberry-deep);
 }
+
 @keyframes modalIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
@@ -60,10 +61,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 .animate-fadeIn { animation: fadeIn 0.8s ease-out forwards; }
 .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+
 @layer utilities {
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
 }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     scroll-behavior: auto !important;

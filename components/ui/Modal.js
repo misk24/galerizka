@@ -23,6 +23,7 @@ export default function Modal({ isOpen, onClose, children }) {
       [...(modal?.querySelectorAll(FOCUSABLE_SELECTOR) || [])].filter(
         (item) =>
           item.getClientRects().length > 0 &&
+          item.tabIndex >= 0 &&
           !item.closest('[inert], [aria-hidden="true"]')
       );
     (getFocusableItems()[0] || modal)?.focus();
@@ -62,26 +63,28 @@ export default function Modal({ isOpen, onClose, children }) {
 
   return (
     <div
-      ref={modalRef}
-      tabIndex={-1}
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      aria-modal="true"
-      role="dialog"
-      aria-labelledby="modal-title"
     >
-      <div
+      <button
+        type="button"
+        tabIndex={-1}
         className="absolute inset-0 bg-mulberry-deep/50 backdrop-blur-sm transition-opacity"
-        aria-hidden="true"
+        aria-label="Tutup modal"
         onClick={onClose}
       />
       <div
-        className="relative z-10 bg-white rounded-2xl shadow-2xl max-w-4xl w-full md:h-[70vh] lg:h-[90vh] overflow-auto flex flex-col scale-95 opacity-0 animate-modalIn transition-all duration-300 outline-none"
+        ref={modalRef}
+        tabIndex={-1}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        className="relative z-10 flex min-h-0 w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl md:h-[70vh] lg:h-[90vh] scale-95 opacity-0 animate-modalIn transition-all duration-300 outline-none"
         style={{ WebkitOverflowScrolling: "touch", maxHeight: "calc(100% - 4rem)" }}
       >
-        <button onClick={onClose} className="absolute right-4 top-4 z-20 text-mulberry-deep hover:text-dusty-rose transition-colors" aria-label="Tutup modal">
+        <button type="button" onClick={onClose} className="absolute right-4 top-4 z-20 text-mulberry-deep hover:text-dusty-rose transition-colors" aria-label="Tutup modal">
           <X size={24} />
         </button>
-        <div className="w-full flex-1 overflow-y-auto">{children}</div>
+        <div className="min-h-0 w-full flex-1 overflow-y-auto md:overflow-hidden">{children}</div>
       </div>
     </div>
   );
