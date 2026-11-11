@@ -118,14 +118,14 @@ export default function Portfolio() {
         <Modal isOpen={isOpen} onClose={closeModal}>
           {modalContent && (
             <div className="flex w-full flex-col md:h-full md:min-h-0 md:flex-row">
-              <div className="relative h-[min(62vh,560px)] min-h-[320px] w-full shrink-0 md:h-full md:min-h-0 md:w-1/2">
+              <div className="relative box-border h-[min(62vh,560px)] min-h-[320px] w-full shrink-0 p-4 md:h-full md:min-h-0 md:w-1/2 md:p-6">
                 <div
                   ref={scrollContainerRef}
                   role="region"
                   id="portfolio-image-gallery"
                   aria-label={`Galeri gambar ${modalContent.title}`}
                   tabIndex={0}
-                  className="absolute inset-0 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain p-4 scrollbar-hide focus-visible:outline focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-mulberry-deep md:p-6"
+                  className="relative flex h-full w-full snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scrollbar-hide focus-visible:outline focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-mulberry-deep"
                 >
                   {galleryImages.length > 0 ? (
                     galleryImages.map((img, index) => (
