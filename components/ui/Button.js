@@ -1,3 +1,5 @@
+"use client";
+
 import { externalLinkProps } from "@/lib/links";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
@@ -18,6 +20,7 @@ const sizeStyles = {
   lg: "px-8 py-4 text-lg",
 };
 
+// Client component: handler onClick di bawah tidak boleh dibuat di server.
 // Dengan `href` jadi tautan (tab baru otomatis untuk http/https), tanpa itu jadi <button>.
 export function Button({
   variant = "primary",
