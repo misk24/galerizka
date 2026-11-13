@@ -18,8 +18,8 @@ export default function Footer() {
               <a
                 href={contact.href}
                 className="inline-flex items-center gap-2 transition-colors hover:text-dusty-rose"
-                target="_blank"
-                rel="noopener noreferrer"
+                target={contact.href.startsWith("http") ? "_blank" : undefined}
+                rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
               >
                 {contact.icon}
                 {contact.label}

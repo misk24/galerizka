@@ -49,15 +49,14 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {menus.map(({ href, label }) => (
-              <div key={href} className="relative group">
-                <Link
-                  href={href}
-                  className="group relative px-3 py-2 text-sm font-medium tracking-wide text-blush-soft"
-                >
-                  {label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-dusty-rose transition-all duration-300 group-hover:w-full" />
-                </Link>
-              </div>
+              <Link
+                key={href}
+                href={href}
+                className="group relative px-3 py-2 text-sm font-medium tracking-wide text-blush-soft"
+              >
+                {label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-dusty-rose transition-all duration-300 group-hover:w-full" />
+              </Link>
             ))}
           </nav>
 
@@ -96,7 +95,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} buttonRef={menuButtonRef} />
     </header>
   );
 }

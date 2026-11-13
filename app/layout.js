@@ -1,6 +1,5 @@
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "react-hot-toast";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -45,7 +44,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="id">
       <body className={`${cormorant.variable} ${inter.variable} antialiased`}>
-        <Toaster position="top-center" reverseOrder={false} />
         {children}
       </body>
     </html>

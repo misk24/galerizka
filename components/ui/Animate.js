@@ -16,16 +16,13 @@ export function Animate({
     triggerOnce,
   });
 
-  const animationClasses = inView
-    ? `animate-${animation} ${className}`
-    : className;
-
   return (
     <div
       ref={ref}
-      className={animationClasses}
+      className={`animate-${animation} ${className}`}
       style={{
-        animationDelay: inView ? `${delay}ms` : "0ms",
+        animationDelay: `${delay}ms`,
+        animationPlayState: inView ? "running" : "paused",
         animationFillMode: "both",
       }}
       {...props}

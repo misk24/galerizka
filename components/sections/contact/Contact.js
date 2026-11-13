@@ -29,8 +29,8 @@ export default function Contact() {
               <li key={contact.href}>
                 <a
                   href={contact.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={contact.href.startsWith("http") ? "_blank" : undefined}
+                  rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="inline-flex items-center gap-3 font-medium text-mulberry-deep underline-offset-4 hover:underline"
                 >
                   {contact.icon}

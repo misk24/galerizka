@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react";
 
 export default function Cta() {
   return (
-    <section className="bg-black-cherry py-20 md:py-28">
+    <section className="on-dark bg-black-cherry py-20 md:py-28">
       <Animate delay={200} className="mx-auto max-w-3xl px-6 text-center lg:px-8">
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-dusty-rose">
           Mulai dari obrolan

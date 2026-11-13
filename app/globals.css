@@ -28,12 +28,15 @@
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 
 :focus-visible {
-  outline: 3px solid var(--dusty-rose);
+  outline: 3px solid var(--mulberry-deep);
   outline-offset: 3px;
 }
+/* dusty-rose on blush-soft is only 2.7:1; use blush-soft on dark surfaces, mulberry elsewhere */
+header :focus-visible, footer :focus-visible, .on-dark :focus-visible { outline-color: var(--blush-soft); }
+#mobile-navigation :focus-visible { outline-color: var(--mulberry-deep); }
 @layer base {
   body {
     background: var(--background);

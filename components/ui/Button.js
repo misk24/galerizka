@@ -61,7 +61,7 @@ const Button = forwardRef(
           onClick={handleLinkClick}
           {...props}
         >
-          {loading && <Loader2 aria-hidden="true" className="mr-2 h-4 w-4 animate-spin" />}
+          {loading && <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />}
           {children}
         </Link>
       );
@@ -76,7 +76,7 @@ const Button = forwardRef(
         onClick={onClick}
         {...props}
       >
-        {loading && <Loader2 aria-hidden="true" className="mr-2 h-4 w-4 animate-spin" />}
+        {loading && <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />}
         {children}
       </button>
     );
