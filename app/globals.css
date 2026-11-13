@@ -67,10 +67,6 @@ header :focus-visible, footer :focus-visible, .on-dark :focus-visible { outline-
 }
 /* `both` menahan keadaan awal selama delay; hanya dipakai di Hero */
 .animate-fadeInUp { animation: fadeInUp 0.7s ease-out both; }
-@layer utilities {
-  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
-}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     scroll-behavior: auto !important;
