@@ -1,61 +1,56 @@
-import { Animate } from "@/components/ui/Animate"
 import { contacts, socialLinks } from "@/constants/constant"
+import { externalLinkProps } from "@/lib/links"
 import { MapPin } from "lucide-react"
-import Link from "next/link"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
-  
+
   return (
-    <footer className="bg-black-cherry py-12">
-      <Animate delay={200} className="max-w-4xl mx-auto px-4 text-center">
-        {/* Contact Info */}
-        <div className="text-2xl font-heading text-blush-soft mb-6">Informasi Kontak</div>
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-8 text-blush-soft text-sm">
-          {contacts.map((contact, index) => (
-            <div key={contact.label} className="flex items-center">
-              <Link
+    <footer className="bg-black-cherry py-14 text-blush-soft">
+      <div className="mx-auto max-w-6xl px-6 text-center lg:px-8">
+        <p className="font-heading text-3xl">Galeriz.ka</p>
+        <p className="mx-auto mt-2 mb-8 max-w-md text-sm">
+          Jahit busana custom di Lombok Timur, dibuat sesuai ukuran dan model Anda.
+        </p>
+
+        <ul className="mb-8 flex flex-col items-center justify-center gap-4 text-sm sm:flex-row sm:gap-8">
+          {contacts.map((contact) => (
+            <li key={contact.label}>
+              <a
                 href={contact.href}
-                className="flex items-center hover:text-dusty-rose transition-colors duration-200"
-                target="_blank"
-                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-colors hover:text-dusty-rose"
+                {...externalLinkProps(contact.href)}
               >
                 {contact.icon}
-                <span className="ml-2">{contact.label}</span>
-              </Link>
-            </div>
+                {contact.label}
+              </a>
+            </li>
           ))}
-          
-          <div className="flex items-center">
-            <MapPin className="h-4 w-4 mr-2" />
-            <span>Lombok Timur, NTB</span>
-          </div>
-        </div>
+          <li className="inline-flex items-center gap-2">
+            <MapPin aria-hidden="true" className="h-4 w-4" />
+            Lombok Timur, NTB
+          </li>
+        </ul>
 
-        {/* Social Icons */}
-        <div className="flex justify-center space-x-6 mb-8">
+        <ul className="mb-10 flex justify-center gap-6">
           {socialLinks.map(({ label, href, icon }) => (
-            <Link
-              key={label}
-              href={href}
-              className="text-blush-soft hover:text-dusty-rose transition-colors duration-200"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-            >
-              <span className="sr-only">{label}</span>
-              {icon}
-            </Link>
+            <li key={label}>
+              <a
+                href={href}
+                className="transition-colors hover:text-dusty-rose"
+                {...externalLinkProps(href)}
+                aria-label={label}
+              >
+                {icon}
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
 
-        {/* Copyright */}
-        <div className="pt-8 mt-8 border-t border-blush-soft">
-          <div className="text-blush-soft text-sm">
-            &copy; {currentYear} Galerizka. All rights reserved.
-          </div>
-        </div>
-      </Animate>
+        <p className="border-t border-blush-soft/20 pt-8 text-sm">
+          &copy; {currentYear} Galeriz.ka by Rizka Koryoga. Hak cipta dilindungi.
+        </p>
+      </div>
     </footer>
   )
 }

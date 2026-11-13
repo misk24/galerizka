@@ -1,18 +1,20 @@
 import { Mail } from "lucide-react";
 import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 
+export const whatsappUrl = "https://wa.link/4u5haz";
+
 export const menus = [
   { href: "#home", label: "Beranda" },
   { href: "#about", label: "Tentang Kami" },
   { href: "#services", label: "Layanan" },
-  { href: "#portfolio", label: "Portfolio" },
+  { href: "#portfolio", label: "Hasil Jahitan" },
   { href: "#contact", label: "Kontak" },
 ];
 
 export const contacts = [
   { 
     icon: <FaWhatsapp size={16} />,
-    href: "https://wa.link/4u5haz", 
+    href: whatsappUrl,
     label: "0877-6337-3270",
   },
   { 

@@ -5,7 +5,7 @@ export const portfolioItems = [
     category: [ "Gamis", "Batik" ],
     image: "/images/portfolio/gamis.jpeg",
     modal: [ "/images/portfolio/gamis.jpeg" ],
-    client: "pesanan ibuguru di Janapria, Lombok Tengah",
+    client: "Pesanan Ibu Guru di Janapria, Lombok Tengah",
     description: ""
   },
   {
@@ -19,7 +19,7 @@ export const portfolioItems = [
       "/images/portfolio/couple_03.jpeg",
     ],
     client: "",
-    description: "Batik couple."
+    description: "Batik couple: busana kembaran untuk pasangan."
   },
   {
     id: 3,
@@ -48,7 +48,7 @@ export const portfolioItems = [
       "/images/portfolio/batik_06.jpeg",
     ],
     client: "",
-    description: "Gamis Batik Tata Usaha SMA."
+    description: "Gamis batik untuk tenaga tata usaha SMA."
   },
   {
     id: 5,
@@ -60,8 +60,8 @@ export const portfolioItems = [
       "/images/portfolio/sasambo_02.jpeg",
       "/images/portfolio/sasambo_03.jpeg",
     ],
-    client: "Ibu Guru Cantik SMAN 1 Selong",
-    description: "Gamis spesial batik sasambo yang dikombinasikan dengan bahan katun toyobo, memberikan kesan manis, cantik dan anggun saat bekerja serta menambah kesan lebih jenjang bagi pemakainya karna desain busana ini menggunakan siluet A-line. Cocok banget dipakai oleh para wanita tangguh untuk menemani aktivitasmu dalam berkarir.",
+    client: "Ibu Guru SMAN 1 Selong",
+    description: "Gamis batik sasambo yang dikombinasikan dengan katun toyobo. Siluet A-line memberi kesan anggun dan membuat pemakainya tampak lebih jenjang, cocok untuk menemani aktivitas bekerja.",
   },
   {
     id: 6,
@@ -74,7 +74,12 @@ export const portfolioItems = [
       "/images/portfolio/tunik_03.jpeg",
       "/images/portfolio/tunik_04.jpeg",
     ],
-    client: "Spesial order dari Ibu Guru Cantik SMAN 1 Keruak",
+    client: "Pesanan khusus Ibu Guru SMAN 1 Keruak",
     description: "",
   },
 ];
+
+// Terbaru dulu; kategori diurutkan sekali di sini, bukan di setiap render.
+export const sortedPortfolioItems = [...portfolioItems]
+  .map((item) => ({ ...item, category: [...item.category].sort() }))
+  .sort((a, b) => b.id - a.id);

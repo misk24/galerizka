@@ -1,16 +1,16 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import { contacts, menus } from "@/constants/constant";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useScrollLock } from "@/hooks/useScrollLock";
 import Link from "next/link";
 import { useRef } from "react";
 
-export default function MobileMenu({ isOpen, setIsOpen }) {
+export default function MobileMenu({ isOpen, setIsOpen, buttonRef }) {
   const menuRef = useRef(null);
   useScrollLock(isOpen);
-  useOnClickOutside(menuRef, () => setIsOpen(false), isOpen);
+  useOnClickOutside(menuRef, () => setIsOpen(false), isOpen, buttonRef);
 
   return (
     <div
@@ -20,7 +20,7 @@ export default function MobileMenu({ isOpen, setIsOpen }) {
       inert={!isOpen}
       className={`lg:hidden border-b border-dusty-rose transition-all duration-300 ease-in-out overflow-hidden ${
         isOpen
-          ? "max-h-screen opacity-100 bg-white" 
+          ? "max-h-[calc(100svh-5rem)] overflow-y-auto opacity-100 bg-white" 
           : "max-h-0 opacity-0"
       }`}
     >
@@ -40,15 +40,15 @@ export default function MobileMenu({ isOpen, setIsOpen }) {
           
           {/* CTA Button */}
           <div className="mt-4 px-4">
-            <Button href="https://wa.link/4u5haz" className="w-full" onClick={() => setIsOpen(false)}>
-              Pesan Sekarang
-            </Button>
+            <WhatsAppButton className="w-full" onClick={() => setIsOpen(false)}>
+              Pesan via WhatsApp
+            </WhatsAppButton>
           </div>
         </nav>
         
         {/* Contact Info */}
         <div className="mt-8 px-4 pt-6 pb-4 border-t border-dusty-rose">
-          <div className="font-heading font-semibold text-xl text-mulberry-deep mb-3">
+          <div className="font-heading font-semibold text-2xl text-mulberry-deep mb-3">
             Hubungi Kami
           </div>
           <div className="space-y-2">
