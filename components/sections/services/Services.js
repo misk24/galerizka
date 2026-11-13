@@ -1,16 +1,15 @@
 import { Animate } from "@/components/ui/Animate";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { services } from "./constant";
 
 export default function Services() {
   return (
     <section id="services" className="bg-blush-soft py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <Animate delay={200} className="mx-auto mb-16 max-w-3xl text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-mulberry-deep">
-            Layanan
-          </p>
-          <h2 className="mb-4">Dari jahit baru sampai permak, semua dibicarakan dulu.</h2>
-          <p>Pilih yang paling sesuai dengan kebutuhan Anda. Detail dan estimasi pengerjaan kami sampaikan sebelum Anda memutuskan.</p>
+        <Animate delay={200}>
+          <SectionHeading eyebrow="Layanan" title="Dari jahit baru sampai permak, semua dibicarakan dulu." className="mx-auto mb-16 max-w-3xl text-center">
+            Pilih yang paling sesuai dengan kebutuhan Anda. Detail dan estimasi pengerjaan kami sampaikan sebelum Anda memutuskan.
+          </SectionHeading>
         </Animate>
 
         <Animate delay={200} className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">

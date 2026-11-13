@@ -1,4 +1,5 @@
 import { Animate } from "@/components/ui/Animate";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { MessagesSquare, Ruler, Shirt } from "lucide-react";
 import Image from "next/image";
 
@@ -27,10 +28,7 @@ export default function About() {
 
           <div className="lg:col-span-7">
             <Animate delay={200}>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-mulberry-deep">
-                Tentang Galeriz.ka
-              </p>
-              <h2 className="mb-6">Pas di badan, nyaman dipakai, sesuai cerita Anda.</h2>
+              <SectionHeading eyebrow="Tentang Galeriz.ka" title="Pas di badan, nyaman dipakai, sesuai cerita Anda." className="mb-6" />
               <p className="mb-4">
                 Galeriz.ka by Rizka Koryoga adalah usaha jahit busana di Lombok Timur. Kami
                 menerima pesanan sesuai ukuran dan model yang Anda inginkan, mulai dari gamis,

@@ -1,4 +1,5 @@
 import { contacts, socialLinks } from "@/constants/constant"
+import { externalLinkProps } from "@/lib/links"
 import { MapPin } from "lucide-react"
 
 export default function Footer() {
@@ -18,8 +19,7 @@ export default function Footer() {
               <a
                 href={contact.href}
                 className="inline-flex items-center gap-2 transition-colors hover:text-dusty-rose"
-                target={contact.href.startsWith("http") ? "_blank" : undefined}
-                rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                {...externalLinkProps(contact.href)}
               >
                 {contact.icon}
                 {contact.label}
@@ -38,8 +38,7 @@ export default function Footer() {
               <a
                 href={href}
                 className="transition-colors hover:text-dusty-rose"
-                target="_blank"
-                rel="noopener noreferrer"
+                {...externalLinkProps(href)}
                 aria-label={label}
               >
                 {icon}

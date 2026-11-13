@@ -2,7 +2,9 @@
 
 import { Animate } from "@/components/ui/Animate";
 import { Button } from "@/components/ui/Button";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { contacts } from "@/constants/constant";
+import { externalLinkProps } from "@/lib/links";
 import { MapPin, Send } from "lucide-react";
 import { useSubmit } from "./useSubmit";
 
@@ -17,20 +19,15 @@ export default function Contact() {
     <section id="contact" className="py-24 lg:py-32">
       <div className="mx-auto grid max-w-6xl gap-14 px-6 lg:grid-cols-5 lg:gap-20 lg:px-8">
         <Animate delay={200} className="lg:col-span-2">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-mulberry-deep">
-            Kontak
-          </p>
-          <h2 className="mb-4">Ceritakan pesanan Anda.</h2>
-          <p className="mb-8">
+          <SectionHeading eyebrow="Kontak" title="Ceritakan pesanan Anda." className="mb-8">
             Tanya model, bahan, atau estimasi waktu. Isi formulir ini, atau langsung hubungi kami lewat WhatsApp.
-          </p>
+          </SectionHeading>
           <ul className="space-y-4">
             {contacts.map((contact) => (
               <li key={contact.href}>
                 <a
                   href={contact.href}
-                  target={contact.href.startsWith("http") ? "_blank" : undefined}
-                  rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  {...externalLinkProps(contact.href)}
                   className="inline-flex items-center gap-3 font-medium text-mulberry-deep underline-offset-4 hover:underline"
                 >
                   {contact.icon}

@@ -1,8 +1,9 @@
-"use client";
-
+import { externalLinkProps } from "@/lib/links";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
-import { forwardRef } from "react";
+
+const baseStyles =
+  "inline-flex items-center justify-center gap-2 font-medium transition-colors duration-200 disabled:opacity-50 disabled:pointer-events-none";
 
 const variantStyles = {
   primary: "rounded-full bg-mulberry-deep text-white hover:bg-black-cherry",
@@ -17,72 +18,59 @@ const sizeStyles = {
   lg: "px-8 py-4 text-lg",
 };
 
-const Button = forwardRef(
-  (
-    {
-      variant = "primary",
-      size = "md",
-      className = "",
-      as = "button",
-      href,
-      loading = false,
-      disabled = false,
-      children,
-      onClick,
-      tabIndex,
-      ...props
-    },
-    ref
-  ) => {
-    const baseStyles =
-      "inline-flex items-center justify-center gap-2 font-medium transition-colors duration-200 disabled:opacity-50 disabled:pointer-events-none";
+// Dengan `href` jadi tautan (tab baru otomatis untuk http/https), tanpa itu jadi <button>.
+export function Button({
+  variant = "primary",
+  size = "md",
+  className = "",
+  href,
+  loading = false,
+  disabled = false,
+  children,
+  onClick,
+  tabIndex,
+  ref,
+  ...props
+}) {
+  const classes = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+  const unavailable = disabled || loading;
+  const spinner = loading && <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />;
 
-    const buttonClasses = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
-    const unavailable = disabled || loading;
-
-    if (as === "a" || href) {
-      function handleLinkClick(event) {
-        if (unavailable) {
-          event.preventDefault();
-          return;
-        }
-
-        onClick?.(event);
-      }
-
-      return (
-        <Link
-          href={href || "#"}
-          className={buttonClasses}
-          ref={ref}
-          aria-disabled={unavailable || undefined}
-          aria-busy={loading || undefined}
-          tabIndex={unavailable ? -1 : tabIndex}
-          onClick={handleLinkClick}
-          {...props}
-        >
-          {loading && <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />}
-          {children}
-        </Link>
-      );
-    }
-
+  if (href) {
     return (
-      <button
-        className={buttonClasses}
-        disabled={unavailable}
-        aria-busy={loading || undefined}
+      <Link
+        href={href}
         ref={ref}
-        onClick={onClick}
+        className={classes}
+        aria-disabled={unavailable || undefined}
+        aria-busy={loading || undefined}
+        tabIndex={unavailable ? -1 : tabIndex}
+        onClick={(event) => {
+          if (unavailable) event.preventDefault();
+          else onClick?.(event);
+        }}
+        {...externalLinkProps(href)}
         {...props}
       >
-        {loading && <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />}
+        {spinner}
         {children}
-      </button>
+      </Link>
     );
   }
-);
 
-Button.displayName = "Button";
-
-export { Button };
+  return (
+    <button
+      type="button"
+      ref={ref}
+      className={classes}
+      disabled={unavailable}
+      aria-busy={loading || undefined}
+      tabIndex={tabIndex}
+      onClick={onClick}
+      {...props}
+    >
+      {spinner}
+      {children}
+    </button>
+  );
+}

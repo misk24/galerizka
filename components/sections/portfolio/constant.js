@@ -78,3 +78,8 @@ export const portfolioItems = [
     description: "",
   },
 ];
+
+// Terbaru dulu; kategori diurutkan sekali di sini, bukan di setiap render.
+export const sortedPortfolioItems = [...portfolioItems]
+  .map((item) => ({ ...item, category: [...item.category].sort() }))
+  .sort((a, b) => b.id - a.id);

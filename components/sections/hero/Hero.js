@@ -1,9 +1,7 @@
-"use client";
-
 import { Animate } from "@/components/ui/Animate";
 import { Button } from "@/components/ui/Button";
-import { whatsappUrl } from "@/constants/constant";
-import { MapPin, MessageCircle } from "lucide-react";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import { MapPin } from "lucide-react";
 import Image from "next/image";
 
 export default function Hero() {
@@ -42,10 +40,7 @@ export default function Hero() {
           </Animate>
           <Animate delay={550}>
             <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
-              <Button href={whatsappUrl} target="_blank" rel="noopener noreferrer" size="lg">
-                <MessageCircle aria-hidden="true" className="h-5 w-5" />
-                Chat via WhatsApp
-              </Button>
+              <WhatsAppButton size="lg" />
               <Button href="#portfolio" variant="outline" size="lg">
                 Lihat Hasil Jahitan
               </Button>

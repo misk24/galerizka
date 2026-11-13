@@ -1,8 +1,8 @@
 "use client";
 
 import { Animate } from "@/components/ui/Animate";
-import { Button } from "@/components/ui/Button";
-import { menus, whatsappUrl } from "@/constants/constant";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import { menus } from "@/constants/constant";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -62,15 +62,9 @@ export default function Navbar() {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center ml-6">
-            <Button
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              size="sm"
-              variant="light"
-            >
+            <WhatsAppButton size="sm" variant="light">
               Pesan via WhatsApp
-            </Button>
+            </WhatsAppButton>
           </div>
 
           {/* Mobile menu button */}

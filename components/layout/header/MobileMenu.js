@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
-import { contacts, menus, whatsappUrl } from "@/constants/constant";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import { contacts, menus } from "@/constants/constant";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useScrollLock } from "@/hooks/useScrollLock";
 import Link from "next/link";
@@ -40,9 +40,9 @@ export default function MobileMenu({ isOpen, setIsOpen, buttonRef }) {
           
           {/* CTA Button */}
           <div className="mt-4 px-4">
-            <Button href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-full" onClick={() => setIsOpen(false)}>
+            <WhatsAppButton className="w-full" onClick={() => setIsOpen(false)}>
               Pesan via WhatsApp
-            </Button>
+            </WhatsAppButton>
           </div>
         </nav>
         
