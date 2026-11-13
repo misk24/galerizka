@@ -6,7 +6,7 @@ export default function PortfolioCard({ item, onOpen }) {
   const label = `Lihat detail ${item.title}`;
 
   return (
-    <div className="group relative overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:shadow-md">
+    <div className="group relative overflow-hidden rounded-xl">
       <div className="relative aspect-4/5 overflow-hidden">
         <button
           type="button"

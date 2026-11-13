@@ -1,6 +1,5 @@
 "use client";
 
-import { Animate } from "@/components/ui/Animate";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { useModal } from "@/hooks/useModal";
 import { sortedPortfolioItems } from "./constant";
@@ -14,21 +13,18 @@ export default function Portfolio() {
     <section id="portfolio" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
-          <Animate className="h-fit lg:sticky lg:top-36">
-            <SectionHeading
-              eyebrow="Hasil Jahitan"
-              title="Pesanan yang sudah kami selesaikan."
-              className="text-center lg:text-start"
-            >
-              Gamis, kemeja, dan tunik dari berbagai pesanan. Pilih salah satu untuk melihat foto dan detailnya.
-            </SectionHeading>
-          </Animate>
+          <SectionHeading
+            title="Pesanan yang sudah kami selesaikan."
+            className="h-fit text-center lg:sticky lg:top-36 lg:text-start"
+          >
+            Gamis, kemeja, dan tunik dari berbagai pesanan. Pilih salah satu untuk melihat foto dan detailnya.
+          </SectionHeading>
 
-          <Animate className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {sortedPortfolioItems.map((item) => (
               <PortfolioCard key={item.id} item={item} onOpen={openModal} />
             ))}
-          </Animate>
+          </div>
         </div>
 
         <PortfolioModal item={modalContent} isOpen={isOpen} onClose={closeModal} />

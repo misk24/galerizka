@@ -1,6 +1,5 @@
 "use client";
 
-import { Animate } from "@/components/ui/Animate";
 import { Button } from "@/components/ui/Button";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { contacts } from "@/constants/constant";
@@ -18,8 +17,8 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 lg:py-32">
       <div className="mx-auto grid max-w-6xl gap-14 px-6 lg:grid-cols-5 lg:gap-20 lg:px-8">
-        <Animate delay={200} className="lg:col-span-2">
-          <SectionHeading eyebrow="Kontak" title="Ceritakan pesanan Anda." className="mb-8">
+        <div className="lg:col-span-2">
+          <SectionHeading title="Ceritakan pesanan Anda." className="mb-8">
             Tanya model, bahan, atau estimasi waktu. Isi formulir ini, atau langsung hubungi kami lewat WhatsApp.
           </SectionHeading>
           <ul className="space-y-4">
@@ -30,22 +29,24 @@ export default function Contact() {
                   {...externalLinkProps(contact.href)}
                   className="inline-flex items-center gap-3 font-medium text-mulberry-deep underline-offset-4 hover:underline"
                 >
-                  {contact.icon}
+                  <span className="flex w-5 justify-center">{contact.icon}</span>
                   {contact.label}
                 </a>
               </li>
             ))}
             <li className="inline-flex items-center gap-3">
-              <MapPin aria-hidden="true" className="h-4 w-4 text-mulberry-deep" />
+              <span className="flex w-5 justify-center">
+                <MapPin aria-hidden="true" className="h-4 w-4 text-mulberry-deep" />
+              </span>
               Lombok Timur, NTB
             </li>
           </ul>
-        </Animate>
+        </div>
 
-        <Animate delay={300} className="lg:col-span-3">
+        <div className="lg:col-span-3">
           <form
             onSubmit={handleSubmit}
-            className="space-y-5 rounded-2xl border border-dusty-rose/40 bg-blush-soft/50 p-6 sm:p-8"
+            className="space-y-5 rounded-xl bg-blush-soft p-6 sm:p-8"
             aria-busy={loading}
           >
             <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
@@ -84,7 +85,7 @@ export default function Contact() {
               {loading ? "Mengirim..." : "Kirim Pesan"}
             </Button>
           </form>
-        </Animate>
+        </div>
       </div>
     </section>
   );

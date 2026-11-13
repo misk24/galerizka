@@ -1,6 +1,5 @@
 "use client";
 
-import { Animate } from "@/components/ui/Animate";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import { menus } from "@/constants/constant";
 import { Menu, X } from "lucide-react";
@@ -27,11 +26,7 @@ export default function Navbar() {
       onKeyDown={handleKeyDown}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-        <Animate
-          animation="fadeIn"
-          delay={200}
-          className="flex justify-between items-center h-20"
-        >
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="shrink-0">
             <Link href="/" className="flex items-center">
@@ -85,7 +80,7 @@ export default function Navbar() {
               )}
             </button>
           </div>
-        </Animate>
+        </div>
       </div>
 
       {/* Mobile menu */}

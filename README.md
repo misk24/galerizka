@@ -18,7 +18,7 @@ Jalankan `npm install`, lalu `npm run dev`. Buka http://localhost:3000.
 - `app/`: App Router, root layout, metadata, dan API routes.
 - `components/layout/`: navbar, menu mobile, dan footer.
 - `components/sections/`: bagian halaman seperti Hero, About, Services, Portfolio, CTA, dan Contact.
-- `components/ui/`: komponen UI reusable (`Button`, `WhatsAppButton`, `SectionHeading`, `Badge`, `Modal`, `Animate`).
+- `components/ui/`: komponen UI reusable (`Button`, `WhatsAppButton`, `SectionHeading`, `Badge`, `Modal`).
 - `lib/`: helper murni tanpa React, mis. `links.js` untuk atribut tautan eksternal.
 - `constants/`: navigasi, kontak, dan tautan sosial.
 - `hooks/`: custom React hooks.
