@@ -78,8 +78,8 @@ export default function Modal({ isOpen, onClose, children }) {
         className="relative z-10 bg-white rounded-2xl shadow-2xl max-w-4xl w-full md:h-[70vh] lg:h-[90vh] overflow-auto flex flex-col scale-95 opacity-0 animate-modalIn transition-all duration-300 outline-none"
         style={{ WebkitOverflowScrolling: "touch", maxHeight: "calc(100% - 4rem)" }}
       >
-        <button onClick={onClose} className="absolute right-4 top-4 z-20 text-mulberry-deep hover:text-dusty-rose transition-colors" aria-label="Tutup modal">
-          <X size={24} />
+        <button onClick={onClose} className="absolute right-4 top-4 z-20 text-mulberry-deep hover:text-black-cherry transition-colors" aria-label="Tutup modal">
+          <X aria-hidden="true" size={24} />
         </button>
         <div className="w-full flex-1 overflow-y-auto">{children}</div>
       </div>

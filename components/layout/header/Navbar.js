@@ -2,7 +2,7 @@
 
 import { Animate } from "@/components/ui/Animate";
 import { Button } from "@/components/ui/Button";
-import { menus } from "@/constants/constant";
+import { menus, whatsappUrl } from "@/constants/constant";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,7 +52,7 @@ export default function Navbar() {
               <div key={href} className="relative group">
                 <Link
                   href={href}
-                  className="group relative px-3 py-2 font-heading font-medium text-blush-soft"
+                  className="group relative px-3 py-2 text-sm font-medium tracking-wide text-blush-soft"
                 >
                   {label}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-dusty-rose transition-all duration-300 group-hover:w-full" />
@@ -64,11 +64,13 @@ export default function Navbar() {
           {/* CTA Button */}
           <div className="hidden lg:flex items-center ml-6">
             <Button
-              href="https://wa.link/4u5haz"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               size="sm"
-              variant="primary"
+              variant="light"
             >
-              Pesan Sekarang
+              Pesan via WhatsApp
             </Button>
           </div>
 

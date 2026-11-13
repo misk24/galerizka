@@ -29,14 +29,12 @@ export default function Portfolio() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <Animate className="flex flex-col gap-4 lg:sticky lg:top-36 h-fit">
             <div className="text-center lg:text-start">
-              <span className="inline-block text-dusty-rose text-sm font-bold tracking-wider uppercase mb-3">
-                Portfolio
-              </span>
-              <h2 className="text-3xl md:text-4xl mb-4">
-                Beberapa Hasil Jahitan
-              </h2>
-              <p className="leading-tight">
-                Lihat beberapa contoh pakaian yang pernah kami kerjakan.
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-mulberry-deep">
+                Hasil Jahitan
+              </p>
+              <h2 className="mb-4">Pesanan yang sudah kami selesaikan.</h2>
+              <p>
+                Gamis, kemeja, dan tunik dari berbagai pesanan. Pilih salah satu untuk melihat foto dan detailnya.
               </p>
             </div>
           </Animate>
@@ -72,7 +70,7 @@ export default function Portfolio() {
                         {item.title}
                       </div>
                       <span className="inline-flex items-center text-white text-sm font-medium">
-                        Lihat Detail <ArrowUpRight className="ml-1 w-4 h-4" />
+                        Lihat Detail <ArrowUpRight aria-hidden="true" className="ml-1 w-4 h-4" />
                       </span>
                     </div>
                   </div>
@@ -88,17 +86,17 @@ export default function Portfolio() {
                           </Badge>
                         ))}
                       </div>
-                      <h3 className="pt-4 text-2xl">
+                      <h3 className="pt-4">
                         {item.title}
                       </h3>
                     </div>
                     <button
                       type="button"
                       onClick={() => openModal(item)}
-                      className="text-dusty-rose hover:text-mulberry-deep"
+                      className="text-mulberry-deep hover:text-black-cherry"
                       aria-label={`Lihat detail ${item.title}`}
                     >
-                      <ArrowUpRight className="w-5 h-5" />
+                      <ArrowUpRight aria-hidden="true" className="w-5 h-5" />
                     </button>
                   </div>
                 </div>
@@ -144,18 +142,18 @@ export default function Portfolio() {
                       <button
                         type="button"
                         onClick={() => scroll("left")}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
-                        aria-label="Scroll left"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-mulberry-deep text-white p-2 rounded-full hover:bg-black-cherry transition-colors z-10"
+                        aria-label="Foto sebelumnya"
                       >
-                        <ChevronLeft size={24} />
+                        <ChevronLeft aria-hidden="true" size={24} />
                       </button>
                       <button
                         type="button"
                         onClick={() => scroll("right")}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
-                        aria-label="Scroll right"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-mulberry-deep text-white p-2 rounded-full hover:bg-black-cherry transition-colors z-10"
+                        aria-label="Foto berikutnya"
                       >
-                        <ChevronRight size={24} />
+                        <ChevronRight aria-hidden="true" size={24} />
                       </button>
                     </>
                   )}
@@ -171,20 +169,20 @@ export default function Portfolio() {
                         </Badge>
                       ))}
                     </div>
-                    <h2 id="modal-title" className="text-2xl md:text-3xl lg:text-5xl">
+                    <h2 id="modal-title">
                       {modalContent.title}
                     </h2>
                   </div>
                   {modalContent.description?.trim() && (
                     <div className="border-t border-dusty-rose pt-6 space-y-4">
-                      <h3 className="text-2xl font-medium text-dusty-rose">Deskripsi</h3>
-                      <p className="leading-tight">{modalContent.description.trim()}</p>
+                      <h3>Deskripsi</h3>
+                      <p>{modalContent.description.trim()}</p>
                     </div>
                   )}
                   {modalContent.client?.trim() && (
                     <div className="mt-6 pt-6 border-t border-dusty-rose space-y-4">
-                      <h3 className="text-2xl font-medium text-dusty-rose">Klien</h3>
-                      <p className="leading-tight">{modalContent.client.trim()}</p>
+                      <h3>Dipesan oleh</h3>
+                      <p>{modalContent.client.trim()}</p>
                     </div>
                   )}
                 </div>

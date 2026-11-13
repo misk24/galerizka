@@ -20,24 +20,24 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 export const metadata = {
   ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
   title: {
-    default: "Galeriz.ka | Jasa Jahit Busana di Lombok",
+    default: "Galeriz.ka | Jahit Busana Custom di Lombok",
     template: "%s | Galeriz.ka",
   },
   description:
-    "Galeriz.ka menerima pesanan jahit busana sesuai ukuran dan model, serta layanan penyesuaian pakaian di Lombok.",
+    "Jahit gamis, kemeja, dan tunik sesuai ukuran badan dan model pilihan Anda di Lombok Timur. Tersedia juga permak dan penyesuaian pakaian.",
   openGraph: {
     type: "website",
     locale: "id_ID",
     siteName: "Galeriz.ka",
-    title: "Galeriz.ka | Jasa Jahit Busana di Lombok",
+    title: "Galeriz.ka | Jahit Busana Custom di Lombok",
     description:
-      "Pesanan jahit busana sesuai ukuran dan model, serta layanan penyesuaian pakaian di Lombok.",
+      "Busana custom sesuai ukuran badan dan model pilihan Anda, dijahit di Lombok Timur.",
   },
   twitter: {
     card: "summary",
-    title: "Galeriz.ka | Jasa Jahit Busana di Lombok",
+    title: "Galeriz.ka | Jahit Busana Custom di Lombok",
     description:
-      "Pesanan jahit busana sesuai ukuran dan model, serta layanan penyesuaian pakaian di Lombok.",
+      "Busana custom sesuai ukuran badan dan model pilihan Anda, dijahit di Lombok Timur.",
   },
 };
 
