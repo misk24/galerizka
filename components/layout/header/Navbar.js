@@ -1,7 +1,6 @@
 "use client";
 
-import { Animate } from "@/components/ui/Animate";
-import { Button } from "@/components/ui/Button";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import { menus } from "@/constants/constant";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
@@ -27,11 +26,7 @@ export default function Navbar() {
       onKeyDown={handleKeyDown}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-        <Animate
-          animation="fadeIn"
-          delay={200}
-          className="flex justify-between items-center h-20"
-        >
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="shrink-0">
             <Link href="/" className="flex items-center">
@@ -49,27 +44,22 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {menus.map(({ href, label }) => (
-              <div key={href} className="relative group">
-                <Link
-                  href={href}
-                  className="group relative px-3 py-2 font-heading font-medium text-blush-soft"
-                >
-                  {label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-dusty-rose transition-all duration-300 group-hover:w-full" />
-                </Link>
-              </div>
+              <Link
+                key={href}
+                href={href}
+                className="group relative px-3 py-2 text-sm font-medium tracking-wide text-blush-soft"
+              >
+                {label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-dusty-rose transition-all duration-300 group-hover:w-full" />
+              </Link>
             ))}
           </nav>
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center ml-6">
-            <Button
-              href="https://wa.link/4u5haz"
-              size="sm"
-              variant="primary"
-            >
-              Pesan Sekarang
-            </Button>
+            <WhatsAppButton size="sm" variant="light">
+              Pesan via WhatsApp
+            </WhatsAppButton>
           </div>
 
           {/* Mobile menu button */}
@@ -90,11 +80,11 @@ export default function Navbar() {
               )}
             </button>
           </div>
-        </Animate>
+        </div>
       </div>
 
       {/* Mobile menu */}
-      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} buttonRef={menuButtonRef} />
     </header>
   );
 }

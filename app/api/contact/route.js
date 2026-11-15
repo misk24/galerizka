@@ -115,7 +115,7 @@ export async function POST(req) {
 <body style="margin:0;padding:0;background:#f4f6f8;font-family:Arial,Helvetica,sans-serif;color:#111;">
 <table role="presentation" width="100%" style="border-collapse:collapse;"><tr><td align="center" style="padding:28px 12px;">
 <table role="presentation" width="600" style="max-width:600px;background:#fff;border-radius:12px;overflow:hidden;">
-<tr><td style="background:linear-gradient(90deg,#c57c8a,#732c3f);padding:24px 28px;color:#fff;"><h1 style="margin:0;font-size:20px;">Galerizka — Pesan Baru</h1><p style="margin:6px 0 0;font-size:13px;">Ada pengunjung yang menghubungi kamu lewat formulir kontak.</p></td></tr>
+<tr><td style="background:#732c3f;background-image:linear-gradient(90deg,#c57c8a,#732c3f);padding:24px 28px;color:#fff;"><h1 style="margin:0;font-size:20px;">Galerizka — Pesan Baru</h1><p style="margin:6px 0 0;font-size:13px;">Ada pengunjung yang menghubungi kamu lewat formulir kontak.</p></td></tr>
 <tr><td style="padding:20px 28px;"><p><strong>Nama</strong><br/>${safeName}</p><p><strong>Email</strong><br/>${safeEmail}</p><p><strong>Subjek</strong><br/>${safeSubject}</p><p><strong>Pesan</strong><br/>${safeMessage}</p>
 <p style="padding-top:16px;"><a href="mailto:${replyEmail}?subject=${replySubject}" style="display:inline-block;padding:16px 24px;background:#c57c8a;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">Balas Pengirim</a></p></td></tr>
 <tr><td style="background:#f7f9fb;padding:16px 28px;color:#718096;font-size:12px;text-align:center;">Pesan ini dikirim melalui formulir kontak Galerizka. Jika kamu merasa ini salah, abaikan pesan ini.</td></tr>

@@ -42,8 +42,9 @@ export function useSubmit() {
             "Terlalu banyak percobaan. Tunggu beberapa menit sebelum mencoba lagi."
           );
         }
+        const firstIssue = Object.values(result.issues ?? {}).flat()[0];
         throw new Error(
-          result.error || "Pesan gagal dikirim. Silakan coba lagi nanti."
+          firstIssue || result.error || "Pesan gagal dikirim. Silakan coba lagi nanti."
         );
       }
 

@@ -1,87 +1,79 @@
 "use client";
 
+import { externalLinkProps } from "@/lib/links";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
-import { forwardRef } from "react";
+
+const baseStyles =
+  "inline-flex items-center justify-center gap-2 font-medium transition-colors duration-200 disabled:opacity-50 disabled:pointer-events-none";
 
 const variantStyles = {
-  primary: "px-6 py-3 rounded-full bg-dusty-rose hover:bg-mulberry-deep text-white transition-colors duration-300",
-  secondary: "border-2 border-white hover:border-warm-gray text-muted-rose px-8 py-3 font-medium bg-white hover:bg-transparent hover:text-white transition-colors duration-300",
-  outline: "border-2 border-dusty-rose rounded-full text-dusty-rose px-6 py-3 font-medium hover:text-mulberry-deep hover:border-mulberry-deep transition-colors duration-300",
+  primary: "rounded-full bg-mulberry-deep text-white hover:bg-black-cherry",
+  outline: "rounded-full border-2 border-mulberry-deep text-mulberry-deep hover:bg-mulberry-deep hover:text-white",
+  light: "rounded-full bg-blush-soft text-mulberry-deep hover:bg-white",
+  ghostLight: "rounded-full border-2 border-blush-soft text-blush-soft hover:bg-blush-soft hover:text-mulberry-deep",
 };
 
 const sizeStyles = {
   sm: "px-3 py-1.5 text-sm",
-  md: "px-4 py-2 text-base",
-  lg: "px-6 py-3 text-lg",
+  md: "px-6 py-3 text-base",
+  lg: "px-8 py-4 text-lg",
 };
 
-const Button = forwardRef(
-  (
-    {
-      variant = "primary",
-      size = "md",
-      className = "",
-      as = "button",
-      href,
-      loading = false,
-      disabled = false,
-      children,
-      onClick,
-      tabIndex,
-      ...props
-    },
-    ref
-  ) => {
-    const baseStyles =
-      "inline-flex items-center justify-center font-medium transition-colors disabled:opacity-50 disabled:pointer-events-none";
+// Client component: handler onClick di bawah tidak boleh dibuat di server.
+// Dengan `href` jadi tautan (tab baru otomatis untuk http/https), tanpa itu jadi <button>.
+export function Button({
+  variant = "primary",
+  size = "md",
+  className = "",
+  href,
+  loading = false,
+  disabled = false,
+  children,
+  onClick,
+  tabIndex,
+  ref,
+  ...props
+}) {
+  const classes = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+  const unavailable = disabled || loading;
+  const spinner = loading && <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />;
 
-    const buttonClasses = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
-    const unavailable = disabled || loading;
-
-    if (as === "a" || href) {
-      function handleLinkClick(event) {
-        if (unavailable) {
-          event.preventDefault();
-          return;
-        }
-
-        onClick?.(event);
-      }
-
-      return (
-        <Link
-          href={href || "#"}
-          className={buttonClasses}
-          ref={ref}
-          aria-disabled={unavailable || undefined}
-          aria-busy={loading || undefined}
-          tabIndex={unavailable ? -1 : tabIndex}
-          onClick={handleLinkClick}
-          {...props}
-        >
-          {loading && <Loader2 aria-hidden="true" className="mr-2 h-4 w-4 animate-spin" />}
-          {children}
-        </Link>
-      );
-    }
-
+  if (href) {
     return (
-      <button
-        className={buttonClasses}
-        disabled={unavailable}
-        aria-busy={loading || undefined}
+      <Link
+        href={href}
         ref={ref}
-        onClick={onClick}
+        className={classes}
+        aria-disabled={unavailable || undefined}
+        aria-busy={loading || undefined}
+        tabIndex={unavailable ? -1 : tabIndex}
+        onClick={(event) => {
+          if (unavailable) event.preventDefault();
+          else onClick?.(event);
+        }}
+        {...externalLinkProps(href)}
         {...props}
       >
-        {loading && <Loader2 aria-hidden="true" className="mr-2 h-4 w-4 animate-spin" />}
+        {spinner}
         {children}
-      </button>
+      </Link>
     );
   }
-);
 
-Button.displayName = "Button";
-
-export { Button };
+  return (
+    <button
+      type="button"
+      ref={ref}
+      className={classes}
+      disabled={unavailable}
+      aria-busy={loading || undefined}
+      tabIndex={tabIndex}
+      onClick={onClick}
+      {...props}
+    >
+      {spinner}
+      {children}
+    </button>
+  );
+}
