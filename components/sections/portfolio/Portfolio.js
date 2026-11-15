@@ -20,7 +20,7 @@ export default function Portfolio() {
             Gamis, kemeja, dan tunik dari berbagai pesanan. Pilih salah satu untuk melihat foto dan detailnya.
           </SectionHeading>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2">
             {sortedPortfolioItems.map((item) => (
               <PortfolioCard key={item.id} item={item} onOpen={openModal} />
             ))}
