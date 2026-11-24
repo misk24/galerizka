@@ -68,11 +68,15 @@ export default function Portfolio() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    priority={index === 0}
+                    loading="lazy"
                     sizes={
                       index === 0
-                        ? "(max-width: 767px) 100vw, (max-width: 1023px) 58vw, 62vw"
-                        : "(max-width: 767px) 50vw, (max-width: 1023px) 42vw, 42vw"
+                        ? "(max-width: 767px) calc(100vw - 3rem), (max-width: 1279px) 54vw, 48vw"
+                        : index === 3
+                          ? "(max-width: 767px) calc(50vw - 2rem), (max-width: 1279px) 54vw, 48vw"
+                          : index === 4 || index === 5
+                            ? "(max-width: 767px) calc(50vw - 2rem), (max-width: 1279px) 46vw, 42vw"
+                            : "(max-width: 767px) calc(50vw - 2rem), (max-width: 1279px) 38vw, 36vw"
                     }
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                   />
@@ -145,7 +149,7 @@ export default function Portfolio() {
                       src={image}
                       alt={`${modalContent.title}, foto ${index + 1}`}
                       fill
-                      priority={index === 0}
+                      loading="lazy"
                       sizes="(max-width: 767px) 78vw, 24rem"
                       className="object-cover"
                     />
