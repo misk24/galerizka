@@ -11,7 +11,7 @@
 - [x] Improve contact form field borders, placeholder legibility, and visible keyboard focus states.
 - [x] Add explicit high-contrast keyboard focus indicators to desktop navigation, navbar CTA, logo link, and mobile menu toggle.
 - [x] Normalize typography wiring: Cormorant Garamond is used for headings and Inter for body text through the Next.js-generated font variables.
-- [x] Remove the unused legacy font configuration and unused Canela Trial font asset; avoid shipping an unverified trial font in production.
+- [x] Remove the unused legacy local-font configuration and orphaned Canela Trial / Satoshi font assets.
 
 ## Pending implementation
 
