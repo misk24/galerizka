@@ -1,198 +1,219 @@
 "use client";
 
-import { Animate } from "@/components/ui/Animate";
+import { useRef } from "react";
+import Image from "next/image";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import Badge from "@/components/ui/Badge";
 import Modal from "@/components/ui/Modal";
 import { useModal } from "@/hooks/useModal";
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
-import { useRef } from "react";
 import { portfolioItems } from "./constant";
+
+const cardLayouts = [
+  "col-span-2 md:col-span-7",
+  "col-span-1 md:col-span-5 md:mt-24",
+  "col-span-1 md:col-span-5",
+  "col-span-1 md:col-span-7 md:mt-20",
+  "col-span-1 md:col-span-6",
+  "col-span-1 md:col-span-6 md:mt-16",
+];
 
 export default function Portfolio() {
   const scrollContainerRef = useRef(null);
-  const scroll = (direction) => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 300; // Adjust this value to control scroll distance
-      scrollContainerRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth"
-      });
-    }
+  const { isOpen, modalContent, openModal, closeModal } = useModal();
+  const orderedItems = [...portfolioItems].sort((a, b) => b.id - a.id);
+
+  const scrollGallery = (direction) => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    container.scrollBy({
+      left: (direction === "left" ? -1 : 1) * container.clientWidth * 0.78,
+      behavior: "smooth",
+    });
   };
 
-  const { isOpen, modalContent, openModal, closeModal } = useModal();
-
   return (
-    <section id="portfolio" className="py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          <Animate className="flex flex-col gap-4 lg:sticky lg:top-36 h-fit">
-            <div className="text-center lg:text-start">
-              <span className="inline-block text-dusty-rose text-sm font-bold tracking-wider uppercase mb-3">
-                Portfolio
-              </span>
-              <h2 className="text-3xl md:text-4xl mb-4">
-                Beberapa Hasil Jahitan
-              </h2>
-              <p className="leading-tight">
-                Lihat beberapa contoh pakaian yang pernah kami kerjakan.
-              </p>
-            </div>
-          </Animate>
-
-          {/* Portfolio Grid */}
-          <Animate threshold={0.1} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[...portfolioItems].sort((a, b) => b.id - a.id).map((item) => (
-              <div 
-                key={item.id}
-                className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300"
-              >
-                <div className="aspect-4/5 relative overflow-hidden">
-                  <button
-                    type="button"
-                    onClick={() => openModal(item)}
-                    className="absolute inset-0 z-10 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-mulberry-deep"
-                    aria-label={`Lihat detail ${item.title}`}
-                  >
-                    <Image
-                      src={item.image}
-                      alt=""
-                      fill
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      priority={item.featured}
-                    />
-                  </button>
-                  
-                  {/* Overlay */}
-                  <div className="hidden absolute inset-0 pointer-events-none bg-linear-to-t from-mulberry-deep/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 lg:flex flex-col justify-end p-6">
-                    <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      <div className="text-2xl font-heading font-bold text-white mb-3">
-                        {item.title}
-                      </div>
-                      <span className="inline-flex items-center text-white text-sm font-medium">
-                        Lihat Detail <ArrowUpRight className="ml-1 w-4 h-4" />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="p-4 lg:hidden">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <div className="flex flex-wrap gap-1">
-                        {[...item.category].sort().map((cat, idx) => (
-                          <Badge key={idx}>
-                            {cat}
-                          </Badge>
-                        ))}
-                      </div>
-                      <h3 className="pt-4 text-2xl">
-                        {item.title}
-                      </h3>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => openModal(item)}
-                      className="text-dusty-rose hover:text-mulberry-deep"
-                      aria-label={`Lihat detail ${item.title}`}
-                    >
-                      <ArrowUpRight className="w-5 h-5" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </Animate>
+    <section id="portfolio" className="bg-[#fffdfc] py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+        <div className="mb-12 grid gap-6 border-b border-mulberry-deep/15 pb-8 md:mb-16 md:grid-cols-[1fr_0.65fr] md:items-end">
+          <h2 className="max-w-[12ch] text-5xl leading-[0.98] tracking-[-0.04em] text-mulberry-deep sm:text-6xl lg:text-7xl">
+            Dibuat dengan detail. Dipakai dengan percaya diri.
+          </h2>
+          <p className="max-w-md text-base leading-relaxed text-black-cherry/75 md:justify-self-end">
+            Beberapa hasil jahitan Galeriz.ka. Setiap karya berangkat dari
+            pilihan model, bahan, dan kebutuhan pemakainya.
+          </p>
         </div>
 
-        <Modal isOpen={isOpen} onClose={closeModal}>
-          <div className="w-full h-full flex flex-col md:flex-row rounded-2xl">
-            {modalContent && (
-              <>
-                {/* Kolom Gambar - Horizontal Scroll */}
-                <div className="w-full md:w-1/2 relative">
-                  <div
-                    ref={scrollContainerRef}
-                    role="region"
-                    aria-label={`Galeri gambar ${modalContent.title}`}
-                    tabIndex={0}
-                    className="w-full h-full overflow-x-auto snap-x snap-mandatory scrollbar-hide"
-                  >
-                    <div className="flex h-full min-h-[500px] md:min-h-full">
-                      <div className="flex space-x-4 p-4">
-                      {modalContent.modal.map((img, index) => (
-                        <div key={index} className="shrink-0 w-[300px] h-full">
-                          <div className="relative w-full h-full">
-                            <Image
-                              src={img}
-                              alt={`${modalContent.title} - ${index + 1}`}
-                              fill
-                              className="object-cover rounded-2xl"
-                              sizes="(max-width: 768px) 300px, 400px"
-                              priority={index === 0}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                      </div>
-                    </div>
-                  </div>
-{modalContent.modal.length > 1 && (
-                    <>
-                      <button
-                        type="button"
-                        onClick={() => scroll("left")}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
-                        aria-label="Scroll left"
-                      >
-                        <ChevronLeft size={24} />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => scroll("right")}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-mulberry-deep/70 text-white p-2 rounded-full hover:bg-mulberry-deep/90 transition-all z-10"
-                        aria-label="Scroll right"
-                      >
-                        <ChevronRight size={24} />
-                      </button>
-                    </>
-                  )}
-                </div>
+        <div className="grid grid-cols-2 items-start gap-x-4 gap-y-9 sm:gap-x-6 sm:gap-y-12 md:grid-cols-12 md:gap-x-8 md:gap-y-16">
+          {orderedItems.map((item, index) => (
+            <article
+              key={item.id}
+              className={cardLayouts[index] || "col-span-1 md:col-span-6"}
+            >
+              <button
+                type="button"
+                onClick={() => openModal(item)}
+                className="group block w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-mulberry-deep"
+                aria-label={`Lihat detail ${item.title}`}
+              >
+                <span
+                  className={`relative block overflow-hidden bg-blush-soft ${
+                    index === 0
+                      ? "aspect-[5/4] md:aspect-[4/5]"
+                      : "aspect-[4/5]"
+                  }`}
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    loading="lazy"
+                    sizes={
+                      index === 0
+                        ? "(max-width: 767px) calc(100vw - 3rem), (max-width: 1279px) 54vw, 48vw"
+                        : index === 3
+                          ? "(max-width: 767px) calc(50vw - 2rem), (max-width: 1279px) 54vw, 48vw"
+                          : index === 4 || index === 5
+                            ? "(max-width: 767px) calc(50vw - 2rem), (max-width: 1279px) 46vw, 42vw"
+                            : "(max-width: 767px) calc(50vw - 2rem), (max-width: 1279px) 38vw, 36vw"
+                    }
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                  />
+                  <span className="absolute bottom-3 right-3 inline-flex h-10 w-10 items-center justify-center bg-white text-mulberry-deep transition-colors duration-200 group-hover:bg-mulberry-deep group-hover:text-white sm:bottom-5 sm:right-5 sm:h-12 sm:w-12">
+                    <ArrowUpRight aria-hidden="true" size={20} />
+                  </span>
+                </span>
 
-                {/* Kolom Deskripsi */}
-                <div className="p-6 w-full md:w-1/2">
-                  <div className="mb-4 space-y-2">
-                    <div className="flex flex-wrap gap-1">
-                      {[...modalContent.category].sort().map((cat, idx) => (
-                        <Badge key={idx}>
-                          {cat}
-                        </Badge>
-                      ))}
-                    </div>
-                    <h2 id="modal-title" className="text-2xl md:text-3xl lg:text-5xl">
-                      {modalContent.title}
-                    </h2>
-                  </div>
-                  {modalContent.description?.trim() && (
-                    <div className="border-t border-dusty-rose pt-6 space-y-4">
-                      <h3 className="text-2xl font-medium text-dusty-rose">Deskripsi</h3>
-                      <p className="leading-tight">{modalContent.description.trim()}</p>
-                    </div>
-                  )}
-                  {modalContent.client?.trim() && (
-                    <div className="mt-6 pt-6 border-t border-dusty-rose space-y-4">
-                      <h3 className="text-2xl font-medium text-dusty-rose">Klien</h3>
-                      <p className="leading-tight">{modalContent.client.trim()}</p>
-                    </div>
-                  )}
-                </div>
-              </>
-            )}
-          </div>
-        </Modal>
+                <span className="mt-4 flex flex-col gap-2 sm:mt-5">
+                  <span className="flex flex-wrap gap-1.5">
+                    {[...item.category].sort().map((category) => (
+                      <span
+                        key={category}
+                        className="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-dusty-rose sm:text-xs"
+                      >
+                        {category}
+                      </span>
+                    ))}
+                  </span>
+                  <span className="flex items-start justify-between gap-3">
+                    <span className="font-heading text-xl leading-tight text-mulberry-deep sm:text-2xl md:text-3xl">
+                      {item.title}
+                    </span>
+                    <ArrowUpRight
+                      aria-hidden="true"
+                      className="mt-1 shrink-0 text-dusty-rose opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                      size={18}
+                    />
+                  </span>
+                </span>
+              </button>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-16 flex flex-col gap-4 border-t border-mulberry-deep/15 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-lg text-sm leading-relaxed text-black-cherry/70">
+            Punya model atau kebutuhan busana tertentu? Ceritakan kepada kami
+            untuk memulai konsultasi.
+          </p>
+          <a
+            href="https://wa.link/4u5haz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center gap-3 self-start border-b border-mulberry-deep pb-2 text-sm font-semibold text-mulberry-deep transition-colors hover:border-dusty-rose hover:text-dusty-rose focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-mulberry-deep"
+          >
+            Diskusikan pesanan Anda
+            <ArrowUpRight aria-hidden="true" size={17} />
+          </a>
+        </div>
       </div>
+
+      <Modal isOpen={isOpen} onClose={closeModal}>
+        {modalContent && (
+          <div className="flex min-h-full flex-col md:h-full md:flex-row">
+            <div className="relative w-full md:h-full md:w-[56%]">
+              <div
+                ref={scrollContainerRef}
+                role="region"
+                aria-label={`Galeri gambar ${modalContent.title}`}
+                tabIndex={0}
+                className="flex h-[52vh] min-h-[20rem] snap-x snap-mandatory gap-3 overflow-x-auto p-4 scrollbar-hide focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-dusty-rose md:h-full md:min-h-0"
+              >
+                {modalContent.modal.map((image, index) => (
+                  <div
+                    key={image}
+                    className="relative h-full w-[78vw] max-w-[25rem] shrink-0 snap-center overflow-hidden bg-blush-soft md:w-[min(78%,24rem)]"
+                  >
+                    <Image
+                      src={image}
+                      alt={`${modalContent.title}, foto ${index + 1}`}
+                      fill
+                      loading="lazy"
+                      sizes="(max-width: 767px) 78vw, 24rem"
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {modalContent.modal.length > 1 && (
+                <div className="absolute bottom-7 right-7 flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => scrollGallery("left")}
+                    aria-label="Foto sebelumnya"
+                    className="inline-flex h-10 w-10 items-center justify-center bg-white text-mulberry-deep shadow-md transition-colors hover:bg-mulberry-deep hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mulberry-deep"
+                  >
+                    <ArrowLeft size={18} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => scrollGallery("right")}
+                    aria-label="Foto berikutnya"
+                    className="inline-flex h-10 w-10 items-center justify-center bg-white text-mulberry-deep shadow-md transition-colors hover:bg-mulberry-deep hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mulberry-deep"
+                  >
+                    <ArrowRight size={18} />
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <div className="w-full px-6 pb-8 pt-4 md:w-[44%] md:overflow-y-auto md:px-8 md:py-12">
+              <div className="mb-5 flex flex-wrap gap-2">
+                {[...modalContent.category].sort().map((category) => (
+                  <Badge key={category}>{category}</Badge>
+                ))}
+              </div>
+              <h2 id="modal-title" className="max-w-[12ch] text-4xl leading-[1.02] text-mulberry-deep sm:text-5xl">
+                {modalContent.title}
+              </h2>
+
+              {modalContent.description?.trim() && (
+                <div className="mt-8 border-t border-mulberry-deep/15 pt-6">
+                  <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-dusty-rose">
+                    Deskripsi
+                  </h3>
+                  <p className="text-sm leading-relaxed text-black-cherry/80">
+                    {modalContent.description.trim()}
+                  </p>
+                </div>
+              )}
+
+              {modalContent.client?.trim() && (
+                <div className="mt-7 border-t border-mulberry-deep/15 pt-6">
+                  <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-dusty-rose">
+                    Klien
+                  </h3>
+                  <p className="text-sm leading-relaxed text-black-cherry/80">
+                    {modalContent.client.trim()}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </Modal>
     </section>
   );
 }
