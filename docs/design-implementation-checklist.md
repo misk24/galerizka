@@ -15,7 +15,9 @@
 
 ## Pending implementation
 
-- [ ] Review Services, About, and CTA sections for consistency with the editorial direction.
+- [x] Redesign Services with a numbered editorial service list while preserving the existing service content.
+- [x] Rework About into an image-led editorial layout while preserving the existing brand image and factual copy.
+- [x] Restyle the final CTA with a high-contrast mulberry treatment and retain the existing WhatsApp destination.
 - [ ] Review mobile menu open / close behavior and focus handling on narrow screens.
 - [ ] Review portfolio image asset dimensions, formats, and loading priority; optimize only after checking actual assets.
 - [ ] Review semantic heading order and remove undefined or unused color tokens / utility classes.
