@@ -134,7 +134,7 @@ export default function Portfolio() {
                 role="region"
                 aria-label={`Galeri gambar ${modalContent.title}`}
                 tabIndex={0}
-                className="flex h-[52vh] min-h-[20rem] snap-x snap-mandatory gap-3 overflow-x-auto p-4 scrollbar-hide focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-dusty-rose md:h-full md:min-h-0"
+                className="flex h-[52vh] min-h-[20rem] snap-x snap-mandatory gap-3 overflow-x-auto p-4 scrollbar-hide focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-dusty-rose md:h-full md:min-h-0"
               >
                 {modalContent.modal.map((image, index) => (
                   <div
