@@ -37,13 +37,13 @@ html { scroll-behavior: smooth; }
 
 body, p {
   color: var(--black-cherry);
-  font-family: var(--font-body);
+  font-family: var(--font-inter);
   font-size: var(--body);
   line-height: var(--lh-body);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-cormorant);
   font-weight: 700;
   line-height: var(--lh-heading);
   color: var(--mulberry-deep);
