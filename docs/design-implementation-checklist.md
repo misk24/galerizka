@@ -18,7 +18,7 @@
 - [x] Redesign Services with a numbered editorial service list while preserving the existing service content.
 - [x] Rework About into an image-led editorial layout while preserving the existing brand image and factual copy.
 - [x] Restyle the final CTA with a high-contrast mulberry treatment and retain the existing WhatsApp destination.
-- [ ] Review mobile menu open / close behavior and focus handling on narrow screens.
+- [x] Refine mobile menu disclosure behavior, icon transitions, outside-click closing, Escape-to-close focus restoration, scroll locking, and keyboard focus styles for menu links.
 - [ ] Review portfolio image asset dimensions, formats, and loading priority; optimize only after checking actual assets.
 - [ ] Review semantic heading order and remove undefined or unused color tokens / utility classes.
 - [ ] Review contact form validation, loading, success, and error states end-to-end.
