@@ -5,38 +5,46 @@ import { services } from "./constant";
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <Animate delay={200} className="text-center max-w-4xl mx-auto mb-16">
-          <span className="inline-block text-dusty-rose text-sm font-bold tracking-wider uppercase mb-3">
-            Layanan Kami
-          </span>
-          <h2 className="text-3xl md:text-4xl mb-4">
-            Layanan Jahit dan Penyesuaian Pakaian
-          </h2>
-          <p className="leading-relaxed">
-            Pilih layanan yang sesuai dengan kebutuhan pakaian Anda. Detail pesanan dan estimasi pengerjaan dapat dibicarakan sebelum pemesanan.
-          </p>
-        </Animate>
+    <section id="services" className="bg-white py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mb-12 grid gap-5 md:mb-16 md:grid-cols-[0.8fr_1.2fr] md:items-end">
+          <Animate delay={100}>
+            <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-[0.22em] text-dusty-rose">
+              Layanan Galeriz.ka
+            </span>
+            <h2 className="max-w-md text-4xl leading-[1.05] md:text-5xl">
+              Dibuat sesuai ukuran dan kebutuhan.
+            </h2>
+          </Animate>
+          <Animate delay={180} className="md:justify-self-end md:max-w-lg">
+            <p className="text-base leading-relaxed text-black-cherry/70">
+              Dari pembuatan busana hingga penyesuaian pakaian, setiap kebutuhan bisa dibicarakan lebih dulu sebelum pesanan disepakati.
+            </p>
+          </Animate>
+        </div>
 
-        <Animate delay={200} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          {services.map((service) => (
-            <div
+        <div className="grid border-t border-mulberry-deep/15 sm:grid-cols-2">
+          {services.map((service, index) => (
+            <Animate
               key={service.title}
-              className="group p-8 border border-blush-soft rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col"
+              delay={index * 90}
+              className="group flex gap-5 border-b border-mulberry-deep/15 py-7 sm:px-6 sm:py-9 [&:nth-child(odd)]:sm:pl-0 [&:nth-child(even)]:sm:border-l [&:nth-child(even)]:sm:border-mulberry-deep/15"
             >
-              <div className="w-14 h-14 flex items-center justify-center bg-blush-soft rounded-2xl text-2xl mb-6 group-hover:text-white group-hover:bg-dusty-rose">
-                {service.icon}
+              <span className="pt-1 font-body text-xs tracking-[0.18em] text-dusty-rose">
+                0{index + 1}
+              </span>
+              <div className="min-w-0">
+                <div className="mb-3 flex items-center gap-3">
+                  <span aria-hidden="true" className="text-xl">{service.icon}</span>
+                  <h3 className="text-2xl md:text-3xl">{service.title}</h3>
+                </div>
+                <p className="max-w-md text-sm leading-relaxed text-black-cherry/70 md:text-base">
+                  {service.description}
+                </p>
               </div>
-              <h3 className="text-2xl mb-3">
-                {service.title}
-              </h3>
-              <p className="leading-relaxed">
-                {service.description}
-              </p>
-            </div>
+            </Animate>
           ))}
-        </Animate>
+        </div>
       </div>
     </section>
   );
