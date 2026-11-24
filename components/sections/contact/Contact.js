@@ -4,6 +4,9 @@ import { Animate } from "@/components/ui/Animate";
 import { Button } from "@/components/ui/Button";
 import { useSubmit } from "./useSubmit";
 
+const fieldClass =
+  "w-full border border-mulberry-deep/25 bg-white px-4 py-3 text-sm text-black-cherry placeholder:text-black-cherry/55 transition-colors duration-200 hover:border-mulberry-deep/50 focus-visible:border-mulberry-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mulberry-deep";
+
 export default function Contact() {
   const { loading, feedback, handleSubmit } = useSubmit();
 
@@ -32,26 +35,26 @@ export default function Contact() {
                 <div className="space-y-1">
                   <label htmlFor="name" className="sr-only">Nama lengkap</label>
                   <input type="text" id="name" name="name" autoComplete="name" maxLength={100}
-                    className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200"
+                    className={fieldClass}
                     placeholder="Nama Lengkap" required />
                 </div>
                 <div className="space-y-1">
                   <label htmlFor="email" className="sr-only">Email</label>
                   <input type="email" id="email" name="email" autoComplete="email" maxLength={254}
-                    className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200"
+                    className={fieldClass}
                     placeholder="Email Anda" required />
                 </div>
               </div>
               <div className="space-y-1">
                 <label htmlFor="subject" className="sr-only">Subjek</label>
                 <input type="text" id="subject" name="subject" maxLength={150}
-                  className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200"
+                  className={fieldClass}
                   placeholder="Subjek" />
               </div>
               <div className="space-y-1">
                 <label htmlFor="message" className="sr-only">Pesan</label>
                 <textarea id="message" name="message" rows={5} maxLength={5000}
-                  className="w-full px-4 py-3 text-sm border border-blush-soft focus:ring-1 focus:ring-mulberry-deep transition-all duration-200 resize-none"
+                  className={`${fieldClass} resize-y`}
                   placeholder="Pesan Anda..." required />
               </div>
               {feedback.message && (
